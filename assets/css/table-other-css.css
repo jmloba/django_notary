@@ -1,0 +1,32 @@
+
+/* other setup of table */
+#notary-entry #tbody  .td-text{
+  text-align: start;
+}
+#notary-entry #tbody  .td-text-name{
+  text-align: start;
+  color : rgba(47, 12, 222, 0.844);
+  font-size : 18px;
+  font-style: italic;
+}
+
+#notary-entry #tbody  .td-amount{
+  background : rgba(222, 222, 162, 0.688);
+  color : rgba(255, 0, 0, 0.416);
+  text-align: end;
+
+}
+#notary-entry #tbody  .td-text-ref{
+  background : rgba(198, 198, 188, 0.429);
+  text-align: end;
+  color : blue;
+
+}
+#notary-entry #tbody  .td-text-category{
+  background-color: rgba(32, 134, 224, 0.4);
+  text-align: start;
+  padding : 3px 3px;
+}
+#notary-entry  td .btn i{
+  color : white;
+}

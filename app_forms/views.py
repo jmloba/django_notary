@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from app_notary.models import Notarized_Documents, Notary_Category
+from app_import.models import Phil_City,Phil_Province_Towns
 from app_forms.forms import CreateRecordNotaryForm,UpdateRecordNotaryForm, CreateRecordCategoryForm, UpdateRecordCategoryForm
 
 
@@ -94,7 +95,6 @@ def delete_category_record(request, pk=None):
   return render(request,'app_forms/delete-category-record.html',context)
 
 ''' notary dashboard'''
-
 @login_required(login_url='app_accounts:login-view')
 def dashboard(request):
   data=Notarized_Documents.objects.all()
@@ -102,7 +102,6 @@ def dashboard(request):
 
   context={'data':data, }
   return render(request,'app_forms/dashboard.html',context)
-
 @login_required(login_url='app_accounts:login-view')
 def create_record(request):
   form = CreateRecordNotaryForm()
@@ -121,11 +120,7 @@ def create_record(request):
       print(f'create_record form is not valid ')
   context={'form':form, }
   return render(request,'app_forms/create-record.html',context)
-
-
 @login_required(login_url='app_accounts:login-view')
-
-
 def update_record(request, pk=None):
 
   datarec= Notarized_Documents.objects.get(id=pk)
@@ -141,17 +136,20 @@ def update_record(request, pk=None):
 
   context={'form':form,'datarec':datarec}
   return render(request,'app_forms/update-record.html',context)
-
 def delete_record(request, pk=None):
-  
   datarec= Notarized_Documents.objects.get(id=pk)
   form = UpdateRecordNotaryForm(instance =datarec)   
-
   if request.method=='POST':
-
     datarec.delete()   
     return redirect('app_forms:dashboard', )
-
-
   context={'form':form,'datarec':datarec}
   return render(request,'app_forms/delete-record.html',context)
+
+''' province / town dashboard'''
+
+def provtown_dashboard(request):
+  data=Phil_Province_Towns.objects.all()
+  form = CreateRecordCategoryForm()
+
+  context={'data':data, }
+  return render(request,'app_forms/category-dashboard.html',context)

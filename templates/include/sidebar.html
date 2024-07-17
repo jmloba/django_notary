@@ -15,26 +15,56 @@
     {% if user.is_authenticated %}
       <div class="item "><a href="#"><i class="fas fa-desktop"></i>Topics</a>
       </div>
+    
+
+      <!-- document entries -->
       <div class="item ">
         <a class="sub-btn">
-          <i class="fas fa-table"></i>Notary Document Entries
+          <i class="fas fa-cogs"></i>Document Entries
           <i class="fas fa-angle-right dropdown"></i>
         </a>
         <div class="sub-menu">
+          <div class="item ">
+            <a class="sub-btn">
+             </i>Notary
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
 
-          <a href="{% url 'app_notary:notary-entry-modal' %}" class="sub-item">1. Notary Entry (modal)</a>  
-          <a href="{% url 'app_notary_ver2:notaryv2-entry-modal' %}" class="sub-item">2. Notary Entry (modal ver 2)</a>          
+              <a href="{% url 'app_notary:notary-entry-modal' %}" class="sub-item">1. Notary Entry (modal)</a>  
+              <a href="{% url 'app_notary_ver2:notaryv2-entry-modal' %}" class="sub-item">2. Notary Entry (modal ver 2)</a>          
 
-          <a href="{% url 'app_forms:dashboard'%}" class="sub-item">3. Notary entry by Forms</a>        
+              <a href="{% url 'app_forms:dashboard'%}" class="sub-item">3. Notary entry by Forms</a>        
 
-          <a href="{% url 'app_notary:notary-entry' %}" class="sub-item">xxx Notary Entry(pending ajax on edit case)</a>    
-          <a href="{% url 'app_forms:category-dashboard' %}" class="sub-item">Category</a>   
+              <a href="{% url 'app_notary:notary-entry' %}" class="sub-item">xxx Notary Entry(pending ajax on edit case)</a>      
+              <a href="" class="sub-item">sample 1 2</a>
+              
+            </div>
+          </div>  
+          <a href="{% url 'app_forms:category-dashboard' %}" class="sub-item">Category</a>            
+
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>sample 2
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="" class="sub-item">sample 2 1</a>     
+              <a href="" class="sub-item">sample 2 2</a>
+              
+            </div>
+          </div> 
+           
+          <a href="" class="sub-item">sample x</a>          
+          <a href="" class="sub-item">sample 2</a>
+          
         </div>
-      </div>
+      </div>            
+      <!-- other entris -->
 
       <div class="item ">
         <a class="sub-btn">
-          <i class="fas fa-cogs"></i>Import
+          <i class="fas fa-cogs"></i>Import Tables
           <i class="fas fa-angle-right dropdown"></i>
         </a>
         <div class="sub-menu">

@@ -182,7 +182,7 @@ ul li{
 }
 
 .body-area{
-  background-color: #4adbf17c;
+  background-color: #7cb8d6a0;
   
   margin: 2em 3em;
   padding : 1em 1em;
@@ -209,15 +209,16 @@ ul li{
 /* form */
 
 form{
-  background-color: #c9bf71;
+  background-color: #c7c5b2;
   border-radius: 10px;;
   padding : 1em 1em;
-  margin : 1em 1em;
+  margin : 2em .5em;
 }
 form field,
 form label {
   color : blue;
   height : 1.2em;
+  font-size: 15px;
 
 }
 .username{

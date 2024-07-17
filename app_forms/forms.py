@@ -1,6 +1,7 @@
 from django import forms 
 
 from app_notary.models import Notarized_Documents, Notary_Category
+from app_import.models import Phil_City,Phil_Province_Towns
 
 class CreateRecordNotaryForm(forms.ModelForm):
   class Meta :
@@ -50,7 +51,6 @@ class UpdateRecordNotaryForm(forms.ModelForm):
     self.fields['lastname'].required=True
     self.fields['category'].required=True    
 
-
 ''' Category'''    
 
 class CreateRecordCategoryForm(forms.ModelForm):
@@ -64,6 +64,7 @@ class CreateRecordCategoryForm(forms.ModelForm):
   def __init__(self,*args,**kwargs):
     super(CreateRecordCategoryForm,self).__init__(*args,**kwargs)
     self.fields['doc_category'].required=True
+
 class UpdateRecordCategoryForm(forms.ModelForm):
   class Meta :
     model=Notary_Category
@@ -75,3 +76,16 @@ class UpdateRecordCategoryForm(forms.ModelForm):
   def __init__(self,*args,**kwargs):
     super(UpdateRecordCategoryForm,self).__init__(*args,**kwargs)
     self.fields['doc_category'].required=True
+    
+''' province / Town'''    
+# class CreateRecord_ProvTownForm(forms.ModelForm):
+#   class Meta :
+#     model=Phil_Province_Towns
+#     fields=('doc_category',)
+
+#     labels={
+#       'doc_category':'Category',
+#     }
+#   def __init__(self,*args,**kwargs):
+#     super(CreateRecordCategoryForm,self).__init__(*args,**kwargs)
+#     self.fields['doc_category'].required=True

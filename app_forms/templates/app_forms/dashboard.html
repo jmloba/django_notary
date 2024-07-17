@@ -17,23 +17,23 @@
       <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"  >   
         <div class="table-outer-wrapper">
 
-          <section class="table__header" >This is Table Header
+          <section class="table__header" >Notary Transactions
 
           </section>          <div class="table-wrapper notary-table">
 
             <section class="table__body">
-              <table class=" table product-table content-table" >
+              <table id ="myordersTable" class=" table product-table content-table" >
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Image</th>                  
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Book</th>
-                    <th scope="col">Page</th>
-                    <th scope="col">Record</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Myfile</th>                                      
+                    <th >Image</th>                  
+                    <th >First Name</th>
+                    <th >Last Name</th>
+                    <th >Category</th>
+                    <th >Book</th>
+                    <th >Page</th>
+                    <th >Record</th>
+                    <th >Amount</th>
+                    <th >Myfile</th>                                      
                                     
                     <th scope="col">Action</th>
                   </tr>
@@ -84,7 +84,7 @@
 
                        &nbsp;&nbsp;
 
-                       <button class="btn btn-info btn-sm ">
+                       <button class="btn btn-danger btn-sm ">
                         <a href="{% url 'app_forms:delete-record' item.id %}">
                           <i class="bi bi-trash3"></i>
                         </a>
@@ -110,6 +110,7 @@
 </div>
 </section>
 <link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
 
 <script src="{% static 'js/app-forms-entry.js' %}" ></script> 
 <script>
