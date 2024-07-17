@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 import os
 from decouple import config
@@ -28,9 +29,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY =  config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+# ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG','False').lower() == 'true' 
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOST').split('')
+
 
 
 # Application definition
@@ -42,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 'django.contrib.gis',
+
     'app_accounts',
 
     'app_notary',
@@ -99,11 +106,25 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # },
+
+         'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE':'django.contrib.gis.db.backends.postgis',
+
+        'NAME':     config('DB_NAME'),
+        'USER':     config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+    },
+   
 }
+
+database_url = os.environ.get('DATABASE_URL')
+DATABASES['default']= dj_database_url.parse('database_url')
 
 
 # Password validation
@@ -178,3 +199,9 @@ INTERNAL_IPS=[
   '127.0.0.1',
 
 ]
+
+
+# os.environ['PATH'] = os.path.join(BASE_DIR, 'project_env\Lib\site-packages\osgeo') + ';' + os.environ['PATH']
+# os.environ['PROJ_LIB'] = os.path.join(BASE_DIR, 'project_env\Lib\site-packages\osgeo\data\proj') + ';' + os.environ['PATH']
+
+GDAL_LIBRARY_PATH = os.path.join(BASE_DIR, 'project_env\Lib\site-packages\osgeo\gdal304.dll')

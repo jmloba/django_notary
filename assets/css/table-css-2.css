@@ -18,16 +18,16 @@
 }
 table .thead-light th {
   border-collapse : separate;
-  background-color: rgba(225, 78, 78, 0.709);
+  background-color: rgba(5, 152, 135, 0.978);
   border: 1px solid blue;
   /* Remove border */
   border : None;
 }
 #tbody td{
   /* border : None; */
-  background-color: rgba(105, 222, 224, 0.163);
+  background-color: rgba(241, 244, 235, 0.54);
   padding : 5px 10px;
-  color : rgb(36, 110, 51);
+  color : rgb(15, 69, 26);
   font-weight: 500;
   justify-content: left;
   
@@ -36,7 +36,7 @@ th{
   position: sticky;
   top :0;
   background-color: teal;
-  color :blue;
+  color :rgb(84, 159, 101);
 
 }
 .table-outer-wrapper {
@@ -55,7 +55,7 @@ th{
   
 }
 .table__header{
-  background-color: rgba(14, 16, 84, 0.415);
+  background-color: rgba(23, 187, 205, 0.948);
   margin :5px;
   padding : 5px 10px;
   color : white;
@@ -79,10 +79,10 @@ th{
 
 /* zebra */ 
  #tbody  tr:nth-last-child(even){
-  background-color: rgba(0, 0, 0, 0.218);
+  background-color: rgba(229, 218, 218, 0.362);
 }
 #tbody  tr:hover{
-  background-color: rgba(243, 236, 236, 0.528);
+  background-color: rgba(46, 115, 59, 0.528);
 }
 
 /* other setup of table */
@@ -110,6 +110,18 @@ th{
 #tbody  .td-text-category{
   background-color: aliceblue;
   text-align: start;
+  padding : 3px 3px;
 }
 
 
+
+
+#tbody td .fa-pen-to-square{
+  color : blue;
+  background :white;
+}
+#tbody a i .bi.bi-trash3 {
+  color : white;
+  
+  
+}

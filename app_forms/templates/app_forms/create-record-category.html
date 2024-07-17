@@ -1,0 +1,55 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="category-entry-create-rec" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="form-entry"  >
+        <h3>Create Category Record  </h3>
+
+        <form action="{% url 'app_forms:create-record-category' %}"    " 
+        method="POST" >
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group form-name "> 
+              <div class="form-group-item col-lg-6 col-md-5 col-sm-12 col-xs-12">
+              {{form.doc_category|as_crispy_field}}
+              </div>
+       
+            </div> 
+            
+          </div> 
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>
+
+        
+        </form>
+        
+       
+      </div>
+ 
+    </div>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/app-forms-update-record.css' %}">
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+<script>
+  function one(){
+    console.log('function 1')
+    let id = $(this).attr("data-sid")
+    console.log('function 1 ', id)
+    $('#stuid').val(id)
+  }
+  function two(){console.log('function 2')
+
+  }
+</script>
+
+
+{% endblock %}
+

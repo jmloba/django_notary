@@ -24,6 +24,15 @@ def notary_input(request):
   context={ 'form': form, 'data':data}
   return render(request,'app_notary/notary-input.html', context)
 
+def category_entry(request):
+  form = Notary_Categoryform()
+  data = Notary_Category.objects.all()
+
+  context={ 'form': form, 'data':data}
+
+  return render(request,'app_notary/category-main.html', context)
+
+
 def notary_entry(request):
   form = Notary_form_A(request.POST or None , request.FILES or None)
   data=Notarized_Documents.objects.all()

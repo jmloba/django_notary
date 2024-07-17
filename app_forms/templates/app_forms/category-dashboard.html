@@ -1,0 +1,88 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="category-entry" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"  >
+        <button class="btn btn-primary"><a href="{% url 'app_forms:create-record-category'%} "> Add Record</a></button>
+       
+      </div>
+
+      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"  >   
+        <div class="table-outer-wrapper">
+
+          <section class="table__header" >This is Table Header
+
+          </section>          <div class="table-wrapper notary-table">
+
+            <section class="table__body">
+              <table class=" table product-table content-table" >
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Category</th>                  
+                                  
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                
+                <tbody id="tbody" class="table-body">
+                  {% if data %}
+                    {% for item in data %}
+        
+                    <tr id="categ-id-{{item.id}}">
+                              
+    
+                      <td class="td-text td-text-name">{{item.doc_category}}</td>
+                      
+                      <td>
+            
+                           <a type="button" class="btn btn-info" href="{% url 'app_forms:update-category-record' item.id %}">
+                            <i class="bi bi-pencil"></i>       
+                           </a>
+            
+                       &nbsp;&nbsp;
+                       <a type="button" class="btn btn-danger" href="{% url 'app_forms:delete-category-record' item.id %}">
+                        <i class="bi bi-trash3"></i>      
+                       </a>                       
+
+
+      
+                      </td>
+                  
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+                </tbody>
+                 
+              </table>
+            </section>
+          </div>
+        </div>
+      </div>     
+    </div>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+<script>
+  function one(){
+    console.log('function 1')
+    let id = $(this).attr("data-sid")
+    console.log('function 1 ', id)
+    $('#stuid').val(id)
+  }
+  function two(){console.log('function 2')
+
+  }
+</script>
+
+
+{% endblock %}
+

@@ -22,5 +22,6 @@ urlpatterns = [
     path('modal-notary-update/<int:pk>',views.modal_notary_update, name='modal-notary-update'),
 
     path('modal-notary-delete/<int:pk>',views.modal_notary_delete, name='modal-notary-delete'),
+    path('category-entry/',views.category_entry, name='category-entry'),
 
 ]
