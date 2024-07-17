@@ -1,0 +1,27 @@
+#notary-entry-cairo-coder .notary-table{
+  background-color: bisque;
+  padding :2em 2em;
+  border: 1px solid orangered;
+  border-radius :10px;
+  overflow: auto;
+
+} 
+#notary-entry-cairo-coder .entry-box{
+  background-color: rgb(231, 235, 240);
+  padding :2em 2em;
+  border: 1px solid orangered;
+  border-radius :10px;
+  margin-bottom : 2em;
+}
+ 
+#notary-entry-cairo-coder .body-area{
+  padding : 1em 1em;
+  margin : 1em 1em;
+
+}
+#notary-entry-cairo-coder table{
+  position : relative;
+  margin :1em 2em;
+  
+  width: 80%;
+}

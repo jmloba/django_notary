@@ -1,0 +1,146 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notary-entry" >
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"  >
+        <h3>Form</h3>
+
+        <form action="" id="notary_entry_form"  enctype="multipart/form-data" method="POST" >
+          {% csrf_token %}
+          <div class="form-row">
+            
+            <div class="form-group"> 
+              <div class="form-group-item">
+                {{form.category|as_crispy_field}}
+              </div>
+            </div>
+
+            <div class="form-group d-flex"> 
+              <div class="form-group-item">
+              {{form.firstname|as_crispy_field}}
+              </div>
+              <div class="form-group-item">
+                {{form.lastname|as_crispy_field}}
+              </div>
+            </div> 
+            <div class="form-group d-flex"> 
+              <div class="form-group-item">
+              {{form.bookno|as_crispy_field}}
+              </div>
+              <div class="form-group-item">
+                {{form.pageno|as_crispy_field}}
+              </div>
+     
+            </div> 
+
+            <div class="form-group d-flex">  
+              <div class="form-group-item">
+                {{form.recordno|as_crispy_field}}
+              </div>
+            </div>      
+            <div class="form-group d-flex">  
+              <div class="form-group-item">
+                {{form.myimage|as_crispy_field}}
+              </div>
+            </div>             
+            <div class="form-group d-flex">  
+              <div class="form-group-item">
+                {{form.myfile|as_crispy_field}}
+              </div>
+            </div>  
+            <div class="form-group d-flex">  
+              <div class="form-group-item">
+                {{form.amount_paid|as_crispy_field}}
+              </div>
+            </div>              
+     
+          </div> 
+
+          <input type="type" name ="stuid" id ="stuid">
+
+          <input type="submit"  id="btn-save-notary"  value ="save" class="btn btn-primary"  data-url="{% url 'app_notary:save-notary-entry' %} ">       
+          
+        </form>
+      </div>
+
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"  >   
+        <div class="table-outer-wrapper">
+
+          <section class="table__header" >This is Table Header
+
+          </section>          <div class="table-wrapper notary-table">
+
+            <section class="table__body">
+              <table class=" table product-table content-table" >
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Image</th>                  
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Page</th>
+                    <th scope="col">Record</th>
+                    <th scope="col">Amount</th>
+                                    
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                
+                <tbody id="tbody" class="table-body">
+                  {% for item in data %}
+      
+                  <tr id="categ-id-{{item.id}}">
+                    {% if item.myimage%}
+                      <td>
+                        <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+                      
+                      </td>
+                    {% else %}
+                      <td>
+                        <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                      
+                      </td>     
+                    {% endif %}               
+  
+                    <td class="td-text td-text-name">{{item.firstname}}</td>
+                    <td class="td-text  td-text-name">{{item.lastname}}</td>
+                    <td class="td-text-category">{{item.category}}</td>
+                    <td class="td-text-ref">{{item.bookno}}</td>
+                    <td class="td-text-ref">{{item.pageno}}</td>
+                    <td class="td-text-ref">{{item.recordno}}</td>
+                    <td class="td-amount">{{item.amount_paid}}</td>
+                    <td>
+                      <button class="btn btn-info btn-sm"  
+                      id="btn-notary-edit"  data-sid="{{item.id}}" data-url="{% url 'app_notary:notary-edit' %}"><i class="bi bi-pencil"></i>
+                      </button> 
+                        &emsp;            
+                      <button class="btn btn-danger btn-sm"  id="btn-notary-delete"  data-sid="{{item.id}}" data-url="{% url 'app_notary:notary-delete' %}">
+                      <i class="bi bi-trash3"></i>
+                      </button>
+                    </td>
+                 
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                 
+              </table>
+            </section>
+          </div>
+        </div>
+      </div>     
+    </div>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+
+<script src="{% static 'js/app-notary-entry.js' %}" ></script> 
+
+
+{% endblock %}
+

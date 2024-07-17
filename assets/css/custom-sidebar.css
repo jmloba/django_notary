@@ -1,0 +1,87 @@
+.side-bar{
+  background-color: rgb(42, 86, 188);
+  backdrop-filter: blur(15px);
+  width: 200px;
+  height : 100vh;
+  position : fixed;
+  top :0;
+  left: -100%;
+  overflow-y: auto;
+  /* opacity : .3; */
+  transition: .6s ease;
+  z-index: 100;
+  
+
+}
+.side-bar .menu{
+  width : 100%;
+  margin-top : 80px;
+  
+
+}
+.side-bar .menu .item{
+  position : relative;
+  cursor: pointer;
+    
+}
+.side-bar .menu .item a{
+  color : white;
+  /* background : rgb(66, 104, 187); */
+  text-decoration: None;
+  display : block;
+  padding : 5px 30px;
+  line-height : 20px;
+
+    
+}
+.side-bar.active{
+  left:0;
+}
+
+.side-bar .menu .item a:hover{
+  color :rgb(40, 33, 242);
+  background-color: aqua;
+  transition : .5s ease;
+}
+.side-bar .menu .item i{
+  margin-right :15px;
+}
+.side-bar .menu .item a .dropdown{
+  position : absolute;
+  right : 0;
+  margin: 5px;
+  transition : .3s ease;
+}
+.side-bar .menu .item .sub-menu{
+  color :rgb(40, 33, 242);
+  display : None;
+
+}
+
+
+.side-bar .menu .item .sub-menu a{
+  padding-left: 40px; 
+
+}
+.rotate{
+  transform: rotate(90deg);
+
+}
+.close-btn {
+  position : absolute;
+  color : white;
+  font-size: 20px;
+  right :0;
+  
+  margin : 25px;
+  cursor : pointer;
+
+} 
+.menu-btn{
+  /* position : absolute; */
+  color : white;
+  font-size: 20px;;
+  margin : 25px;
+  cursor : pointer;
+
+}

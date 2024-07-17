@@ -1,0 +1,12 @@
+.wrapper .form-div{
+  background-color: rgb(226, 185, 185);
+  margin:10% 10%;
+  border-radius: 10px;
+
+}
+.wrapper  form{
+  padding :2em 3em;
+}
+.wrapper #notary-entry table button .menu_btn{
+  color :red;
+}

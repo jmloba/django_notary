@@ -1,0 +1,72 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notary-entry" >
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12"  >
+        <div class ="app_buttons">
+
+          <button type="button" 
+          class="btn btn-primary js-create-product" data-url="{% url 'app_cairo:product-create'%}">
+          <i class="bi bi-file-plus"></i>New Product</button>
+
+        </div>
+
+
+      </div>
+      <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12"  >   
+        <div class="table-outer-wrapper">
+          <h3>Products</h3>
+          <div class="table-wrapper notary-table">
+            <table   class="table product-table content-table">
+              <thead class="thead-light">
+     
+                  <th scope="col">Product id</th>
+                  <th >Product Code</th>
+                  <th >Name</th>
+                  <th >Quantity</th>
+                  <th >Price</th>
+                  <th >categorytype</th>
+                  <th >Date Added</th>
+                       
+                  <th >Action</th>
+  
+              </thead>
+              
+              <tbody id="tbody" class="table-body">
+                {% include 'app_cairo/partial_product_list.html' %}
+              
+              </tbody>
+               
+            </table>
+
+      
+              <div class="modal fade" id="modal-product">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+    
+                  </div>
+                </div>
+              </div>
+  
+      
+    
+          </div>
+  
+        </div>
+
+
+
+      </div>     
+
+    </div>
+</div>
+</section>
+
+<script src="{% static 'js/app-cairo-entry.js' %}" ></script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+{% for item in notary_list %}
+    
+<tr id="categ-id-{{item.id}}">
+  <td>{{item.firstname}}</td>
+  <td>{{item.lastname}}</td>
+  <td>{{item.category}}</td>
+
+  <td>{{item.bookno}}</td>
+  <td>{{item.pageno}}</td>
+  <td>{{item.recordno}}</td>
+  <td>{{item.amount_paid}}</td>
+  {% if item.myimage%}
+  <td>
+    <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+  
+  </td>
+  {% else %}
+  <td>
+    <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+  
+  </td>   
+  {% endif %}      
+
+
+  <td>
+    <button 
+    class="btn btn-info btn-sm js-update-modal-ver2-notary"  
+    id="btn-modal-v2-notary-update"  
+    
+    data-url="{% url 'app_notary_ver2:modal-v2-notary-update' item.id %}">
+    <i class="bi bi-pencil"></i>
+    </button> 
+      &emsp;            
+    <button class="btn btn-danger btn-sm js-delete-v2-notary"  id="btn-modal-notary-delete"  
+
+    data-url="{% url 'app_notary_ver2:modal-v2-notary-delete' item.id %}">
+    <i class="bi bi-trash3"></i>
+    </button>
+  </td>
+
+</tr>
+{%empty%}
+<tr>
+  <td colspan="8" class="text-center bg-warning">No entries</td>
+
+</tr>
+{% endfor %}

@@ -1,0 +1,20 @@
+
+
+<form   method='POST'  action="{% url 'app_notary_ver2:modal-v2-notary-update' form.instance.pk %}" class="js-notary-v2-update-form">
+
+  {% csrf_token %}
+
+  <div class="modal-header">
+    <h4 class="modal-title">Update Notary ver 2</h4>    
+  </div>
+
+  <div class="modal-body">
+    {% include 'app_notary_ver2/partial_notary_v2_form.html' %}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary" >Update Notary ver 2</button>
+
+  </div>
+  
+</form>

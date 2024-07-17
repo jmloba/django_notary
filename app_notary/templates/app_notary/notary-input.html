@@ -1,0 +1,88 @@
+{% extends 'main/base.html'%}
+
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notary-input" >
+  <div class="body-area">
+
+    <div class="row d-flex">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"  >
+        <form action="" id="notary_entry_form" method="POST" autocomplete="on" >
+          {% csrf_token %}
+          <div class="form-row">
+            
+            <div class="form-group"> 
+              <div class="form-group-item">
+                {{form.category|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-group d-flex"> 
+              <div class="form-group-item">
+              {{form.firstname|as_crispy_field}}
+              </div>
+              <div class="form-group-item">
+                {{form.lastname|as_crispy_field}}
+              </div>
+            </div> 
+            
+                
+
+          </div>
+
+          <input type="hidden" name ="stuid" id ="stuid">
+
+          <input type="submit"  id="btn-save-notary"  value ="save" class="btn btn-primary"  data-url="{% url 'app_notary:save-notary' %} ">       
+          
+        </form>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"  >   
+        <div class="notary-table">
+
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Category</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            
+            <tbody id="tbody">
+              {% for item in data %}
+  
+              <tr id="categ-id-{{item.id}}">
+                <td>{{item.firstname}}</td>
+                <td>{{item.lastname}}</td>
+                <td>{{item.category}}</td>
+
+                <td>
+                  <button class="btn btn-danger btn-sm"
+                  data-sid="{{item.id}}" 
+                  id="btn-notary-delete"
+                  data-url="{% url 'app_notary:notary-delete' %}">
+                  <i class="bi bi-trash3"></i>
+                  </button>
+                </td>
+             
+              </tr>
+              {% endfor %}
+             
+          </table>
+  
+        </div>
+      </div>     
+
+    </div>
+</div>
+</section>
+
+<script src="{% static 'js/app-notary.js' %}" ></script> 
+
+<link rel="stylesheet" href="{% static 'css/notary-input.css' %}">
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load crispy_forms_tags %}
+
+
+<div class="form-group form-name "> 
+  <div class="form-group-item col-lg-6 col-md-5 col-sm-12 col-xs-12">
+  {{form.firstname|as_crispy_field}}
+  </div>
+  <div class="form-group-item col-lg-5 col-md-6 col-sm-12 col-xs-12">
+    {{form.lastname|as_crispy_field}}
+  </div>
+</div> 
+
+<div class="form-group "> 
+  <div class="form-group-item form-category">
+  {{form.category|as_crispy_field}}
+  </div>
+</div>     
+
+<div class="form-group ">      
+  <div class="form-group-item form-address">
+    {{form.address|as_crispy_field}}
+  </div> 
+</div>     
+<div class="form-group form-name "> 
+  <div class="form-group-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    {{form.bookno|as_crispy_field}}
+  </div> 
+  <div class="form-group-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    {{form.pageno|as_crispy_field}}
+  </div> 
+  <div class="form-group-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    {{form.recordno|as_crispy_field}}
+  </div> 
+</div>   
+<div class="form-group form-name ">     
+  <div class="form-group-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    {{form.amount_paid|as_crispy_field}}
+  </div> 
+
+</div>   
+<div class="form-group form-name ">      
+  <div class="form-group-item col-lg-6 col-md-5 col-sm-12 col-xs-12">
+    {{form.myimage|as_crispy_field}}
+  </div> 
+  <div class="form-group-item col-lg-6 col-md-5 col-sm-12 col-xs-12">
+    {{form.myfile|as_crispy_field}}
+  </div> 
+
+</div>    

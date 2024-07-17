@@ -1,0 +1,113 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notary-entry" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"  >
+        <button class="btn btn-primary"><a href="{% url 'app_forms:create-record'%} "> Add Record</a></button>
+       
+      </div>
+
+      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"  >   
+        <div class="table-outer-wrapper">
+
+          <section class="table__header" >This is Table Header
+
+          </section>          <div class="table-wrapper notary-table">
+
+            <section class="table__body">
+              <table class=" table product-table content-table" >
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Image</th>                  
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Page</th>
+                    <th scope="col">Record</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Myfile</th>                                      
+                                    
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                
+                <tbody id="tbody" class="table-body">
+                  {% if data %}
+                    {% for item in data %}
+        
+                    <tr id="categ-id-{{item.id}}">
+                      {% if item.myimage%}
+                        <td>
+                          <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+                        
+                        </td>
+                      {% else %}
+                        <td>
+                          <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                        
+                        </td>     
+                      {% endif %}               
+    
+                      <td class="td-text td-text-name">{{item.firstname}}</td>
+                      <td class="td-text  td-text-name">{{item.lastname}}</td>
+                      <td class="td-text-category">{{item.category}}</td>
+                      <td class="td-text-ref">{{item.bookno}}</td>
+                      <td class="td-text-ref">{{item.pageno}}</td>
+                      <td class="td-text-ref">{{item.recordno}}</td>
+                      <td class="td-amount">{{item.amount_paid}}</td>
+                      {% if item.myfile%}
+                      <td>
+                        <img src="{{item.myfile.url}}" alt="my file" class="item-image-size-inlist" >
+                      
+                      </td>
+                    {% else %}
+                      <td>
+                        <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                      
+                      </td>     
+                    {% endif %}                            
+                      <td>
+                        <a href="{% url 'app_forms:update-record' item.id %}"><button id="up"></button><i class="fa-solid fa-pen-to-square"></i></a>&nbsp;&nbsp;
+                        <a href="{% url 'app_forms:delete-record' item.id %}"><button id="up"><i class="fa-solid fa-trash"></i></button></a>
+      
+                      </td>
+                  
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+                </tbody>
+                 
+              </table>
+            </section>
+          </div>
+        </div>
+      </div>     
+    </div>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+<script>
+  function one(){
+    console.log('function 1')
+    let id = $(this).attr("data-sid")
+    console.log('function 1 ', id)
+    $('#stuid').val(id)
+  }
+  function two(){console.log('function 2')
+
+  }
+</script>
+
+
+{% endblock %}
+

@@ -1,0 +1,115 @@
+.table {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size : 16px;
+  
+  width:100%;
+  
+  
+
+  border: 5px solid rgba(11, 115, 119, 0.5);
+  min-width:max-content;
+  
+}
+
+.table img{
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+}
+table .thead-light th {
+  border-collapse : separate;
+  background-color: rgba(225, 78, 78, 0.709);
+  border: 1px solid blue;
+  /* Remove border */
+  border : None;
+}
+#tbody td{
+  /* border : None; */
+  background-color: rgba(105, 222, 224, 0.163);
+  padding : 5px 10px;
+  color : rgb(36, 110, 51);
+  font-weight: 500;
+  justify-content: left;
+  
+}
+th{
+  position: sticky;
+  top :0;
+  background-color: teal;
+  color :blue;
+
+}
+.table-outer-wrapper {
+  border : 1px solid  white;
+  padding : 2em 2em;
+  box-shadow: var(--table-box-shadow-orange);
+  border-radius: .8rem;
+  max-width :fit-content;
+}
+.table-wrapper {
+  border : 2px solid rgba(255, 255, 255, 0.346);
+
+  max-height: 600px;
+  height : 300px;
+  overflow-y: scroll;
+  
+}
+.table__header{
+  background-color: rgba(14, 16, 84, 0.415);
+  margin :5px;
+  padding : 5px 10px;
+  color : white;
+}
+
+.table-wrapper::-webkit-scrollbar{
+  width: 0.5rem ;
+  height: 0.5rem;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb{
+ border-radius: .5rem; 
+ background-color: rgba(0, 0, 0, 0.426);
+ visibility: hidden;
+}
+.table-wrapper:hover::-webkit-scrollbar-thumb{
+  border-radius: .5rem; 
+  background-color: rgba(0, 0, 0, 0.426);
+  visibility: visible;
+ }
+
+/* zebra */ 
+ #tbody  tr:nth-last-child(even){
+  background-color: rgba(0, 0, 0, 0.218);
+}
+#tbody  tr:hover{
+  background-color: rgba(243, 236, 236, 0.528);
+}
+
+/* other setup of table */
+#tbody  .td-text{
+  text-align: start;
+}
+#tbody  .td-text-name{
+  text-align: start;
+  color : rgba(47, 12, 222, 0.844);
+  font-size : 18px;
+  font-style: italic;
+}
+
+#tbody  .td-amount{
+  background : rgba(242, 242, 72, 0.429);
+  text-align: end;
+
+}
+#tbody  .td-text-ref{
+  background : rgba(198, 198, 188, 0.429);
+  text-align: end;
+  color : blue;
+
+}
+#tbody  .td-text-category{
+  background-color: aliceblue;
+  text-align: start;
+}
+
+

@@ -1,0 +1,97 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="htmx-notary-entry" >
+  <div class="body-area">
+    <h3>htmx main</h3>
+
+    <div class="row ">
+      <div class="col-lg-3 col-md-3 col-sm-12 colcol-xs-12"  >
+        <div class="div-buttons">
+
+          <a class="btn btn-primary btn-col-1" href="{% url 'app_htmx:open-admin' %}" hx-boost='true' hx-target="#p-content">admin</a>
+          
+          <a class="btn btn-primary htmx-button2" href="{% url 'app_htmx:app-htmx-button1-refresh' %}" hx-boost='true' hx-target="#p-content">button refresh</a>   
+          
+          
+          <a class="btn btn-primary htmx-button2" href="{% url 'app_htmx:display-lorem' %}" hx-boost='true' hx-target="#p-content">display lorem</a>      
+
+
+         <a class="btn btn-primary htmx-button2" href="{% url 'app_htmx:button-4' %}" hx-boost='true' hx-target="#p-content">httpresponse location</a>      
+
+               
+
+        </div>
+
+        <p id="p-content" >Random button</p>
+        
+
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"  >   
+        <div class="notary-table">
+          <div class="table-outer-wrapper">
+            <div class="table-wrapper notary-table">
+              <section class=" table__header" >
+                <h4>Table Header</h4>
+
+              </section>
+              <section class="table__body">              
+                <table    class="table content-table">
+                    <thead class="thead-light">
+
+                      <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Book</th>
+                        <th scope="col">Page</th>
+                        <th scope="col">Record</th>
+                                        
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                      {% for item in data %}
+          
+                      <tr id="categ-id-{{item.id}}">
+                        <td>{{item.firstname}}</td>
+                        <td>{{item.lastname}}</td>
+                        <td>{{item.category}}</td>
+        
+                        <td>{{item.bookno}}</td>
+                        <td>{{item.pageno}}</td>
+                        <td>{{item.recordno}}</td>
+                        <td>
+        
+        
+                          <button class="btn btn-info btn-sm"  id="btn-notary-edit"  data-sid="{{item.id}}" data-url="#">
+                            <i class="bi bi-pencil"></i>
+                            </button> &emsp;            
+                          <button class="btn btn-danger btn-sm"  id="btn-notary-delete"  data-sid="{{item.id}}" data-url="#">
+                          <i class="bi bi-trash3"></i>
+                          </button>
+                        </td>
+                    
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>              
+            </section>
+            </div>
+          </div>
+
+
+
+  
+        </div>
+      </div>     
+
+    </div>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/app-htmx.css' %}">
+
+
+{% endblock %}

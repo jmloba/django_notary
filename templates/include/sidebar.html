@@ -1,0 +1,156 @@
+{% load static %}
+<div class="menu-btn">
+  <i class="fas fa-bars"></i>
+</div>
+
+<div class="side-bar">
+
+  <div class="close-btn">
+    <i class="fas fa-times"></i>
+
+  </div>
+
+  <div class="menu">
+
+    {% if user.is_authenticated %}
+      <div class="item "><a href="#"><i class="fas fa-desktop"></i>Topics</a>
+      </div>
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-table"></i>Notary Document Entries
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+
+          <a href="{% url 'app_notary:notary-entry-modal' %}" class="sub-item">1. Notary Entry (modal)</a>  
+          <a href="{% url 'app_notary_ver2:notaryv2-entry-modal' %}" class="sub-item">2. Notary Entry (modal ver 2)</a>          
+
+          <a href="{% url 'app_forms:dashboard'%}" class="sub-item">3. Notary entry by Forms</a>        
+
+          <a href="{% url 'app_notary:notary-entry' %}" class="sub-item">xxx Notary Entry(pending ajax on edit case)</a>    
+
+        </div>
+      </div>
+
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-cogs"></i>Import
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="#{% url 'app_import:import-excel-city' %}"  class="sub-item">Import City</a>
+          <a href="#{% url 'app_import:import-province-town' %}"  class="sub-item">Import Towns</a>
+        </div>
+      </div>
+
+      <!-- unfinished program  -->
+
+
+      <!-- htmx -->
+      
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-cogs"></i>HTMX tutorials
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_htmx:app-htmx-main'%}" class="sub-item">HTMX</a>        
+          
+        </div>
+      </div>      
+      <!-- cairo coders -->
+
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-cogs"></i>cairo coders
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_cairo:product-list' %}" class="sub-item">main sample</a>        
+          <a href="" class="sub-item">subitem set3</a>
+        </div>
+      </div>    
+      <!-- sample -->
+
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-cogs"></i>sample
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>sample 1
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="" class="sub-item">sample 1 1</a>     
+              <a href="" class="sub-item">sample 1 2</a>
+              
+            </div>
+          </div>  
+          <a href="" class="sub-item">sample 2</a>
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>sample 3
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="" class="sub-item">sample 3 1</a>     
+              <a href="" class="sub-item">sample 3 2</a>
+              
+            </div>
+          </div> 
+          
+        </div>
+      </div>        
+
+      <div class="item "><a href="{% url 'app_accounts:logout-view' %}"><i class="fas fa-info-circle"></i>Logout</a>
+      </div>     
+  
+
+    {% else %}
+      <div class="item ">
+        <a href="{% url 'app_accounts:login-view' %}"><i class="fa-solid fa-door-open"></i>Login</a>
+        
+
+
+    </div>      
+    {% endif %}  
+    <div class="item "><a href="#"><i class="fas fa-info-circle"></i>About</a>
+    </div>          
+
+  </div>
+
+</div>
+
+
+  
+<script type="text/javascript">
+  $(document).ready(function(){
+    // jquery for toggle menu
+    $('.sub-btn').click(function(){
+      // e.preventDefault();
+      $(this).next('.sub-menu').slideToggle();
+      $(this).find('.dropdown').toggleClass('rotate');
+
+    })
+
+    $('.menu-btn').click(function(){
+      $('.side-bar').addClass('active');
+      $('.menu-btn').css("visibility","hidden")
+
+    })
+
+    $('.close-btn').click(function(){
+      $('.side-bar').removeClass('active')
+      $('.menu-btn').css("visibility","visible")
+
+    })
+  
+
+  })
+
+
+</script>
+<link rel="stylesheet" href="{% static 'css/custom-sidebar.css' %}">

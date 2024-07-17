@@ -1,0 +1,11 @@
+#excel-import input.file-upload-button{
+  background-color:rgb(219, 176, 176);
+}
+#excel-import input.btn.btn-info{
+  background-color:rgb(135, 173, 211)
+}
+#excel-import .row-item{
+  margin-right :3px;
+
+  
+}

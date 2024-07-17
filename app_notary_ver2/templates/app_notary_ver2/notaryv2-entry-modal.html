@@ -1,0 +1,75 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notary-v2-entry-modal" >
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12"  >
+        <div class ="app_buttons">
+
+          <button type="button" 
+          class="btn btn-primary js-create-notary" data-url="{% url 'app_notary_ver2:modal-v2-notary-create' %}">
+          <i class="bi bi-file-plus"></i>Add Notary Entries v2</button>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12"  >   
+        <div class="table-outer-wrapper">
+          <div class="table-wrapper notary-table">
+            
+            <section class="table__header" >This is Table Header
+
+            </section>
+
+            <section class="table__body">
+              <table  class="table product-table content-table">
+                <thead class="thead-light">
+                  <tr>
+
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Page</th>
+                    <th scope="col">Record</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Image</th>                  
+                                    
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                
+                <tbody id="tbody" class="table-body">
+                  {% include 'app_notary_ver2/partial_notary_v2_list.html' %}
+                </tbody>
+
+                
+              </table>
+            </section>
+   
+          </div>
+          <div class="modal fade" id="modal-product">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>     
+
+    </div>
+</div>
+</section>
+
+<script src="{% static 'js/app-notary-v2-entry-modal.js' %}" ></script> 
+<link rel="stylesheet" href="{% static 'css/app-notary-v2-modal.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-css-1.css' %}">
+
+{% endblock %}

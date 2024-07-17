@@ -1,0 +1,75 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="excel-import" >
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 row-item"  >
+      
+        <form method="POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure?');">
+          {%csrf_token%}
+          <h3>Import City</h3>
+          <input type="file" name="myfile" class ="btn btn-info">
+          <button type ='submit'  class ="btn btn-primary">Upload</button>
+        
+        
+        </form>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 row-item"  >   
+        <div class="notary-table">
+
+          <table  id="myordersTable"  class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Country</th>
+                <th scope="col">Province</th>
+                <th scope="col">City</th>
+                <th scope="col">date imported</th>                
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            
+            <tbody id="tbody">
+              {% for item in data %}
+  
+              <tr id="categ-id-{{item.id}}">
+                <td>{{item.country}}</td>
+                <td>{{item.province}}</td>
+
+
+                <td>{{item.city}}</td>                
+                <td>{{item.created_at}}</td>
+
+       
+                <td>
+
+
+                  <button class="btn btn-info btn-sm"  id="btn-edit"  data-sid="{{item.id}}" data-url="#">
+                    <i class="bi bi-pencil"></i>
+                    </button> &emsp;            
+                  <button class="btn btn-danger btn-sm"  id="btn-delete"  data-sid="{{item.id}}" data-url="{% url 'app_import:city-delete' %}">
+                  <i class="bi bi-trash3"></i>
+                  </button>
+                </td>
+             
+              </tr>
+              {% endfor %}
+             
+          </table>
+  
+        </div>
+      </div>     
+
+    </div>
+</div>
+</section>
+
+<script src="{% static 'js/app-import-city.js' %}" ></script> 
+
+<link rel="stylesheet" href="{% static 'css/app-import-city.css' %}">
+
+
+{% endblock %}
