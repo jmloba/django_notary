@@ -114,15 +114,15 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
 
-         'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        # 'ENGINE':'django.contrib.gis.db.backends.postgis',
+    #      'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     # 'ENGINE':'django.contrib.gis.db.backends.postgis',
 
-        'NAME':     config('DB_NAME'),
-        'USER':     config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-    },
+    #     'NAME':     config('DB_NAME'),
+    #     'USER':     config('DB_USER'),
+    #     'PASSWORD': config('DB_PASSWORD'),
+    #     'HOST': config('DB_HOST'),
+    # },
 }
 
 DATABASES={
@@ -189,18 +189,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
-'''email setting  '''
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD =   config('EMAIL_PASSWORD')
+
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = os.environ.get('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD =   os.environ.get('EMAIL_PASSWORD')
+
+# '''email setting  '''
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT', cast=int)
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD =   config('EMAIL_PASSWORD')
 
 
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL=config('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL =   os.environ.get('DEFAULT_FROM_EMAIL')
+# DEFAULT_FROM_EMAIL=config('DEFAULT_FROM_EMAIL')
+
+
 
 # EMAIL_BACKEND = config('EMAIL_BACKEND')
-GOOGLE_API_KEY=config('GOOGLE_API_KEY')
+GOOGLE_API_KEY=os.environ.get('GOOGLE_API_KEY')
+# GOOGLE_API_KEY=config('GOOGLE_API_KEY')
 
 INTERNAL_IPS=[
   '127.0.0.1',
