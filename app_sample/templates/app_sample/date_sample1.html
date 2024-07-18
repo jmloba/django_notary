@@ -1,0 +1,49 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="app-sample" >
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-4 col-md-4 col-sm-12 
+      col-xs-12"  >
+    
+
+      </div>
+
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"  >   
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"> Date today: <span> {{date_today}}</span> </p>
+            <p class="card-text"> Reformatted date: <span> {{reformated_date}}</span> </p>
+            <p class="card-text"> Reformatted date YYYYMMDD: <span> {{dateformat2}}</span> </p>            
+
+
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"> Date filtered <span> </span> </p>
+
+            {% for item in mdata1_date %} 
+            <p class="card-text"> Reformatted date: <span> {{item.created}} {{item.firstname}}</span> </p>
+            {% endfor %}
+          
+
+
+          </div>
+        </div>        
+ 
+      </div>     
+    </div>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/app-sample.css' %}">
+
+<script src="{% static 'js/app-notary-entry.js' %}" ></script> 
+
+
+{% endblock %}
+

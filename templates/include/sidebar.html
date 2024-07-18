@@ -15,6 +15,7 @@
     {% if user.is_authenticated %}
       <div class="item "><a href="#"><i class="fas fa-desktop"></i>Topics</a>
       </div>
+      {% if not user.user.new_user %}
     
 
       <!-- document entries -->
@@ -61,21 +62,16 @@
         </div>
       </div>            
       <!-- other entris -->
-
       <div class="item ">
         <a class="sub-btn">
           <i class="fas fa-cogs"></i>Import Tables
           <i class="fas fa-angle-right dropdown"></i>
         </a>
         <div class="sub-menu">
-          <a href="#{% url 'app_import:import-excel-city' %}"  class="sub-item">Import City</a>
-          <a href="#{% url 'app_import:import-province-town' %}"  class="sub-item">Import Towns</a>
+          <a href="{% url 'app_import:import-excel-city' %}"  class="sub-item">Import City</a>
+          <a href="{% url 'app_import:import-province-town' %}"  class="sub-item">Import Towns</a>
         </div>
       </div>
-
-      <!-- unfinished program  -->
-
-
       <!-- htmx -->
       
       <div class="item ">
@@ -133,7 +129,43 @@
           </div> 
           
         </div>
-      </div>        
+      </div>    
+      
+      <!-- sample 2 -->
+      <div class="item ">
+        <a class="sub-btn">
+          <i class="fas fa-cogs"></i>Nitty Gritty
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>Date
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="{% url 'app_sample:date-sample' %}" class="sub-item">Dates</a>     
+              <a href="" class="sub-item">sample 1 2</a>
+              
+            </div>
+          </div>  
+          <a href="" class="sub-item">sample 2</a>
+          <div class="item ">
+            <a class="sub-btn">
+              <i class="fas fa-cogs"></i>sample 3
+              <i class="fas fa-angle-right dropdown"></i>
+            </a>
+            <div class="sub-menu">
+              <a href="" class="sub-item">sample 3 1</a>     
+              <a href="" class="sub-item">sample 3 2</a>
+              
+            </div>
+          </div> 
+          
+        </div>
+      </div>    
+             
+      {% endif%}  
 
       <div class="item "><a href="{% url 'app_accounts:logout-view' %}"><i class="fas fa-info-circle"></i>Logout</a>
       </div>     

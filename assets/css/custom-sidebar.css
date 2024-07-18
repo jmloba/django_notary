@@ -26,8 +26,8 @@
     
 }
 .side-bar .menu .item a{
-  color : white;
-  /* background : rgb(66, 104, 187); */
+  color : rgb(243, 238, 238);
+  /* background : rgb(69, 73, 84); */
   text-decoration: None;
   display : block;
   padding : 5px 30px;
@@ -41,7 +41,7 @@
 
 .side-bar .menu .item a:hover{
   color :rgb(40, 33, 242);
-  background-color: aqua;
+  background-color: rgb(231, 230, 226);
   transition : .5s ease;
 }
 .side-bar .menu .item i{

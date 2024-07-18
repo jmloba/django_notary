@@ -26,17 +26,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY =  config('SECRET_KEY')
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY =  config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
+DEBUG =config('DEBUG',cast=bool)
+ALLOWED_HOSTS =config("ALLOWED_HOSTS").split(",")
 
 
-# for online purposes
-# DEBUG = os.environ.get('DEBUG','False').lower() == 'true' 
-# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOST').split('')
 
 
 
@@ -60,6 +57,7 @@ INSTALLED_APPS = [
 
     'app_import',
     'app_cairo',
+    'app_sample',
     
     'app_htmx',
     'crispy_forms',
@@ -97,6 +95,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # added context processors
+                'app_accounts.context_processor.get_NotaryDoc_records',
+
+
             ],
         },
     },
@@ -114,21 +116,18 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
 
-    #      'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     # 'ENGINE':'django.contrib.gis.db.backends.postgis',
+         'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE':'django.contrib.gis.db.backends.postgis',
 
-    #     'NAME':     config('DB_NAME'),
-    #     'USER':     config('DB_USER'),
-    #     'PASSWORD': config('DB_PASSWORD'),
-    #     'HOST': config('DB_HOST'),
-    # },
+        'NAME':     config('DB_NAME'),
+        'USER':     config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+    },
 }
+DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
 
-DATABASES={
-  "default":dj_database_url.parse(os.environ.get("DATABASE_URL"))
-  
-}
 
 # database_url = os.environ.get('DATABASE_URL')
 # DATABASES['default']= dj_database_url.parse('database_url')
@@ -190,27 +189,25 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
 
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_PORT = os.environ.get('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD =   os.environ.get('EMAIL_PASSWORD')
+
 
 # '''email setting  '''
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_PORT = config('EMAIL_PORT', cast=int)
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD =   config('EMAIL_PASSWORD')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD =   config('EMAIL_PASSWORD')
 
 
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL =   os.environ.get('DEFAULT_FROM_EMAIL')
-# DEFAULT_FROM_EMAIL=config('DEFAULT_FROM_EMAIL')
+
+DEFAULT_FROM_EMAIL=config('DEFAULT_FROM_EMAIL')
 
 
 
 # EMAIL_BACKEND = config('EMAIL_BACKEND')
-GOOGLE_API_KEY=os.environ.get('GOOGLE_API_KEY')
-# GOOGLE_API_KEY=config('GOOGLE_API_KEY')
+
+
+GOOGLE_API_KEY=config('GOOGLE_API_KEY')
 
 INTERNAL_IPS=[
   '127.0.0.1',

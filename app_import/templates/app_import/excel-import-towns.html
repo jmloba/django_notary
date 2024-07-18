@@ -7,7 +7,7 @@
   <div class="body-area">
 
     <div class="row ">
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 row-item"  >
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 row-item"  >
       
         <form method="POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure?');">
           {%csrf_token%}
@@ -17,8 +17,9 @@
         
         
         </form>
+        <a type = "button" class="btn btn-primary"  href="{% url 'app_import:province-town-delete' %}">Empty Province/Towns file... </a>
       </div>
-      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 row-item"  >   
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 row-item"  >   
         <div class="notary-table">
 
           <table  id="myordersTable"  class="table">
@@ -70,6 +71,6 @@
 <script src="{% static 'js/app-import-city.js' %}" ></script> 
 
 <link rel="stylesheet" href="{% static 'css/app-import-city.css' %}">
-
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
 
 {% endblock %}

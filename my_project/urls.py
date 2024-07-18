@@ -21,6 +21,7 @@ urlpatterns = [
     path('app_accounts/', include('app_accounts.urls')),
     path('app_cairo/', include('app_cairo.urls')),
     path('app_forms/', include('app_forms.urls')),
+    path('app_sample/', include('app_sample.urls')),
 ]
 if settings.DEBUG:
     urlpatterns+= staticfiles_urlpatterns()

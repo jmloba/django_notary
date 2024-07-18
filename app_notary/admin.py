@@ -16,7 +16,7 @@ class notary_category_Admin(admin.ModelAdmin):
   fieldsets=()
 
 class notarisedDocAdmin(admin.ModelAdmin):
-  list_display=('user','amount_paid','myfile','myimage','category','firstname','lastname','created','bookno', 'pageno', 'recordno')
+  list_display=('user','created','amount_paid','myfile','myimage','category','firstname','lastname','created','bookno', 'pageno', 'recordno')
   ordering=('created',)
   list_editable =('firstname','lastname')
   filter_horizontal=()

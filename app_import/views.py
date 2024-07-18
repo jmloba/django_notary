@@ -1,4 +1,5 @@
-from django.shortcuts import render
+
+from django.shortcuts import render,redirect
 from app_import.models import Phil_City,Phil_Province_Towns
 from tablib import Dataset
 from datetime import datetime
@@ -59,8 +60,14 @@ def import_province_town(request):
   context= {'data':toupdate}
   return render(request,'app_import/excel-import-towns.html', context)
 
+def province_town_delete(request):
+  data = Phil_Province_Towns.objects.all().delete()
+  return redirect('app_import:import-province-town' )
+
 def city_delete(request):
-  pass
+  data = Phil_City.objects.all().delete()
+  return redirect('app_import:import-excel-city')
+  
 
 def import_city_now(request):
   print(f'import city now')

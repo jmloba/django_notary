@@ -1,0 +1,13 @@
+#app-sample{
+  font-size : 18px;
+  font-weight: 500;
+}
+#app-sample .card p{
+  color: blue;
+
+
+}
+#app-sample .card .card-body p span{
+  color : red;
+
+}

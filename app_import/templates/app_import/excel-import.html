@@ -17,6 +17,7 @@
         
         
         </form>
+        <a type = "button" class="btn btn-primary"  href="{% url 'app_import:city-delete' %}">Empty City file... </a>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 row-item"  >   
         <div class="notary-table">
@@ -70,6 +71,6 @@
 <script src="{% static 'js/app-import-city.js' %}" ></script> 
 
 <link rel="stylesheet" href="{% static 'css/app-import-city.css' %}">
-
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
 
 {% endblock %}

@@ -38,14 +38,14 @@ def register_view(request):
     form = CreateUserForm(request.POST)
     if form.is_valid():
       user=form.save()
-      '''
-      # useraccess = useraccessform.save(commit=False)
-      # useraccess.user = user
-      # useraccess.save()
-      # profile = profile_form.save(commit=False)
-      # profile.user= user 
-      # profile.save()
-      '''
+     
+      useraccess = useraccessform.save(commit=False)
+      useraccess.user = user
+      useraccess.save()
+      profile = profile_form.save(commit=False)
+      profile.user= user 
+      profile.save()
+     
       # put this as signal
       '''
       user.groups.add(group)
