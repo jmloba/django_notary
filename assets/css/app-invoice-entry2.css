@@ -1,0 +1,31 @@
+.form-area form{
+  background-color: beige;
+  padding :5px 5px;
+}
+.table-area {
+  background-color: rgb(216, 216, 169);
+  padding :5px 5px;
+
+}
+.form-view{
+  
+  display :inline-flex;
+  flex-wrap: wrap;
+}
+.data-view{
+  margin-top: 1em;
+}
+
+
+#sum-total-amount,
+#sum-total-qty{
+  font-weight: 500;
+  color : red;
+  font-size : 18px
+}
+.summary-detail{
+  color: blue;
+  font-weight: 400;
+  font-size : 14px
+
+}

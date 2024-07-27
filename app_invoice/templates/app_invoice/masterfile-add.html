@@ -1,0 +1,52 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="expense-entry-add" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="form-title">
+        <h5>Add in  Master File</h5>
+      </div>
+
+
+
+      <div class="form-entry" >
+        
+        <div class="card" >
+
+          <div class="card-body">
+           <form action="{% url 'app_invoice:masterfile-add' %}"    enctype="multipart/form-data" 
+           method="POST" >
+             {% csrf_token %}
+             <div class="form-row">
+               {% include 'app_invoice/form-fields-masterfile.html' %}
+             </div> 
+             <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>
+           </form>           
+          </div>
+
+
+
+          {% include 'include/error-messeges.html' %}              
+        </div>
+      </div>
+
+  
+    </div>
+    <button  class='btn btn-primary btn-sm' onclick="history.back()">Go Back</button>
+  </div>
+</section>
+
+
+<link rel="stylesheet" href="{% static 'css/app-expenses.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+{% endblock %}
+

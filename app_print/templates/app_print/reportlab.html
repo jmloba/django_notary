@@ -1,0 +1,35 @@
+{% extends  'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section id="invoice-print">
+  <div class="my-container my-container-para " 
+  style="--margin-top:9em; 
+        --margin-right:10%;
+        --margin-left: 10%; "
+  >
+
+ 
+    <div class="main-box">
+      <h4>Report lab </h4>
+      <div class="print_reportlab-buttons">
+        <button  class="btn btn-mybtn" id="btn-reportlab-password-protected" 
+        data-url="{% url 'app_print:reportlab-password-protected' %}"
+        >reportlab pdf encrypted</button>
+
+        <button  class="btn btn-mybtn" id="btn-reportlab-invoice-template" 
+        data-url="{% url 'app_print:reportlab-invoice-template' %}"
+        >reportlab Custom template for invoice</button>        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-print.css' %}">
+<!-- <script src="{% static 'js/app-print-reportlab.js' %}" ></script>  -->
+<script src="{% static 'js/app-print-reprint.js' %}" ></script> 
+{% endblock %}

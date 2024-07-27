@@ -11,9 +11,14 @@
   transition: .6s ease;
   z-index: 100;
   font-size: 18px;
-  
 
 }
+
+/* icon color  */
+.icon1-submenu {
+  color : rgb(142, 196, 240);
+}
+
 .side-bar .menu{
   width : 100%;
   margin-top : 80px;
@@ -41,22 +46,28 @@
 
 .side-bar .menu .item a:hover{
   color :rgb(40, 33, 242);
-  background-color: rgb(231, 230, 226);
+  background-color: rgb(200, 183, 115);
   transition : .5s ease;
 }
 .side-bar .menu .item i{
   margin-right :15px;
 }
+/* second level */
 .side-bar .menu .item a .dropdown{
   position : absolute;
   right : 0;
   margin: 5px;
   transition : .3s ease;
 }
-.side-bar .menu .item .sub-menu{
+
+
+.menu .item .sub-menu{
   color :rgb(40, 33, 242);
   display : None;
 
+  margin: 10px;
+
+  
 }
 
 

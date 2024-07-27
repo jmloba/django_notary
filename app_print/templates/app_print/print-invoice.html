@@ -1,0 +1,57 @@
+{% extends  'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section id="invoice-print">
+  <div class="my-container my-container-para " 
+  style="--margin-top:20px; 
+        --margin-right:10%;
+        --margin-left: 10%; "
+  >
+
+ 
+    <div class="main-box">
+      <h4>To print </h4>
+      <div class="container">
+        <div class="div-table">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">invoice#</th>
+                <th scope="col">Description</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for item in invoice_list %}
+
+              <tr>
+                <th scope="row">{{item.invoice_no}}</th>
+                <td>{{item.description}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.amount}}</td>
+
+              </tr>
+              {% endfor %}
+            
+            </tbody>
+          </table>
+          <button id='print-invoice' class="btn btn-mybtn">Print (not working)</button>
+        </div>
+        {{mypath}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-print.css' %}">
+
+
+{% endblock %}

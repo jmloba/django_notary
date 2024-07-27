@@ -95,6 +95,7 @@ def delete_category_record(request, pk=None):
   return render(request,'app_forms/delete-category-record.html',context)
 
 ''' notary dashboard'''
+
 @login_required(login_url='app_accounts:login-view')
 def dashboard(request):
   data=Notarized_Documents.objects.all()
@@ -102,6 +103,7 @@ def dashboard(request):
 
   context={'data':data, }
   return render(request,'app_forms/dashboard.html',context)
+
 @login_required(login_url='app_accounts:login-view')
 def create_record(request):
   form = CreateRecordNotaryForm()
@@ -120,6 +122,9 @@ def create_record(request):
       print(f'create_record form is not valid ')
   context={'form':form, }
   return render(request,'app_forms/create-record.html',context)
+
+
+
 @login_required(login_url='app_accounts:login-view')
 def update_record(request, pk=None):
 
@@ -136,6 +141,8 @@ def update_record(request, pk=None):
 
   context={'form':form,'datarec':datarec}
   return render(request,'app_forms/update-record.html',context)
+
+
 def delete_record(request, pk=None):
   datarec= Notarized_Documents.objects.get(id=pk)
   form = UpdateRecordNotaryForm(instance =datarec)   

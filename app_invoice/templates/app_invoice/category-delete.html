@@ -1,0 +1,77 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="app-form-update" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+
+    <div class="row">
+      <div class="col-lg-4 col md-4 col-sm-12 ">
+        <div class="data-info">
+
+          <div class="data-item">
+            <p>Id : <span>{{datarec.id}}</span></p>
+          </div>
+          <div class="data-item data-item-line">
+           
+            <p>category : <span>{{datarec.product_category}}</span></p>
+  
+          </div>
+         
+
+
+        </div>
+
+
+      </div>
+      <div class="col-lg-8 col md-8 col-sm-12"  >
+        <h3>Delete Category Record  </h3>
+        <form action=""    enctype="multipart/form-data" 
+        method="POST" >
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group d-flex"> 
+              <div class="form-group-item">
+              {{form.product_category |as_crispy_field}}
+              </div>
+            </div> 
+
+           
+          </div> 
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Delete Submit</button>
+
+        
+        </form>
+        
+       
+      </div>
+ 
+    </div>
+    <button  class='btn btn-primary btn-sm' 
+    onclick="history.back()">Go Back</button>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/app-forms-update-record.css' %}">
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+<script>
+  function one(){
+    console.log('function 1')
+    let id = $(this).attr("data-sid")
+    console.log('function 1 ', id)
+    $('#stuid').val(id)
+  }
+  function two(){console.log('function 2')
+
+  }
+</script>
+
+
+{% endblock %}
+

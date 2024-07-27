@@ -1,0 +1,39 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+
+{% block content %}
+
+<section id="home" style="background-color: aliceblue;">
+  <div class="body-area">
+    <div class="container" >
+      <div class="row">
+        <div class="sidebar-area col-lg-3 col-md-3 col-sm-12 col-xs-12 " >
+          <!-- load sidebar -->
+          
+
+        </div>
+        <div class="detail-area col-lg-9 col-md-9 col-sm-12 col-xs-12"  >
+          <p>Print Inovice</p>
+          <form action="" id="print-invoice">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+          </form>
+        </div>        
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+</section>
+
+
+<link rel="stylesheet" href="{% static 'css/app-invoice-entry2.css' %}">
+<script src="{% static 'js/app-invoice-main.js' %}" ></script> 
+{% endblock %}

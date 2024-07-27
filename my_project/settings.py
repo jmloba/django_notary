@@ -30,8 +30,8 @@ SECRET_KEY =  config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =config('DEBUG',cast=bool)
-ALLOWED_HOSTS =config("ALLOWED_HOSTS").split(",")
+DEBUG = True
+ALLOWED_HOSTS = []
 
 
 
@@ -50,21 +50,24 @@ INSTALLED_APPS = [
     # 'django.contrib.gis',
 
     'app_accounts',
-
+    'app_cairo',
+    'app_expenses',
+    'app_import',
+    'app_invoice',
+    
     'app_notary',
     'app_notary_ver2',
     'app_forms',
-
-    'app_import',
-    'app_cairo',
-    'app_sample',
-    
     'app_htmx',
+    'app_sample',
+    'app_print',
+        # 'django_q',
     'crispy_forms',
     'import_export',
     'crispy_bootstrap5',
     'widget_tweaks', # pip install django-widget-tweaks
     "django_htmx", #python -m pip install django-htmx
+
 
 ]
 
@@ -97,6 +100,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # added context processors
                 'app_accounts.context_processor.get_NotaryDoc_records',
+                'app_invoice.invoice-context-processor.total_quantity',
+                'app_invoice.invoice-context-processor2.contextprocessor_total_quantity',
 
 
             ],
@@ -126,7 +131,6 @@ DATABASES = {
         'HOST': config('DB_HOST'),
     },
 }
-DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
 
 
 # database_url = os.environ.get('DATABASE_URL')
@@ -219,3 +223,13 @@ INTERNAL_IPS=[
 # os.environ['PROJ_LIB'] = os.path.join(BASE_DIR, 'project_env\Lib\site-packages\osgeo\data\proj') + ';' + os.environ['PATH']
 
 GDAL_LIBRARY_PATH = os.path.join(BASE_DIR, 'project_env\Lib\site-packages\osgeo\gdal304.dll')
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

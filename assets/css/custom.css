@@ -32,6 +32,13 @@ ul li{
   list-style: None;
 
 }
+img{
+  /* display : block; */
+  max-width : 100%;
+  height : auto;
+
+}
+
 
 .my-container{
   background-color: var(--my-container-background);
@@ -183,9 +190,8 @@ ul li{
 
 .body-area{
   background-color: #7cb8d6a0;
-  
-  margin: 2em 3em;
-  padding : 2em 2em;
+  margin: 1em 3em;
+  padding : 1em 1em;
   border-radius : 5px;
   
 }
@@ -224,4 +230,30 @@ form label {
 .username{
   background-color: #e4e2df61;
 }
+
+
+/* for messages */
+#message-section .alert{
+margin :1% 10%;
+}
+
+@media only screen and (max-width:390px){
+  .body-area {
+    margin: 3px 3px; 
+  }
+  
+}
+@media only screen and (min-width:391px)  and (max-width:700px) {
+  .body-area {
+    margin: 0 5%; 
+  }
+}
+@media screen and (min-width:701px) { 
+  .body-area {
+    margin: 0 10%; 
+  }
+
+}
+
+
 

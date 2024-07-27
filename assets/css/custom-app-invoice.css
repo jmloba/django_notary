@@ -1,0 +1,44 @@
+
+
+
+#invoice-main .invoice-data{
+  background-color :rgb(184, 106, 106);
+  display : flex;
+  flex-wrap: wrap;
+  margin-top:20px;
+
+  justify-content: space-evenly;
+}
+#invoice-main .card{
+  width: fit-content;
+  margin : 10px 10px;
+
+}
+#invoice-main .card-entry{
+  
+  width : 20em;
+  
+}
+#invoice-main .invoice-form-div{
+  display :block;
+  justify-content: center;
+  align-items: center;
+}
+
+#invoice-main .card .invoice-summary{
+  background-color: aquamarine;
+  padding : 1em 1em;
+  border-radius :15px;
+}
+#invoice-main #total-amount,
+#invoice-main #total-qty{
+  
+  font-size : 18;  
+  font-weight: 500;
+}
+#invoice-main #sum-total-qty,
+#invoice-main #sum-total-amount{
+  color:rgb(134, 15, 15);
+  font-size : 20;
+  font-weight: 600;
+}

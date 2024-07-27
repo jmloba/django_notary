@@ -1,0 +1,182 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block content %}
+<section id="invoice-main">
+
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:8em; 
+        --margin-right:5%;
+        --margin-left: 5%"
+  >
+  
+    <div class="header-links">
+      <h3>{{title}}</h3>
+    </div>
+
+    
+    <div class="div-container">
+      <div class="invoice-data ">
+        <div class="card card-entry " >
+          <div class="card-body">
+  
+            <div class="invoice-form-div">
+
+  
+              
+              <h5 class="card-title">{{card_title}}</h5>
+              <form action="" method="POST" autocomplete="on" id="invoiceForm">
+                  {%csrf_token%}
+                    <div class="row">
+                      <div class="form-row ">
+                        <div class="form-group d-flex">
+                          {{invoice_form.customer|as_crispy_field}}
+                        </div>
+                      </div>
+
+                      <div class="form-row ">
+                        <div class="form-group d-flex">
+                          {{invoice_form.itemnumber|as_crispy_field}}
+
+                          {{invoice_form.description|as_crispy_field}}
+                        </div>
+                 
+                      </div>                        
+                      <div class="form-row ">
+                        <div class="form-group d-flex">
+                          {{invoice_form.quantity|as_crispy_field}}
+                        </div>
+                 
+                      </div>                      
+                      <div class="form-row ">
+                        <div class="form-group d-flex">
+                          {{invoice_form.price|as_crispy_field}}
+                        </div>
+                 
+                      </div>                      
+         
+                    </div>
+                  <input type="text" name ="stuid" id ="stuid">
+
+                  <input type="submit"  class="btn btn-mybtn"
+                  id="btn-create-invoice" value="Add"
+                  data-url="{% url 'app_invoice:save-invoice' %}">   
+                  
+                  
+                  
+              </form> 
+            </div>
+          </div>
+        </div>      
+
+        <div class="card card-data">
+          <div class="card-body">
+            <h5 class="card-title">Invoice Entries(Data)</h5>
+            <div class="search-table">
+              <p>Search </p>
+              <form action="" method ='POST'>
+                {%csrf_token%}
+                {{search_form|crispy}}
+                <input type="submit"  class="btn btn-mybtn" value="Search" >
+              </form>
+            </div>
+            <div class="data-table">
+              <table class="table table-striped">
+                <thead>
+                  <tr >
+                    <th scope="col">Customer</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Item Number</th>
+
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>                  
+                    <th scope="col">Amount</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                  user : {{user}}
+                  {% for item in invoice_db %}
+                  <tr id="invoice-id-{{item.id}}">
+                    
+                    <th scope="row">{{item.customer__name}}</th>
+                    <td>{{item.invoice_date}}</td>
+                    <td>{{item.itemnumber}}</td>
+
+                    <td>{{item.description}}</td>
+                    <td id="rec-quantity-{{item.id}}">{{item.quantity}}</td>
+                    <td>{{item.price}}</td>
+                    <td id="rec-amount-{{item.id}}">{{item.amount}}</td>
+                    <td><button class="btn btn-info btn-sm"
+                      data-sid="{{item.id}}" 
+                      id="btn-invoice-edit"
+                      data-url="{% url 'app_invoice:invoice-edit' %}">
+                      <i class="bi bi-pencil"></i>
+                      </button>
+                      &ensp;&ensp;&ensp;
+                      <button class="btn btn-danger btn-sm"
+                      data-sid="{{item.id}}" 
+                      id="btn-invoice-delete"
+                      data-url="{% url 'app_invoice:invoice-delete' %}">
+                        <i class="bi bi-trash3"></i>
+                      </button></td>
+  
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+  
+            </div>
+            <hr>
+
+            <div class="invoice-summary">
+              <div class="summary-div">
+                <h5>Invoice Summary</h5>  
+                <p id="total-qty" >Total Quantity 
+                  <span id="sum-total-qty">{{invoice_total_qty}} </span>
+                </p>
+                <p id="total-amount">Total Amount    
+                  <span id="sum-total-amount" >{{invoice_amount}} </span>
+                </p>
+  
+              </div> 
+              <button id="create-an-invoice" class="btn btn-mybtn" data-url="{% url 'app_invoice:create-an-invoice' %}">Create an Invoice</button>
+
+
+
+
+
+            </div>
+          
+       
+          </div>
+        </div>      
+      </div>
+
+      <!-- modal feature -->
+      <div class="modal fade" id="modal-product">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+          </div>
+        </div>
+      </div>      
+  
+    </div>
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-invoice.css' %}">
+
+
+
+<script src="{% static 'js/app-invoice-main.js' %}" ></script> 
+
+
+{% endblock %}

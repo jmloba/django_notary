@@ -1,0 +1,70 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="expense-entry-add" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="form-title">
+        <h5>Expense Entry</h5>
+      </div>
+
+
+
+      <div class="form-entry" >
+        
+        <div class="card" >
+
+          <div class="card-body">
+            <form action="{% url 'app_expenses:expenses-add' %} " method="POST">
+
+              {% csrf_token %}
+              
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control form-control-sm" name ='amount' value={{values.amount}}>
+              </div>
+              <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" class="form-control form-control-sm" name ='description' value={{values.description}}>
+              </div>
+              <div class="form-group">
+                <label for="">Date of Expense</label>
+                <input type="date" class="form-control form-control-sm" name ='expense_date' value={{values.expense_date}}>
+              </div>
+              <div class="form-group">
+                <label for="">Category</label>
+                <select name="category" class="form-control form-control-sm" value={{values.category.name}}>
+                  {% for category in categories%}
+                  <option name='category' value="{{category.name}}">{{category.name}}</option>
+                  {% endfor %}
+                  
+
+                </select>
+                
+              </div>     
+              <input type="submit" class='btn btn-primary btn-sm' value ="Save">         
+           </form>
+          </div>
+          {% include 'include/error-messeges.html' %}              
+        </div>
+      </div>
+
+  
+    </div>
+    <button  class='btn btn-primary btn-sm' onclick="history.back()">Go Back</button>
+  </div>
+</section>
+
+
+<link rel="stylesheet" href="{% static 'css/app-expenses.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+{% endblock %}
+

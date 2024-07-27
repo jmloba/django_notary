@@ -1,0 +1,76 @@
+{% extends  'main/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<section id="search-reprint">
+  <div class="my-container my-container-para " 
+  style="--margin-top:9em; 
+        --margin-right:5%;
+        --margin-left: 5%; --margin-bottom: 1em; "  >
+    <div class="main-page">
+      <div class="page-header">
+        <h4 class="text-center">reprint invoice  routine </h4>
+  
+      </div>
+      
+      <div class="reprint-view d-flex">
+        <div class="div-item query-form">
+          <form id="input-form" method="POST" >
+            {% csrf_token %}
+            {{form|crispy}}
+        
+            
+            <button class = "btn btn-mybtn" type="submit">Submit</button>
+          </form>
+        </div>
+        <div class="div-item filtered-data">
+          {% if invoice_summary  %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Invoice Date</th>
+                <th scope="col">Invoice NO</th>
+                <th scope="col">Total Quantity</th>
+                <th scope="col">Total Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+              {% for invoice in invoice_summary%}
+              <tr>
+                <!-- format date -->
+                <th scope="row">{{invoice.invoice_date |date:"Y/m/d"}}</th>
+                <td>{{invoice.invoice_no}}</td>
+                <td>{{invoice.total_quantity }}</td>
+                <td>{{invoice.total_amount}}</td>
+                <td>  <button class="btn btn-mybtn" id="btn-reprint-button"  data-url="{% url 'app_print:print-invoice-ajax' %}" 
+                  data-invoice="{{invoice.invoice_no}}">Reprint</button></td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        
+          {%endif%}
+  
+  
+        </div>
+  
+  
+      </div>
+  
+
+    </div>    
+
+  </div>
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-print.css' %}">
+
+
+<script src="{% static 'js/app-print-reprint.js' %}" ></script> 
+
+{% endblock %}

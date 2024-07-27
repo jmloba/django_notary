@@ -1,0 +1,25 @@
+#date-formatting .date-sample1-form{
+  background-color: rgb(28, 166, 166);
+  padding : 1em 1em;
+}
+#date-formatting .invoice-form-div{
+  background-color: rgb(188, 159, 215);
+  padding : 2em 2em;
+}
+#date-formatting .form-datefield{
+  background-color: rgb(202, 120, 88);
+}
+
+#date-formatting .split-view{
+  background-color: rgb(212, 140, 140);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  padding : 1em 1em;
+
+}
+#date-formatting .card{
+  padding : 1em 1em;
+  margin-bottom: 1em;
+}

@@ -1,0 +1,112 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="app-form-update" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+    <center>Search for...</center>
+
+    <div class="row">
+
+      <div class="col-lg-12 col md-12 col-sm-12 mx-auto"  >
+        <div class="card">
+          <div class="card-header">
+            Featured
+          </div>
+          <div class="card-body">
+            <form action="{% url 'app_invoice:search-item' %}"method="POST">
+              {% csrf_token %}
+              <input type="text" class="form-control" placeholder="search in master file " name ='searched'>
+              <button type="submit" class="btn btn-secondary" >Search</button>
+
+
+            </form>
+            <hr>
+            <div class="search-result">
+              <p>searched for {{searched}}</p>
+              <div class="table-outer-wrapper">
+                {% include 'include/error-messeges.html' %}             
+      
+                <section class="table__header" >Category
+      
+                </section>          
+                <div class="table-wrapper notary-table">
+      
+                  <section class="table__body">
+                    <table id ="myordersTable" class=" table product-table content-table" >
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Item Number</th>
+                          <th>Description</th>
+                          <th>Price</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody id="tbody" class="table-body">
+                        {% if searched %}
+                          {% for item in searched %}
+              
+                          <tr id="categ-id-{{item.id}}">
+                               
+          
+                            <td class="td-text">{{item.itemnumber}}</td>
+                            <td class="td-text">{{item.description}}</td>
+                            <td class="td-text">{{item.price}}</td>
+                            
+                            <td class="td-action">
+                         
+                             <button class="btn btn-info btn-sm ">
+                              <a href="{% url 'app_invoice:select-item' item.id %} item.itemnumber">
+                                <i class="fa-solid fa-check"></i>
+                              </a>
+                             </button>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        {% endif %}
+                      </tbody>
+                       
+                    </table>
+                  </section>
+                </div>
+              </div>                
+              
+
+            </div>
+
+           
+          </div>
+        </div>
+       
+      </div>
+ 
+    </div>
+    <button  class='btn btn-primary btn-sm' 
+    onclick="history.back()">Go Back</button>
+</div>
+</section>
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/app-forms-update-record.css' %}">
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+<script>
+  function one(){
+    console.log('function 1')
+    let id = $(this).attr("data-sid")
+    console.log('function 1 ', id)
+    $('#stuid').val(id)
+  }
+  function two(){console.log('function 2')
+
+  }
+</script>
+
+
+{% endblock %}
+

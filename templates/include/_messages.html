@@ -1,0 +1,18 @@
+{% load static %}
+
+{% if messages %}
+
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="alert alert-sm {{message.tags}}  {% endif %}">
+  
+    </li>
+    {% endfor %}
+  </ul>
+
+  
+{% else %}
+<p>no messages</p>
+
+
+{% endif %}

@@ -17,11 +17,16 @@ urlpatterns = [
 
     
     path('app_import/', include('app_import.urls')),
+        
     path('app_htmx/', include('app_htmx.urls')),
     path('app_accounts/', include('app_accounts.urls')),
     path('app_cairo/', include('app_cairo.urls')),
     path('app_forms/', include('app_forms.urls')),
     path('app_sample/', include('app_sample.urls')),
+    
+    path('app_expenses/', include('app_expenses.urls')),    
+    path('app_invoice/', include('app_invoice.urls')),    
+    path('app_print/', include('app_print.urls')),    
 ]
 if settings.DEBUG:
     urlpatterns+= staticfiles_urlpatterns()
