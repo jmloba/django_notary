@@ -4,14 +4,9 @@ from django.http import JsonResponse, FileResponse,HttpResponse
 
 from django.db.models import Sum, Q
 
-from app_invoice.forms import InvoiceForm, Invoice, InvoiceSearchForm ,PrintInvoiceForm, DeleteRecord_CategoryForm, UpdateRecord_CategoryForm, DeleteRecord_MasterFileForm, UpdateRecord_MasterFileForm, DeleteRecord_SalesEntryForm
+from app_invoice.forms import InvoiceForm, Invoice, InvoiceSearchForm ,PrintInvoiceForm , Category_Sales_Form,DeleteRecord_CategorySalesForm, UpdateRecord_CategorySalesForm
 
-
-
-
-from .forms import Masterfile_form
-
-from .models import Customer, Invoice, InvoiceSummary, Category_Sales,MasterFile,Ref_Table
+from .models import Customer, Invoice, InvoiceSummary, Ref_Table, Category_Sales
 
 from app_accounts.utils import date_format2, reformat_date
 from app_print.views import print_invoice
@@ -278,148 +273,56 @@ def invoice2_delete (request) :
 
 def search_item(request):
   print(' search-item')
-# -------  category
+# -------  category -----
 def category_dashboard(request):
   data = Category_Sales.objects.all()
-  context={'data':data, }
-  return render(request,'app_invoice/category-dashboard.html',context)
-def duplicate_check_category(desc):
-  datarec=Category_Sales.objects.filter(product_category=desc)
-  if datarec:
-    return True
-  else:
-    return False
-  
+  form = Category_Sales_Form()
+  context={'form': form, 'data':data}
+  return render(request,'app_invoice/category-dashboard.html', context)
 
-  
 def category_add(request):
-  categories= Category_Sales.objects.all()  
-  context={'categories':categories}  
+  form = Category_Sales_Form()
   if request.method=='POST':
-    product_category = request.POST['product_category']
-    if not product_category :
-      messages.error(request, 'Product category is required') 
-      context={'categories':categories, 'values':request.POST }
-      return render(request,'app_invoice/category-add.html',context)
-    if duplicate_check_category(product_category):
-      messages.error(request, 'Duplicate entry, data not saved') 
-    else :
-      data = Category_Sales(product_category=product_category, user=request.user)
-      data.save()
-      messages.success(request, 'Expense entry saved successfully') 
-      return redirect('app_invoice:category-dashboard')    
-    
-  context={'categories':categories, 'values':request.POST}
-  return render(request,'app_invoice/category-add.html',context)
+    form = Category_Sales_Form(request.POST or None)
+    if form.is_valid():
+      s=form.save(commit=False)
+      s.user = request.user
+      s.save()
 
-def category_delete(request, pk=None):
+      return redirect('app_invoice:category-dashboard')
+    else:
+      form = Category_Sales_Form(request.POST)
+      return redirect('app_invoice:category-add')
+
+  context={'form': form, }
+
+  return render(request,'app_invoice/category-add.html', context)
+
+def category_delete(request,pk=None):
+
   datarec= Category_Sales.objects.get(id=pk)
-
-  form = DeleteRecord_CategoryForm(instance =datarec)   
+  form = DeleteRecord_CategorySalesForm(instance =datarec)   
 
   if request.method=='POST':
+
     datarec.delete()   
     return redirect('app_invoice:category-dashboard', )
-  
+
+
   context={'form':form,'datarec':datarec}
-  return render(request,'app_invoice/category-delete.html',context)  
+  return render(request,'app_invoice/category-delete.html',context)
+
 def category_update(request, pk=None):
   datarec= Category_Sales.objects.get(id=pk)
 
-  form = UpdateRecord_CategoryForm(instance =datarec)   
+  form = UpdateRecord_CategorySalesForm(instance =datarec)
 
   if request.method=='POST':
-    form = UpdateRecord_CategoryForm(request.POST or None, instance = datarec)
-    if form.is_valid():
+
+    form = UpdateRecord_CategorySalesForm(request.POST or None, instance = datarec)
+    if form.is_valid():  
       form.save()
       return redirect('app_invoice:category-dashboard', )
-  
-  context={'form':form,'datarec':datarec}
-  return render(request,'app_invoice/category-update.html',context)  
-
-
-# ------- master file
-def duplicate_check_masterfile(item):
-  datarec = ''
-  datarec=MasterFile.objects.filter(itemnumber=item)
-
-  if datarec:
-    return True
-  else:
-    return False  
-  
-def masterfile_dashboard(request):
-  data = MasterFile.objects.all()
-  
-  context={'data':data, }
-  return render(request,'app_invoice/masterfile-dashboard.html',context)
-
-def masterfile_add(request):
-  categories= Category_Sales.objects.all()  
-  form = Masterfile_form()
-  context={'categories':categories, 'form':form}  
-  if request.method=='POST':
-    form=Masterfile_form(request.POST or None, request.FILES or None )
-    if form.is_valid():
-      saveform =form.save(commit=False)
-      saveform.user = request.user
-      saveform.save()
-      return redirect('app_invoice:masterfile-dashboard')
-    else :
-      print(f'form is invalid {form.errors}')
-
-    
-  context={'categories':categories, 'form':form}  
-  return render(request,'app_invoice/masterfile-add.html',context)
-
-def masterfile_update(request, pk=None):
-
-  datarec= MasterFile.objects.get(id=pk)
-
-  form = UpdateRecord_MasterFileForm(instance =datarec)
-
-  if request.method=='POST':
-
-    form = UpdateRecord_MasterFileForm(request.POST or None, request.FILES or None, instance = datarec)
-    if form.is_valid():  
-      saveform=form.save(commit=False)
-      saveform.user= request.user
-      saveform.save()
-      return redirect('app_invoice:masterfile-dashboard' )
-    else:
-
-      print(f'form is invalid update masterfile {form.errors}')
 
   context={'form':form,'datarec':datarec}
-  return render(request,'app_invoice/masterfile-update.html',context)
-
-def masterfile_delete(request, pk=None):
-  datarec= MasterFile.objects.get(id=pk)
-
-  form = DeleteRecord_MasterFileForm(instance =datarec)   
-
-  if request.method=='POST':
-    datarec.delete()   
-    return redirect('app_invoice:masterfile-dashboard', )
-  
-  context={'form':form,'datarec':datarec}
-  return render(request,'app_invoice/masterfile-delete.html',context)  
-
-
-
-def sales_entry_dashboard(request):
-  data = Invoice.objects.filter(user = request.user, invoice_no=0) 
-  context={'data':data}
-  return render(request,'app_invoice/sales-entry-dashboard.html',context)
-
-def sales_entry_delete(request,pk=None):
-  datarec= Invoice.objects.get(id=pk)
-  form = DeleteRecord_SalesEntryForm(instance =datarec)   
-  if request.method=='POST':
-    datarec.delete()   
-    return redirect('app_invoice:sales-entry', )
-
-
-  context={'form':form,'datarec':datarec}
-  return render(request,'app_invoice/sales-entry-delete.html',context)  
-
+  return render(request,'app_invoice/category-update.html',context)

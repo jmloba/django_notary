@@ -3,20 +3,24 @@
 {% load static %}
 
 {% block content %}
-<section id="sales-entry" >
+<section id="sales-entry-dashboard" >
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
   <div class="body-area">
 
 
     <div class="row ">
- 
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"  >
+        <button class="btn btn-primary"><a href="{% url 'app_invoice:sales-entry-add' %}"> Add Record</a></button>
+
+
+      </div>
 
 
       <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"  >   
         <div class="table-outer-wrapper">
           {% include 'include/error-messeges.html' %}             
 
-          <section class="table__header" >Sales Entry
+          <section class="table__header" >(appinvoice ) Sales Entry Dashboard
 
           </section>          
           <div class="table-wrapper notary-table">
@@ -26,7 +30,10 @@
                 <thead class="thead-light">
                   <tr>
                     <th >User</th>
+                    <th >Item Number</th>
                     <th >Description</th>
+                    <th >Quantity</th>
+                    <th >Price</th>
                                     
                     <th scope="col">Action</th>
                   </tr>
@@ -36,25 +43,30 @@
                   {% if data %}
                     {% for item in data %}
         
-                    <tr id="categ-id-{{item.id}}">
+                    <tr id="sales-entry-id-{{item.id}}">
                          
     
-                      <td class="td-text td-text-name">{{item.user}}</td>
-                      <td class="td-text  td-text-name">{{item.description}}</td>
-                      
+                      <td class="td-text">{{item.user}}</td>
+                      <td class="td-text">{{item.itemnumber}}</td>
+                      <td class="td-text">{{item.description}}</td>
+                      <td class="td-text">{{item.quantity}}</td>
+                      <td class="td-text">{{item.price}}</td>
+
                       <td class="td-action">
-               
-                       <button class="btn btn-danger btn-sm ">
-                        <a href="{% url 'app_invoice:sales-entry-delete' item.id %}">
+
+                       <button class="btn btn-danger btn-sm " id="btn-sales-entry-delete">
+                        <a href="{% url 'app_invoice:sales-entry-delete' item.id%}">
                           <i class="bi bi-trash3"></i>
                         </a>
                        </button>
+
+
                       </td>
                     </tr>
                     {% endfor %}
                   {% endif %}
                 </tbody>
-                 
+                  
               </table>
             </section>
           </div>
@@ -69,7 +81,7 @@
 <link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
 <link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
 
-<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+<script src="{% static 'js/app-invoice-main.js' %}" ></script> 
 
 {% endblock %}
 

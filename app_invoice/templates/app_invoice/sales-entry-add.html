@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block content %}
-<section id="expense-entry-add" >
+<section id="sales-entry-add" >
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
   <div class="body-area">
 
     <div class="row ">
       <div class="form-title">
-        <h5>Add CAtegory File</h5>
+        <h5>Sales Entry add</h5>
       </div>
 
 
@@ -19,14 +19,11 @@
         <div class="card" >
 
           <div class="card-body">
-            <form action="{% url 'app_invoice:category-add' %} " method="POST">
+            <form action="{% url 'app_invoice:sales-entry-add' %} " method="POST">
 
               {% csrf_token %}
-              
-              <div class="form-group">
-                <label for="category">product category</label>
-                <input type="text" class="form-control form-control-sm" name ='category' value={{values.category}}>
-              </div>
+              {{form.as_p}}
+
           
                 
                

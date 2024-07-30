@@ -29,3 +29,10 @@
   font-size : 14px
 
 }
+
+#sales-entry-add  #salesentry-description{
+  height : 7em;
+  max-height : 20em;
+  min-height : 5em;
+  width: 100%;
+}

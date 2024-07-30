@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Invoice,Ref_Table,InvoiceSummary, Customer, Category_Sales, MasterFile
+from .models import Invoice,Ref_Table,InvoiceSummary,Category_Sales, Customer
 
 # Register your models here.
 class InvoiceAdmin(admin.ModelAdmin):
@@ -10,6 +10,7 @@ class InvoiceAdmin(admin.ModelAdmin):
   list_filter =()
   fieldsets=()
 
+
 class Ref_TableAdmin(admin.ModelAdmin):
   list_display=('reference','ref_no')
   ordering=('reference',)
@@ -17,7 +18,6 @@ class Ref_TableAdmin(admin.ModelAdmin):
   filter_horizontal=()
   list_filter =()
   fieldsets=()
-
 class InvoiceSummaryAdmin(admin.ModelAdmin):
   list_display=('user','customer','invoice_no','invoice_date','total_quantity','total_amount','invoice_date')
 
@@ -36,26 +36,22 @@ class CustomerAdmin(admin.ModelAdmin):
   list_filter =()
   fieldsets=()
 
-class Category_SalesAdmin(admin.ModelAdmin):  
-  list_display=('user','product_category','updated','created',)
+class CategorySales_Admin(admin.ModelAdmin):
+  list_display=('category',)
 
-  ordering=('product_category','created')
-  list_editable =('product_category',)
+  ordering=('category',)
+  list_editable =()
   filter_horizontal=()
   list_filter =()
   fieldsets=()
+ 
 
-class MasterfileAdmin(admin.ModelAdmin):  
-  list_display=('user','itemnumber','description','category','price', 'myimage')
 
-  ordering=('itemnumber',)
-  list_editable =('description','price')
-  filter_horizontal=()
-  list_filter =()
-  fieldsets=()  
-admin.site.register(MasterFile, MasterfileAdmin)  
-admin.site.register(Category_Sales, Category_SalesAdmin)  
-admin.site.register(Invoice, InvoiceAdmin)  
-admin.site.register(Ref_Table, Ref_TableAdmin)  
-admin.site.register(InvoiceSummary, InvoiceSummaryAdmin)  
+admin.site.register(Category_Sales,CategorySales_Admin )  
+
 admin.site.register(Customer, CustomerAdmin)  
+
+admin.site.register(InvoiceSummary,  InvoiceSummaryAdmin)  
+
+admin.site.register(Invoice, InvoiceAdmin)  
+admin.site.register(Ref_Table, Ref_TableAdmin) 

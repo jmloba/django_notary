@@ -24,8 +24,8 @@ class Customer(models.Model)  :
        
 class Invoice (models.Model):
 
-  user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)                         
-  customer = models.ForeignKey(Customer,on_delete=models.PROTECT, null=True, blank=True)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)                         
+  customer = models.ForeignKey(Customer,on_delete=models.CASCADE, null=True, blank=True)
 
   invoice_no = models.IntegerField(default=0, blank=True, 
                                  null=True)
@@ -45,9 +45,9 @@ class Invoice (models.Model):
     return str(self.customer)
   
 class InvoiceSummary(models.Model):
-  user=  user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)   
+  user=  user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)   
 
-  customer = models.ForeignKey(Customer,on_delete=models.PROTECT, null=True, blank=True)
+  customer = models.ForeignKey(Customer,on_delete=models.CASCADE, null=True, blank=True)
 
   invoice_no = models.IntegerField(default=0)
 
@@ -62,32 +62,6 @@ class InvoiceSummary(models.Model):
        verbose_name_plural='InvoiceSummary'    
   def __str__(self):
     return str(self.customer)
-
 class Category_Sales(models.Model):
-  user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True) 
-  product_category= models.CharField(max_length=200,blank=True, null=True)
-  updated = models.DateTimeField(auto_now=True)
-  created = models.DateField(auto_now_add=True)
-  class Meta:
-       verbose_name_plural='Category_Sales'
-  def __str__(self):
-       return self.product_category  
-
-
-
-class MasterFile(models.Model):
-  user =  models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True) 
-  
-  itemnumber = models.CharField(max_length=20, blank=True, null=True)  
-  description = models.CharField(max_length=50, blank=True, null=True) 
-  category = models.ForeignKey(Category_Sales, on_delete=models.PROTECT,blank=True, null=True)
-  price =  models.DecimalField( max_digits=7,decimal_places=2, blank=True, null=True)
-  myimage = models.ImageField(upload_to='myimages/', null=True,blank=True)
-
-  class Meta:
-       verbose_name_plural='MasterFile'    
-
-  def __str__(self):
-    return self.itemnumber
-
-   
+  user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)     
+  category  = models.CharField(max_length=200, blank=True, null=True) 

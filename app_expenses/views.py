@@ -7,8 +7,6 @@ from app_expenses.forms import DeleteRecord_ExpenseForm,UpdateRecord_ExpenseForm
 # Create your views here.
 def expense_dashboard(request):
   data = Expense.objects.filter(posted=False,owner= request.user)
-
-
   context={'data':data, }
   return render(request,'app_expenses/expense-dashboard.html',context)
 
@@ -63,7 +61,7 @@ def expenses_add(request):
 def expenses_delete(request, pk=None):
   datarec= Expense.objects.get(id=pk)
 
-  form = UpdateRecord_ExpenseForm(instance =datarec)   
+  form = DeleteRecord_ExpenseForm(instance =datarec)   
 
   if request.method=='POST':
     datarec.delete()   

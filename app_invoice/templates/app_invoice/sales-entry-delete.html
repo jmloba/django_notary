@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<section id="app-form-update" >
+<section id="sales-entry-delete" >
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
 
   <div class="body-area">
@@ -21,9 +21,7 @@
           <div class="data-item data-item-line">
             <p>Description : <span>{{datarec.description}}</span></p>
           </div>
-          <div class="data-item data-item-line">
-            <p>Quantity : <span>{{datarec.quantity}}</span></p>
-          </div>
+         
 
 
         </div>
@@ -31,9 +29,8 @@
 
       </div>
       <div class="col-lg-8 col md-8 col-sm-12"  >
-        <h3>Delete Item -Sales Entry </h3>
-        <form action=""    enctype="multipart/form-data" 
-        method="POST" >
+        <h3>Delete Item - Sales Entry  </h3>
+        <form action=""        method="POST" >
           {% csrf_token %}
           <div class="form-row">
             <div class="form-group d-flex"> 
@@ -48,13 +45,18 @@
             </div>   
             <div class="form-group d-flex"> 
               <div class="form-group-item">
-              {{form.quantity |as_crispy_field}}
-              </div>
+               
+                {{form.quantity |as_crispy_field}}
+              </div>              
+            </div>                  
+
+            <div class="form-group d-flex"> 
               <div class="form-group-item">
+               
                 {{form.price |as_crispy_field}}
-                </div>              
+              </div>              
             </div>      
-           
+                                          
 
            
           </div> 

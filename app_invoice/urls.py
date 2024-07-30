@@ -17,19 +17,11 @@ urlpatterns = [
   path('search-item/',views.search_item , name ='search-item'),  
   # category
   path('category-dashboard/',views.category_dashboard, name='category-dashboard'),  
-  path('category-add/',views.category_add, name='category-add'),
-  path('category-delete/<int:pk>',views.category_delete, name='category-delete'),     
-  path('category-update/<int:pk>',views.category_update, name='category-update'),     
-  # master file
-  path('masterfile-dashboard/',views.masterfile_dashboard, name='masterfile-dashboard'),  
-  path('masterfile-add/',views.masterfile_add, name='masterfile-add'),
+  path('category-add/',views.category_add, name='category-add'),  
 
-  path('masterfile-update/<int:pk>',views.masterfile_update, name='masterfile-update'),
+  path('category-delete/<int:pk>',views.category_delete, name='category-delete'),  
   
-  path('masterfile-delete/<int:pk>',views.masterfile_delete, name='masterfile-delete'),
+  path('category-update/<int:pk>',views.category_update, name='category-update'),  
+#   
 
-  path('sales-entry-dashboard/',views.sales_entry_dashboard, name='sales-entry-dashboard'),
-
-  path('sales-entry-delete/<int:pk>',views.sales_entry_delete, name='sales-entry-delete'),  
-
-]
+ ]

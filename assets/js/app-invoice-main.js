@@ -263,6 +263,12 @@ $(document).ready(function(){
     })    
   })
 
+  $('#tbody').on('click','#btn-sales-entry-delete', function(e){
+    console.log ('btn-sales-entry-delete')
+
+
+  })
+
   $('#tbody').on('click','#btn-invoice2-delete', function(e){
     e.preventDefault()
     console.log('invoice 2 delete') 
