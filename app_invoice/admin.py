@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Invoice,Ref_Table,InvoiceSummary,Category_Sales, Customer
+from .models import Invoice,Ref_Table,InvoiceSummary,Category_Sales, Customer, Master
 
 # Register your models here.
 class InvoiceAdmin(admin.ModelAdmin):
@@ -46,7 +46,16 @@ class CategorySales_Admin(admin.ModelAdmin):
   fieldsets=()
  
 
+class Master_Admin(admin.ModelAdmin):
+  list_display=('user','itemnumber','description','myimage')
 
+  ordering=('itemnumber',)
+  list_editable =()
+  filter_horizontal=()
+  list_filter =()
+  fieldsets=()
+
+admin.site.register(Master,Master_Admin )  
 admin.site.register(Category_Sales,CategorySales_Admin )  
 
 admin.site.register(Customer, CustomerAdmin)  

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<section id="app-expenses-update" >
+<section id="master-update" >
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
 
   <div class="body-area">
@@ -13,16 +13,16 @@
         <div class="data-info">
 
           <div class="data-item">
-            <p>Id : <span>{{datarec.id}}</span></p>
+            <p>Id : <span>{{data.id}}</span></p>
           </div>
           <div class="data-item data-item-line">
-            <p>Item Number : <span>{{datarec.itemnumber}}</span></p>
+            <p>Item Number : <span>{{data.itemnumber}}</span></p>
 
-            <p>Description : <span>{{datarec.description}}</span></p>
+            <p>Description : <span>{{data.description}}</span></p>
   
           </div>
           <div class="data-item">
-            <p>Price : <span>{{datarec.price}}</span></p>
+            <p>Image : <img src="{{data.myimage.url}}" alt="image"></p>
           </div>
         </div>
 
@@ -30,15 +30,16 @@
       </div>
       <div class="col-lg-8 col md-8 col-sm-12"  >
         <h3>Update Master Record  </h3>
-        <form action=""    method="POST" enctype="multipart/form-data" >
-          {% csrf_token %}
-          <div class="form-row">
-            {% include 'app_invoice/form-fields-masterfile.html' %}            
-          </div> 
-          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Update Submit</button>
-
-        
-        </form>
+        <div class="form-div ">
+          <form action=""    method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <div class="form-row">
+              {% include 'app_invoice/form-fields-masterfile.html' %}            
+            </div> 
+            <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Update Submit</button>
+          </form>
+  
+        </div>
         
        
       </div>
@@ -49,7 +50,7 @@
 </section>
 <link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
 
-<link rel="stylesheet" href="{% static 'css/app-expenses.css' %}">
+<link rel="stylesheet" href="{% static 'css/app-invoices.css' %}">
 
 <script src="{% static 'js/app-forms-entry.js' %}" ></script> 
 

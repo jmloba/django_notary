@@ -22,6 +22,20 @@ urlpatterns = [
   path('category-delete/<int:pk>',views.category_delete, name='category-delete'),  
   
   path('category-update/<int:pk>',views.category_update, name='category-update'),  
-#   
+  #   master
+path('master-dashboard/',views.master_dashboard, name='master-dashboard'),  
+
+path('masterfile-add/',views.masterfile_add, name='masterfile-add'),  
+
+path('masterfile-delete/<int:pk>',views.masterfile_delete, name='masterfile-delete'),  
+
+path('masterfile-update/<int:pk>',views.masterfile_update, name='masterfile-update'),  
+
+  #   sales entry
+path('sales-entry-dashboard/',views.sales_entry_dashboard, name='sales-entry-dashboard'),  
+
+path('sales-entry-add/',views.sales_entry_add, name='sales-entry-add'),    
+path('sales-entry-delete/<int:pk>',views.sales_entry_delete, name='sales-entry-delete'),    
+
 
  ]

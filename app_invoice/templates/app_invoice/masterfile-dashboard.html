@@ -29,9 +29,8 @@
                   <tr>
                     <th >Item Number</th>
                     <th >Description</th>
-                    <th >Category</th>
+                    <th >Image</th>
                     <th >Price</th>
-                    <th>Image</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -43,7 +42,6 @@
                     <tr id="master-id-{{item.id}}">
                       <td class="td-text">{{item.itemnumber}}</td>
                       <td class="td-text">{{item.description}}</td>
-                      <td class="td-text">{{item.category.category}}</td>
                       <td class="td-text">{{item.price}}</td>
 
                       {%if item.myimage%}
@@ -53,7 +51,7 @@
                       </td>
                       {%else%}
                       <td>
-                        <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                        <img src="{% static 'images/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
                       
                       </td>     
 
