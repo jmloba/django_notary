@@ -1,0 +1,76 @@
+
+.table {
+  border : 5px solid red;
+  font-size: 14px;
+  /* max-height : 50px; */
+  /* for border in each cell */
+  border-collapse: separate;
+  border-spacing : 0px;
+
+  min-width: max-content;
+  
+
+}
+
+th{
+  font-size: 16px;
+  background-color: teal !important;
+  color : white !important;
+  
+
+  position : sticky;
+  top: 0px;
+
+
+}
+th,td {
+  border : 1px solid rgba(130, 128, 128, 0.87) !important;
+  padding : 3px;
+}
+
+#outer-wrapper{
+  margin :20px;
+  
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px rgb(200, 193, 217);
+  
+  border-radius: 5px;
+
+  background-color: rgba(247, 247, 237, 0.47);
+  padding : 1em 1em;
+  /* max-width: fit-content; */
+  
+}
+#table-wrapper{
+  background-color: rgba(112, 112, 28, 0.47);
+  padding : 1em 1em;
+  
+  max-height: 40rem;
+  overflow-y:scroll;
+  margin:  30px 20px;
+
+}
+/* table columns */
+.td-col1{
+  color : red  !important ;
+  text-align: left;
+  padding-left : 10px; 
+}
+.td-col2{
+  text-align: left;
+  padding-left : 10px; 
+  color: black;
+
+}
+.td-amount{
+  text-align: right;
+  padding-right : 10px; 
+  color: black;
+
+}
+
+@media only screen and (max-width:770px){
+  #outer-wrapper{
+    margin : 1rem 2rem;
+  }
+}

@@ -14,9 +14,10 @@ class Notary_form(forms.ModelForm):
   class Meta:
     model=Notarized_Documents
 
-    fields=["category","firstname","lastname","bookno", "pageno", "recordno", "amount_paid"]
+    fields=["category","firstname","lastname","bookno", "pageno", "recordno", "amount"]
+
     '''
-    fields=["category","firstname", "lastname","bookno", "pageno", "recordno", "myfile", "myimage","amount_paid"]
+    fields=["category","firstname", "lastname","bookno", "pageno", "recordno", "myfile", "myimage","amount"]
     '''
 
 class Notary_form_A(forms.ModelForm):
@@ -24,6 +25,6 @@ class Notary_form_A(forms.ModelForm):
     model=Notarized_Documents
 
  
-    fields=["category","firstname", "lastname","bookno", "pageno", "recordno", "myfile", "myimage","amount_paid"]
+    fields=["category","firstname", "lastname","bookno", "pageno", "recordno", "myfile", "myimage","amount"]
 
     

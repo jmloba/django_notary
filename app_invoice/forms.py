@@ -95,9 +95,17 @@ class UpdateRecord_MasterForm(forms.ModelForm):
 
 # sales entry
 class Sales_entry_Form(forms.ModelForm):       
-    class Meta:
-        model = Sales_Entry
-        fields = [ 'itemnumber', 'description','quantity', 'price', ]      
+  class Meta:
+    model = Sales_Entry
+    fields = [ 'itemnumber', 'description','quantity', 'price', ]   
+  # def __init__(self, *args, **kwargs):
+  #   super().__init__(*args,**kwargs)
+  #   self.fields['description'].queryset=Master.objects.none()
+  #   if 'description' in self.data:
+  #     self.fields['description'].queryset=Master.objects.all()
+    # elif self.instance:   
+    #   self.fields['description'].queryset=Master.objects.all().filter(pk=self.instance.description.pk)
+
 
 class DeleteRecord_SalesEntryForm(forms.ModelForm):
   class Meta :

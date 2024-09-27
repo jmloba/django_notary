@@ -1,0 +1,12 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+  <section id="test-section">
+    <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  </section>
+{% endblock %}
+
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">

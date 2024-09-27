@@ -23,9 +23,6 @@
 
               {% csrf_token %}
               {{form.as_p}}
-
-          
-                
                
               <input type="submit" class='btn btn-primary btn-sm' value ="Save">         
            </form>
@@ -41,11 +38,25 @@
 </section>
 
 
-<link rel="stylesheet" href="{% static 'css/app-expenses.css' %}">
+<link rel="stylesheet" href="{% static 'css/app-invoice.css' %}">
 <link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
 <link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
 
-<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+<script>
+  
+  $(document).ready(function(){
+    // using jquery autocomplete UI
+    $('#id_description').autocomplete({
+      source: "{% url 'app_invoice:sales-entry-add' %}",
+    });
+   
+  });
+
+</script>
+
 
 {% endblock %}
 

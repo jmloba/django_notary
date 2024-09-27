@@ -23,6 +23,7 @@ class UserAccess(models.Model):
   article_create = models.BooleanField(default=False)
   article_delete = models.BooleanField(default=False)
   programmer_access=models.BooleanField(default=False)
+  post_notary_access=models.BooleanField(default=False)  
   todo_access_all = models.BooleanField(default=False)
   todo_rights = models.BooleanField(default=False)
 

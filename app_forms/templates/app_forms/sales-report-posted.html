@@ -1,0 +1,97 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="sales-report-posted" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+
+    <div class="row ">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"  >
+        <form action="" method = 'POST'>
+          {%csrf_token%}
+
+          <div class="form-group "> 
+            <div class="form-group-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            {{form.from_date|as_crispy_field}}
+            </div>
+          </div>        
+          <div class="form-group "> 
+            <div class="form-group-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              {{form.to_date|as_crispy_field}}
+            </div>
+          </div>        
+
+          <button type="submit" class="btn btn-primary" >Submit</button> 
+        </form>
+      </div>
+
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"  >   
+        <div class="table-outer-wrapper">
+
+      
+          <div class="table-wrapper notary-table">
+
+            <section class="table__body">
+              <table id ="myordersTable" class=" table product-table content-table" >
+                <thead class="thead-light">
+                  <tr>
+                    <th >Date</th>                  
+                    <th >Last Name</th>
+                    <th >OR</th>
+                    <th >Posted</th>
+                  </tr>
+                </thead>
+                
+                <tbody id="tbody" class="table-body">
+                  {% if data %}
+
+                    {% for item in data %}
+        
+                    <tr id="categ-id-{{item.id}}">
+                       
+    
+                      <td class="td-text">{{item.created}}</td>                      
+                      <td class="td-text">{{item.lastname}}</td>
+                      <td class="td-text">{{item.or_number}}</td>
+
+                      <td class="td-text">{{item.is_posted}}
+                        {%if item.is_posted %}
+                        <input class="form-check-input form-check-posted" type="checkbox" checked="checked" value="{{item.id}}" name="boxes"  disabled>
+                        
+                        {% else %}
+                        <input class="form-check-input form-check-posted" type="checkbox"  value="{{item.id}}" name="boxes"  disabled>
+
+                        {% endif %}
+
+                      </td>
+                      
+                    
+                    </tr>
+                    {% endfor %}
+
+                  {% endif %}
+                </tbody>
+                 
+              </table>
+            </section>
+          </div>
+        </div>
+      </div>    
+      {% include 'include/error-messeges.html'%}
+ 
+    </div>
+  </div>
+</section>
+
+
+
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
+
+
+
+{% endblock %}
+

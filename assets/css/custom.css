@@ -134,6 +134,7 @@ img{
   display:inline-block;
  
 }
+
 .btn-mybtn,
 .btn-mybtn a{
   
@@ -190,7 +191,7 @@ img{
 
 .body-area{
   background-color: #7cb8d6a0;
-  margin: 1em 3em;
+  margin: 1em 2em;
   padding : 1em 1em;
   border-radius : 5px;
   
@@ -245,7 +246,7 @@ margin :1% 10%;
 }
 @media only screen and (min-width:391px)  and (max-width:700px) {
   .body-area {
-    margin: 0 5%; 
+    margin: 0 10px; 
   }
 }
 @media screen and (min-width:701px) { 

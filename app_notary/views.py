@@ -70,7 +70,7 @@ def notary_edit(request):
 
 def data_list():
 
-  mrec=Notarized_Documents.objects.all().values('id','category__doc_category','firstname','lastname','created','bookno','pageno','recordno','amount_paid', 'myimage','myfile')
+  mrec=Notarized_Documents.objects.all().values('id','category__doc_category','firstname','lastname','created','bookno','pageno','recordno','amount', 'myimage','myfile')
   mlist = list(mrec)
   print(f'\n\ndata_list --->>:{mlist}\n')
 
@@ -94,7 +94,7 @@ def save_notary_entry(request):
               bookno      = request.POST.get('bookno'), 
               pageno      = request.POST.get('pageno'), 
               recordno    = request.POST.get('recordno'), 
-              amount_paid = request.POST.get('amount_paid'), 
+              amount = request.POST.get('amount'), 
 
               myimage=request.FILES.get('myimage'),
               myfile=request.FILES.get('myfile'),
@@ -109,7 +109,7 @@ def save_notary_entry(request):
               bookno=request.POST.get('bookno'), 
               pageno=request.POST.get('pageno'), 
               recordno=request.POST.get('recordno'), 
-              amount_paid = request.POST.get('amount_paid'), 
+              amount = request.POST.get('amount'), 
 
               myimage=request.FILES.get('myimage'),
               myfile=request.FILES.get('myfile'),              

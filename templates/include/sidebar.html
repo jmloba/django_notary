@@ -13,8 +13,7 @@
   <div class="menu">
 
     {% if user.is_authenticated %}
-      <div class="item "><a href="#"><i class="fas fa-desktop"></i>Topics</a>
-      </div>
+
       {% if not user.user.new_user %}
     
 
@@ -30,11 +29,24 @@
         <div class="sub-menu">
           <div class="item ">
             <a href="{% url 'app_forms:dashboard'%}" class="sub-item">Notary entry</a>  
+            
             <a href="{% url 'app_expenses:expense-dashboard'%}" class="sub-item">Expenses</a>    
-          </div>  
+            <div class="item ">
+              <a class="sub-btn">
+                <i class="fas fa-cogs"></i>Notary Report
+                <i class="fas fa-angle-right dropdown"></i>
+              </a>
+              <div class="sub-menu">
+                <a href="{% url 'app_forms:post-entries'%}" class="sub-item">Post Entry</a>     
+                <a href="{% url 'app_forms:sales-report-posted'%}" class="sub-item">Notary REport Sales</a>
+
+              </div>
+            </div>  
+          </div> 
+           
         </div>
       </div>   
-      <!-- other entris -->
+      <!-- other entries -->
       <div class="item ">
         <a class="sub-btn">
           <span class="material-symbols-outlined icon1-submenu">
@@ -48,6 +60,24 @@
           <a href="{% url 'app_import:import-province-town' %}"  class="sub-item">Import Towns</a>
         </div>
       </div>
+      <!-- accounting -->
+      <div class="item ">
+        <a class="sub-btn">
+          <span class="material-symbols-outlined icon1-submenu">
+            folder_special
+            </span>&nbsp;
+          Accounting
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_accounting:acct-dashboard' %}"  class="sub-item">Accounting Dashboard</a>
+    
+
+        </div>
+      </div>
+
+
+
       <!-- Invoice entries -->
       <div class="item ">
         <a class="sub-btn">
@@ -60,7 +90,7 @@
         <div class="sub-menu">
           <a href="{% url 'app_invoice:invoice-create' %}"  class="sub-item">Create Invoice </a>
 
-          <a href="{% url 'app_print:reprint-invoice' %}"  class="sub-item">Reprint Invoice xxx </a>          
+          <a href="{% url 'app_print:reprint-invoice' %}"  class="sub-item">Reprint Invoice</a>          
         </div>
       </div>       
 
@@ -129,7 +159,7 @@
 
       <div class="item ">
         <a class="sub-btn">
-          <i class="fas fa-cogs"></i>sample
+          <i class="fas fa-cogs"></i>sample xxx 
           <i class="fas fa-angle-right dropdown"></i>
         </a>
         <div class="sub-menu">
@@ -141,7 +171,6 @@
             <div class="sub-menu">
               <a href="" class="sub-item">sample 1 1</a>     
               <a href="" class="sub-item">sample 1 2</a>
-              
             </div>
           </div>  
           <a href="" class="sub-item">sample 2</a>

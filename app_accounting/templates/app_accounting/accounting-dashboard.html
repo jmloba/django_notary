@@ -1,0 +1,72 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<main id="accounting-dashboard">
+  <div class="main-div">
+
+    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"  >
+      <button class="btn btn-primary btn-mybtn"><a href="{% url 'app_accounting:create-master'%} "> Add Record</a></button>
+      
+    </div>
+  
+    <div class="table-container col-lg-10 col-md-10 col-sm-12 col-xs-12">
+          <section class="table__header">
+            <h1>Chart of Accounts</h1>
+
+          </section>
+          <section class="table__body">
+
+            <table id="main-table">
+              <thead>
+                <tr>
+                  <th>Account Number</th>
+                  <th>Description</th>
+                  <th>Header/Detail</th>
+                  <th>Beginning Balance</th>
+                  <th >Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in chrtmast %}
+                <tr id="chrtmast-id-{{item.id}}">
+                  
+                  <td data-cell="accno">{{item.chrt_accno}}</td>
+                  <td data-cell="desc">{{item.chrt_desc}}</td>
+                  <td data-cell="HD">{{item.chrt_H_D}}</td>
+                  <td class='begin-bal' data-cell="begbal"><span class='beg-bal' >{{item.beg_bal}}</span></td>
+                  <td class="td-action" data-cell="action">
+                    <button class="btn btn-info btn-sm ">
+                      <a href="{% url 'app_accounting:update-record' item.id %}">
+                      <i class="bi bi-pencil"></i>
+                      </a>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-danger btn-sm ">
+                      <a href="{% url 'app_accounting:delete-record' item.id %}">
+                        <i class="bi bi-trash3"></i>
+                      </a>
+                    </button>                       </td>   
+                </tr>        
+                {% endfor %}
+    
+              </tbody>
+            </table>
+          </section>
+    </div>
+
+  </div> 
+    <!-- end wrapper -->
+    
+
+</main>
+
+
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/custom-var.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/app-accounting-dashboard.css' %}">
+{% endblock %}

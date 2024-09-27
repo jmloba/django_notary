@@ -33,10 +33,15 @@
             <p>Record No : <span>{{datarec.recordno}}</span></p>
           </div>
           <div class="data-item">
-            <p>Amount Paid : <span>{{datarec.amount_paid}}</span></p>
+            <p>Amount Paid : <span>{{datarec.amount}}</span></p>
           </div>          
 
-
+          <div class="data-item">
+            <p>Tax : <span>{{datarec.total_tax_amount}}</span></p>
+          </div>       
+          <div class="data-item">
+            <p>Total Amount : <span>{{datarec.total_amount}}</span></p>
+          </div>       
 
           <div class="data-item">
             <p>Image : <img src="{{datarec.myimage.url}}" alt=""></p>

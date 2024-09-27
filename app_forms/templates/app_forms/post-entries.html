@@ -1,0 +1,132 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notary-entry-posting" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+
+    <div class="row ">
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  >   
+        {% include 'include/error-messeges.html'%}
+       
+          <div class="table-outer-wrapper">
+
+            <section class="table__header" >Post Notary Entry
+
+            </section>          <div class="table-wrapper notary-table">
+
+              <section class="table__body">
+                <form action="" method="POST">
+                  {% csrf_token %}
+                <table id ="myordersTable" class=" table product-table content-table" >
+                  <thead class="thead-light">
+                    <tr>
+                      <th >Checkbox</th>                  
+                      <th >Image</th>                  
+                      <th >First Name</th>
+                      <th >Last Name</th>
+                      <th >Category</th>
+                      <th >Book</th>
+                      <th >Page</th>
+                      <th >Record</th>
+                      <th >Amount</th>
+                      <th >Tax</th>
+
+                      <th >Myfile</th>                                      
+         
+                    </tr>
+                  </thead>
+                  
+                  <tbody id="tbody" class="table-body">
+                    {% if data %}
+                      {% for item in data %}
+          
+                      <tr id="categ-id-{{item.id}}">
+                        {% if item.is_posted %}
+                        <td> 
+                          <div class="form-check">
+                            <input class="form-check-input form-check-posted" type="checkbox" checked="checked" value="{{item.id}}" name="boxes"  disabled
+                            >
+
+                          </div>
+                        </td>
+                        {% else %}
+                        <td> 
+                          <input class="form-check-input form-check-not-posted" type="checkbox"  value="{{item.id}}" name="boxes" >
+                        </td>               
+                        {% endif %}
+                        
+                        
+                        {% if item.myimage%}
+                          <td>
+                            <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+                          
+                          </td>
+                        {% else %}
+                          <td>
+                            <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                          
+                          </td>     
+                        {% endif %}               
+      
+                        <td class="td-text td-text-name">{{item.firstname}}</td>
+                        <td class="td-text  td-text-name">{{item.lastname}}</td>
+                        <td class="td-text-category">{{item.category}}</td>
+                        <td class="td-text-ref">{{item.bookno}}</td>
+                        <td class="td-text-ref">{{item.pageno}}</td>
+                        <td class="td-text-ref">{{item.recordno}}</td>
+                        <td class="td-amount">{{item.amount}}</td>
+                        <td class="td-amount">{{item.total_tax_amount}}</td>
+
+
+                        {% if item.myfile%}
+                        <td>
+
+                          <img src="{{item.myfile.url}}" alt="my file" class="item-image-size-inlist" >
+                        
+                        </td>
+                      {% else %}
+                        <td>
+                          <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                        
+                        </td>     
+                      {% endif %}                            
+                      </tr>
+                      {% endfor %}
+                    {% endif %}
+                  </tbody>
+                  
+                </table>
+                <input class="btn btn-primary" type="submit" value="Submit">
+
+                </form>
+              </section>
+              <section class="post-entry">
+
+
+              </section>
+            </div>
+
+                 
+          </div>
+        
+      </div>     
+    </div>
+  </div>
+</section>
+
+
+
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/app-forms.css' %}">
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+{% endblock %}
+

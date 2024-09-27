@@ -5,15 +5,16 @@
 {% block content %}
 <section id="notary-entry" >
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
   <div class="body-area">
 
     <div class="row ">
-      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"  >
+      <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"  >
         <button class="btn btn-primary"><a href="{% url 'app_forms:create-record'%} "> Add Record</a></button>
        
       </div>
 
-      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"  >   
+      <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12"  >   
         <div class="table-outer-wrapper">
 
           <section class="table__header" >Notary Transactions
@@ -32,6 +33,10 @@
                     <th >Page</th>
                     <th >Record</th>
                     <th >Amount</th>
+                    <th >Tax</th>
+                    <th >Total</th>
+                    <th >Created</th>
+
                     <th >Myfile</th>                                      
                                     
                     <th scope="col">Action</th>
@@ -61,9 +66,15 @@
                       <td class="td-text-ref">{{item.bookno}}</td>
                       <td class="td-text-ref">{{item.pageno}}</td>
                       <td class="td-text-ref">{{item.recordno}}</td>
-                      <td class="td-amount">{{item.amount_paid}}</td>
+                      <td class="td-amount">{{item.amount}}</td>
+                      <td class="td-amount">{{item.total_tax_amount}}</td>
+                      <td class="td-amount">{{item.total_amount}}</td>
+                      <td class="td-created">{{item.created}}</td>
+
+
                       {% if item.myfile%}
                       <td>
+
                         <img src="{{item.myfile.url}}" alt="my file" class="item-image-size-inlist" >
                       
                       </td>
@@ -92,6 +103,10 @@
                  
               </table>
             </section>
+            {% include 'include/error-messeges.html'%}
+        
+
+
           </div>
         </div>
       </div>     

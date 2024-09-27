@@ -3,10 +3,8 @@
   font-size : 16px;
 
   width:100%;
-  
-  
-
   border: 5px solid rgba(11, 115, 119, 0.5);
+
   min-width:max-content;
   
 }
@@ -37,19 +35,26 @@ table .thead-light th {
 #tbody td{
   /* border : None; */
   background-color: rgba(241, 244, 235, 0.54);
-  padding : 5px 10px;
+  padding : 10px 10px;
   color : rgb(15, 69, 26);
   font-weight: 500;
   justify-content: left;
-  
-  
+  line-height: 1rem;
+ 
+}
+
+/* table td width -- joven*/
+#tbody .td-created{
+  width: 8rem;
 }
 .table-outer-wrapper {
-  border : 1px solid  white;
+  width: 100%;
+  border : 5px solid  white;
   padding : 2em 2em;
   box-shadow: var(--table-box-shadow-orange);
   border-radius: .8rem;
-  max-width :fit-content;
+  
+  
   
 }
 .table-wrapper {

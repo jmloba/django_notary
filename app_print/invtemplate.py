@@ -20,6 +20,7 @@ def draw_a4_borderrectangle(c):
     c.setLineWidth(2)
     c.setStrokeColor("black")
     c.setFillColor("lightgreen")
+    
     c.roundRect(-.8 * inch, -.5 * inch, 7.9 * inch, 10.7 * inch, stroke=1, radius=.1)    
 def import_date(c):
     c.setFont("Helvetica", 10)

@@ -1,0 +1,15 @@
+<ul class="loop-tax-dict">
+  {% for key, value in tax_dict.items %}
+    {% for i, j in value.items %}
+  <li style="list-style-type:none">
+    {{ key }} <small>({{i}}%)</small>
+    <span class="price float-right">
+      <span class="currency">Php.</span>
+      <span id='tax-{{key}}'>{{j}}</span>
+
+    </span>
+
+  </li>
+  {% endfor %}
+  {% endfor %}
+</ul>  

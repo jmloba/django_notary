@@ -55,7 +55,7 @@
             </div>  
             <div class="form-group d-flex">  
               <div class="form-group-item">
-                {{form.amount_paid|as_crispy_field}}
+                {{form.amount|as_crispy_field}}
               </div>
             </div>              
      
@@ -116,7 +116,7 @@
                     <td class="td-text-ref">{{item.bookno}}</td>
                     <td class="td-text-ref">{{item.pageno}}</td>
                     <td class="td-text-ref">{{item.recordno}}</td>
-                    <td class="td-amount">{{item.amount_paid}}</td>
+                    <td class="td-amount">{{item.amount}}</td>
                     <td>
                       <button class="btn btn-info btn-sm"  
                       id="btn-notary-edit"  data-sid="{{item.id}}" data-url="{% url 'app_notary:notary-edit' %}"><i class="bi bi-pencil"></i>

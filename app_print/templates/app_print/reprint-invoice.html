@@ -12,7 +12,7 @@
         --margin-left: 5%; --margin-bottom: 1em; "  >
     <div class="main-page">
       <div class="page-header">
-        <h4 class="text-center">reprint invoice  routine </h4>
+        <h4 class="text-center">reprint invoice  routine -xxx </h4>
   
       </div>
       
@@ -47,7 +47,7 @@
                 <td>{{invoice.total_quantity }}</td>
                 <td>{{invoice.total_amount}}</td>
                 <td>  <button class="btn btn-mybtn" id="btn-reprint-button"  data-url="{% url 'app_print:print-invoice-ajax' %}" 
-                  data-invoice="{{invoice.invoice_no}}">Reprint</button></td>
+                  data-invoice="{{invoice.invoice_no}}">Reprint XXx</button></td>
 
               </tr>
               {% endfor %}
@@ -71,6 +71,6 @@
 <link rel="stylesheet" href="{% static 'css/custom-app-print.css' %}">
 
 
-<script src="{% static 'js/app-print-reprint.js' %}" ></script> 
+<script src="{% static 'js/app-print-reprint-x.js' %}" ></script> 
 
 {% endblock %}

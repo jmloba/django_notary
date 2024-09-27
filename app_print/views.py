@@ -23,6 +23,7 @@ from .reportlab_invoice_template import invoice_template
 
 
 def reprint_invoice(request):
+  print(f'start')
   invoice_summary = InvoiceSummary. objects.filter(invoice_no = 0)
   form = SearchForm()
   if request.method == 'POST':

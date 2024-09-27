@@ -10,9 +10,9 @@ class UserProfileAdmin(admin.ModelAdmin):
   fieldsets=()
 
 class UserAccessAdmin(admin.ModelAdmin):
-  list_display=('user','new_user','article_create','programmer_access','article_delete')
+  list_display=('user','new_user','article_create','programmer_access','article_delete','post_notary_access')
   ordering=('user',)
-  list_editable =('new_user','article_create','programmer_access', 'article_delete')
+  list_editable =('new_user','article_create','programmer_access', 'article_delete','post_notary_access')
   filter_horizontal=()
   list_filter =()
   fieldsets=()  

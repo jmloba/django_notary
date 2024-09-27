@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'app_expenses',
     'app_import',
     'app_invoice',
+    'app_accounting',
     
     'app_notary',
     'app_notary_ver2',

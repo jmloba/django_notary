@@ -35,7 +35,10 @@ path('masterfile-update/<int:pk>',views.masterfile_update, name='masterfile-upda
 path('sales-entry-dashboard/',views.sales_entry_dashboard, name='sales-entry-dashboard'),  
 
 path('sales-entry-add/',views.sales_entry_add, name='sales-entry-add'),    
-path('sales-entry-delete/<int:pk>',views.sales_entry_delete, name='sales-entry-delete'),    
+path('sales-entry-delete/<int:pk>',views.sales_entry_delete, name='sales-entry-delete'),   
+
+
+
 
 
  ]

@@ -1,0 +1,93 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+  <section id="test-section">
+    <p class="acctmaster" > Accounts Master File <strong class="imuser" >{{user}}</strong></p>
+    <div class="body-area">
+      <div class="row ">
+        <div class="form-title">
+          <h5>Accounts Master File</h5>
+        </div>
+
+        <div class="body-area-main">
+          <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"  >
+            <button class="btn btn-primary btn-mybtn"><a href="{% url 'app_accounting:create-master'%} "> Add Record</a></button>
+           
+          </div>
+
+          <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12"  > 
+            <section class="table__body">
+              <div id="outer-wrapper">
+                <div id="table-wrapper">
+
+                  <table id ="myordersTablexx" class="table " >
+                    <thead class="thead-light">
+                      <tr>
+                        <th >AcctNO</th>                  
+                        <th >Description</th>
+                        <th >Amount</th>
+                        <th >Action</th>
+  
+                      </tr>
+                    </thead>
+                    
+                    <tbody id="tbody" class="table-body">
+                      {% if chrtmast %}
+                        {% for item in chrtmast %}
+            
+                          <tr id="categ-id-{{item.id}}">
+
+                            <td class="td-accno td-col1">{{item.chrt_accno}}</td>
+                            <td class="text-name td-col2">{{item.chrt_desc}}</td>
+                            <td class="td-amount">{{item.beg_bal}}</td> 
+                            <td class="td-text td-action">
+                              <button class="btn btn-info btn-sm "><a href="{% url 'app_accounting:update-record' item.id %}">
+                                <i class="bi bi-pencil"></i>
+                              </a>
+                              </button>
+                              &nbsp;&nbsp;
+                              <button class="btn btn-danger btn-sm ">
+                               <a href="{% url 'app_accounting:delete-record' item.id %}">
+                                 <i class="bi bi-trash3"></i>
+                               </a>
+                              </button>                              
+                            </td>   
+                            
+                            
+                          </tr>
+
+                        {% endfor %}
+                      {% endif %}
+                    </tbody>
+                    
+                  </table>
+                </div>
+              </div>
+
+            </section>
+
+            {% include 'include/error-messeges.html'%}
+          </div>
+  
+        </div>
+
+      </div>  
+    </div>
+
+    
+
+  </section>
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
+
+  <link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/table-css-3.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/table-css-4.css' %}">
+
+{% endblock %}
+

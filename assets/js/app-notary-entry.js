@@ -11,14 +11,14 @@ $(document).ready(function() {
     $('#id_bookno').val('')
     $('#id_pageno').val('')
     $('#id_recordno').val('')
-    $('#id_amount_paid').val('')
+    $('#id_amount').val('')
 
     };
 
     function html_record(x)  {
       html_template=''
       for ( i=0; i < x.length; i++ ){
-        html_template +=' <tr id="categ-id-'+x[i].id+'"><td><img src="/media/'+x[i].myimage+'" alt="pic" class="item-image-size-inlist" ></td><td class="td-text td-text-name">'+x[i].firstname+'</td><td class="td-text  td-text-name">'+x[i].lastname+'</td><td class="td-text-category">'+x[i].category__doc_category+'</td><td class="td-text-ref">'+x[i].bookno+'</td><td class="td-text-ref">'+x[i].pageno+'</td><td class="td-text-ref">'+x[i].recordno+'</td><td class="td-amount">'+x[i].amount_paid+'</td><td><button class="btn btn-info btn-sm"  id="btn-notary-edit"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-edit/"><i class="bi bi-pencil"></i></button> &emsp;  <button class="btn btn-danger btn-sm"  id="btn-notary-delete"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-delete/"><i class="bi bi-trash3"></i></button></td></tr>'
+        html_template +=' <tr id="categ-id-'+x[i].id+'"><td><img src="/media/'+x[i].myimage+'" alt="pic" class="item-image-size-inlist" ></td><td class="td-text td-text-name">'+x[i].firstname+'</td><td class="td-text  td-text-name">'+x[i].lastname+'</td><td class="td-text-category">'+x[i].category__doc_category+'</td><td class="td-text-ref">'+x[i].bookno+'</td><td class="td-text-ref">'+x[i].pageno+'</td><td class="td-text-ref">'+x[i].recordno+'</td><td class="td-amount">'+x[i].amount+'</td><td><button class="btn btn-info btn-sm"  id="btn-notary-edit"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-edit/"><i class="bi bi-pencil"></i></button> &emsp;  <button class="btn btn-danger btn-sm"  id="btn-notary-delete"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-delete/"><i class="bi bi-trash3"></i></button></td></tr>'
   
       }    
       return html_template
@@ -39,14 +39,14 @@ $(document).ready(function() {
     let bookno = $('#id_bookno').val()  
     let pageno = $('#id_pageno').val()  
     let recordno = $('#id_recordno').val()  
-    let amount_paid = $('#id_amount_paid').val()  
+    let amount = $('#id_amount').val()  
   
     let url= $(this).attr('data-url');  // save notary
     
 
     mythis = $(this)
     mydata={}
-    console.log ('id', id, 'amount_paid:',amount_paid)
+    console.log ('id', id, 'amount:',amount)
 
 
     if (category==''){
@@ -66,7 +66,7 @@ $(document).ready(function() {
       fd.append('pageno', pageno )
       fd.append('recordno', recordno )
 
-      fd.append('amount_paid', amount_paid )      
+      fd.append('amount', amount )      
       
       fd.append('csrfmiddlewaretoken', csrf_token )
       fd.append('myfile', $('#id_myfile')[0].files[0] )

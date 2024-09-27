@@ -1,0 +1,10 @@
+#notary-entry-posting #tbody .form-check{
+  justify-content: center;
+  display: flex;
+}
+
+
+#notary-entry-posting #tbody .form-check-posted{
+  background-color: red;
+  
+} 

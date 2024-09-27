@@ -3,10 +3,38 @@ from django import forms
 from app_notary.models import Notarized_Documents, Notary_Category
 from app_import.models import Phil_City,Phil_Province_Towns
 
+from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
+
+
+class Date_filter(forms.Form ):
+  from_date = forms.DateField(
+    widget = forms.DateInput(
+      attrs={
+        'class':'form-control', 'type': 'date'
+      }
+    )
+  )
+  to_date = forms.DateField(
+    widget = forms.DateInput(
+      attrs={
+        'class':'form-control', 'type': 'date'
+      }
+    )
+  )
+  
+
+class Sampleform(forms.Form):
+  name = forms.CharField(max_length=50)
+  age = forms.IntegerField(max_value=100)
+  date_input = forms.DateField(widget=AdminDateWidget())
+  time_input = forms.DateField(widget=AdminTimeWidget())
+  date_time_input = forms.DateField(widget=AdminSplitDateTime())
+  
+
 class CreateRecordNotaryForm(forms.ModelForm):
   class Meta :
     model= Notarized_Documents
-    fields=('category','firstname','lastname','myfile','myimage','address','bookno','pageno', 'recordno','amount_paid')
+    fields=('category','firstname','lastname','myfile','myimage','address','bookno','pageno', 'recordno','amount', 'or_number')
 
     labels={
       'category':'Category',
@@ -19,7 +47,8 @@ class CreateRecordNotaryForm(forms.ModelForm):
       'bookno' :'Book No.',
       'pageno':'Page No.',
       'recordno':'Record No.',
-      'amount_paid': 'Amount Paid',
+      'amount': 'Amount',
+      'or_number':'Official Receipt Number',
 
     }
   def __init__(self,*args,**kwargs):
@@ -27,11 +56,17 @@ class CreateRecordNotaryForm(forms.ModelForm):
     self.fields['firstname'].required=True
     self.fields['lastname'].required=True
     self.fields['category'].required=True
+    self.fields['bookno'].required=True    
+    self.fields['pageno'].required=True    
+    self.fields['recordno'].required=True
+    self.fields['amount'].required=True
+    self.fields['or_number'].required=True
+
 
 class UpdateRecordNotaryForm(forms.ModelForm):
   class Meta :
     model= Notarized_Documents
-    fields=('category','firstname','lastname','myfile','myimage','address','bookno','pageno', 'recordno','amount_paid')
+    fields=('category','firstname','lastname','myfile','myimage','address','bookno','pageno', 'recordno','amount','or_number')
 
     labels={
       'category':'Category',
@@ -43,13 +78,21 @@ class UpdateRecordNotaryForm(forms.ModelForm):
       'bookno' :'Book No.',
       'pageno':'Page No.',
       'recordno':'Record No.',
-      'amount_paid': 'Amount Paid',
+      'amount': 'Amount Paid',
+      'or_number': 'Official Receipt Number'
     }
   def __init__(self,*args,**kwargs):
     super(UpdateRecordNotaryForm,self).__init__(*args,**kwargs)
     self.fields['firstname'].required=True
     self.fields['lastname'].required=True
-    self.fields['category'].required=True    
+    self.fields['category'].required=True
+    self.fields['bookno'].required=True    
+    self.fields['pageno'].required=True    
+    self.fields['recordno'].required=True
+    self.fields['amount'].required=True
+    self.fields['or_number'].required=True
+
+
 
 ''' Category'''    
 
@@ -89,3 +132,6 @@ class UpdateRecordCategoryForm(forms.ModelForm):
 #   def __init__(self,*args,**kwargs):
 #     super(CreateRecordCategoryForm,self).__init__(*args,**kwargs)
 #     self.fields['doc_category'].required=True
+
+
+  

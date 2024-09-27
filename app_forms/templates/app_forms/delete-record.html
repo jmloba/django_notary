@@ -1,8 +1,10 @@
 {% extends 'main/base.html'%}
-{% load crispy_forms_tags %}
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
+
 <section id="app-form-update" >
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
 
@@ -23,21 +25,19 @@
           <div class="data-item">
             <p>Category : <span>{{datarec.category}}</span></p>
           </div>
-          <div class="data-item">
-            <p>Image : <img src="{{datarec.myimage.url}}" alt=""></p>
+          {% if datarec.myimage %}
+            <div classf="data-item">
+              <p>Image : <img src="{{datarec.myimage.url}}" alt=""></p>
+            </div>
+          {% else %}
+          <div classf="data-item">
+            <p>default</p>
+            <p>Image : <img src="{% static 'images/default-image.png' %}" alt=""></p>
           </div>
-          <div class="data-item">
-            <p>File : <img src="{{datarec.myfile.url}}" alt=""></p>
-          </div>
-                    
-
-          
-
-
+          {% endif %}
         </div>
-
-
       </div>
+
       <div class="col-lg-8 col md-8 col-sm-12"  >
         <h3>Delete Notary Record  </h3>
         <form action=""    enctype="multipart/form-data" 
@@ -77,7 +77,7 @@
       </div>
  
     </div>
-</div>
+  </div>
 </section>
 <link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
 
@@ -85,17 +85,7 @@
 
 <script src="{% static 'js/app-forms-entry.js' %}" ></script> 
 
-<script>
-  function one(){
-    console.log('function 1')
-    let id = $(this).attr("data-sid")
-    console.log('function 1 ', id)
-    $('#stuid').val(id)
-  }
-  function two(){console.log('function 2')
 
-  }
-</script>
 
 
 {% endblock %}

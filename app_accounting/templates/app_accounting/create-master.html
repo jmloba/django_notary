@@ -1,0 +1,31 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="acct-create-master" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  
+  <div class="body-area" >
+    <div class="row ">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-md-8 col-xs-12">
+        <div class="form-entry"  >
+          <h3 id = "header-form">Accounts Master File</h3>
+        </div>  
+        <form action="{% url 'app_accounting:create-master'%}" method="POST">
+          {%csrf_token%}
+          <div class="form-row">
+            {% include 'app_accounting/form-fields-master.html' %}
+          </div>
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>          
+
+        </form>
+      </div>
+  
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

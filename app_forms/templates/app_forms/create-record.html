@@ -3,35 +3,65 @@
 {% load static %}
 
 {% block content %}
+<style>
+  #red{
+    color:red;
+  }
+  #blue{
+    color:blue;
+  }   
+  
+
+</style>
 <section id="notary-entry-create-rec" >
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
 
-  <div class="body-area">
-
+  <div class="body-area" >
     <div class="row ">
-      <div class="form-entry"  >
-        <h3>Create Notary Record  </h3>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-md-8 col-xs-12">
+        <div class="form-entry"  >
+          <h3 id = "header-form">Create Notary Record  </h3>
 
-        <form action="{% url 'app_forms:create-record' %}"    enctype="multipart/form-data" 
-        method="POST" >
-          {% csrf_token %}
-          <div class="form-row">
-            {% include 'app_forms/form-fields-notary.html' %}
-          </div> 
-          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>
+          <form action="{% url 'app_forms:create-record' %}"    enctype="multipart/form-data" 
+          method="POST" >
+            {% csrf_token %}
+            <div class="form-row">
+              {% include 'app_forms/form-fields-notary.html' %}
+            </div> 
+            <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>
 
+          
+          </form>
+          <button id="btn-sample1" type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>
+
+          <button id="btn-change-theme" type="submit" class="btn btn-primary" ></i>Change color of title</button>
+          
         
-        </form>
-        
-       
+        </div>
       </div>
- 
+
+      <div class="col-lg-4 col-md-4 col-sm-12 col-md-8 col-xs-12">
+        <div class="display-tax">
+          <h3>Tax :</h3>
+          <p style="font-size: 20px; color: rgb(207, 86, 86) ;" id="count_cookie">data</p>
+
+          <p style="font-size: 20px; color: rgb(207, 86, 86) ;" id="amount-entered"></p>
+
+        
+        </div>
+        
+
+      </div>
+
     </div>
 </div>
 </section>
 <link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
 <link rel="stylesheet" href="{% static 'css/app-forms-update-record.css' %}">
-<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+
+
+<script src="{% static 'js/app-forms-create-record-taxcomputation.js' %}" ></script> 
 <script>
   function one(){
     console.log('function 1')

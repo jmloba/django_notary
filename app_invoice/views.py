@@ -8,7 +8,7 @@ from app_invoice.forms import InvoiceForm, Invoice, InvoiceSearchForm ,PrintInvo
 
 from .models import Customer, Invoice, InvoiceSummary, Ref_Table, Category_Sales, Master, Sales_Entry
 
-from app_accounts.utils import date_format2, reformat_date
+from app_accounts.utils import date_format2, reformat_date, is_ajax
 from app_print.views import print_invoice
 from django.contrib import messages
 
@@ -163,8 +163,10 @@ def get_invoice_x():
   qs =Ref_Table.objects.filter(reference='Sales Invoice').values('ref_no')
   prev_val = qs[0]['ref_no']
   print(f'prev_val  :   {type(prev_val)} , {prev_val}'  )
+
   Ref_Table.objects.filter(reference='Sales Invoice').update(ref_no=prev_val+1)
   newval =Ref_Table.objects.filter(reference='Sales Invoice').values('ref_no')
+  
   print(f' prev_val{prev_val}, newval: {newval}')
   return prev_val
 def get_invoice():
@@ -372,17 +374,34 @@ def sales_entry_dashboard(request):
   context={ 'data':data}
   return render(request,'app_invoice/sales_entry_dashboard.html', context)
 
+
+
+
 def sales_entry_add(request):
   form = Sales_entry_Form()
+
+  print(f'request : {request.GET}') # shows what is typed in desctiption
+
+
+  if 'term' in request.GET:
+    qs = Master.objects.filter(description__icontains = request.GET.get('term'))
+    print(qs)
+    desc = list()
+    for item in qs:
+      desc.append(item.description)
+    return JsonResponse(desc, safe=False)  
+
   if request.method=='POST':
-    form = Sales_entry_Form(request.POST or None )
+    form = Sales_entry_Form(request.POST or None,  )
     if form.is_valid():
+      print(f'form is valid')
       s=form.save(commit=False)
       s.user = request.user
       s.save()
 
       return redirect('app_invoice:sales-entry-dashboard')
     else:
+      print(f'form is not valid: {form.errors} ')
       form = Sales_entry_Form(request.POST)
       return redirect('app_invoice:sales-entry-add')
 
@@ -400,3 +419,4 @@ def sales_entry_delete(request, pk=None):
   
   context={'form':form,'datarec':datarec}
   return render(request,'app_invoice/sales-entry-delete.html',context)
+

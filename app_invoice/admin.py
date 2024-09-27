@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Invoice,Ref_Table,InvoiceSummary,Category_Sales, Customer, Master
+from .models import Invoice,Ref_Table,InvoiceSummary,Category_Sales, Customer, Master, Tax
 
 # Register your models here.
 class InvoiceAdmin(admin.ModelAdmin):
@@ -54,6 +54,16 @@ class Master_Admin(admin.ModelAdmin):
   filter_horizontal=()
   list_filter =()
   fieldsets=()
+
+class Tax_Admin(admin.ModelAdmin):
+  list_display=('tax_type','tax_percentage','is_active')
+
+  ordering=('tax_type',)
+  list_editable =()
+  filter_horizontal=()
+  list_filter =()
+  fieldsets=() 
+admin.site.register(Tax,Tax_Admin)  
 
 admin.site.register(Master,Master_Admin )  
 admin.site.register(Category_Sales,CategorySales_Admin )  

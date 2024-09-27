@@ -1,6 +1,35 @@
 
 $(document).ready(function() { 
 
+  // post-entries.html
+  
+  const post_records = document.getElementById('postSelectedRowsxx')
+  post_records.addEventListener("click",()=>{
+    const checkboxes = document.querySelectorAll("input[type='checkbox']:checked ");
+    if (checkboxes.length > 0){
+      console.log('Post these records :' , checkboxes.length)
+      const post_records_now= confirm('Are you sure you wanted to post the selected items?')
+      var mlist = "";
+
+      if( post_records_now ){
+        checkboxes.forEach(checkbox=>{
+          mlist = $(this).val()+'';
+
+
+          // const row = checkbox.closest("tr");
+          // row.remove();
+        })
+        mlist = mlist.substring(0,mlist.length-1)
+
+
+        console.log('selected from table :', mlist)
+      }
+    }
+    else {
+      alert("No items selected for posting")
+    }
+  })
+
 
   let clear_data_entries=() =>{
     // $('#stuid').val('')
@@ -11,18 +40,18 @@ $(document).ready(function() {
     // $('#id_bookno').val('')
     // $('#id_pageno').val('')
     // $('#id_recordno').val('')
-    // $('#id_amount_paid').val('')
+    // $('#id_amount').val('')
 
     };
-    function html_record(x)  {
+  function html_record(x)  {
       html_template=''
       for ( i=0; i < x.length; i++ ){
-        html_template +=' <tr id="categ-id-'+x[i].id+'"><td><img src="/media/'+x[i].myimage+'" alt="pic" class="item-image-size-inlist" ></td><td class="td-text td-text-name">'+x[i].firstname+'</td><td class="td-text  td-text-name">'+x[i].lastname+'</td><td class="td-text-category">'+x[i].category__doc_category+'</td><td class="td-text-ref">'+x[i].bookno+'</td><td class="td-text-ref">'+x[i].pageno+'</td><td class="td-text-ref">'+x[i].recordno+'</td><td class="td-amount">'+x[i].amount_paid+'</td><td><button class="btn btn-info btn-sm"  id="btn-notary-sample1-edit"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-edit/"><i class="bi bi-pencil"></i></button> &emsp;  <button class="btn btn-danger btn-sm"  id="btn-notary-sample1-delete"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-delete/"><i class="bi bi-trash3"></i></button></td></tr>'
+        html_template +=' <tr id="categ-id-'+x[i].id+'"><td><img src="/media/'+x[i].myimage+'" alt="pic" class="item-image-size-inlist" ></td><td class="td-text td-text-name">'+x[i].firstname+'</td><td class="td-text  td-text-name">'+x[i].lastname+'</td><td class="td-text-category">'+x[i].category__doc_category+'</td><td class="td-text-ref">'+x[i].bookno+'</td><td class="td-text-ref">'+x[i].pageno+'</td><td class="td-text-ref">'+x[i].recordno+'</td><td class="td-amount">'+x[i].amount+'</td><td><button class="btn btn-info btn-sm"  id="btn-notary-sample1-edit"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-edit/"><i class="bi bi-pencil"></i></button> &emsp;  <button class="btn btn-danger btn-sm"  id="btn-notary-sample1-delete"  data-sid="'+x[i].id+'" data-url="/app_notary/notary-delete/"><i class="bi bi-trash3"></i></button></td></tr>'
   
       }    
       return html_template
     };    
-    $('kalimutan  #btn-saveForm1-notary').click(function(e){
+  $('kalimutan  #btn-saveForm1-notary').click(function(e){
       e.preventDefault();
       console.log('ajax begin')
   
@@ -38,7 +67,7 @@ $(document).ready(function() {
       // let bookno = $('#id_bookno').val()  
       // let pageno = $('#id_pageno').val()  
       // let recordno = $('#id_recordno').val()  
-      // let amount_paid = $('#id_amount_paid').val()  
+      // let amount = $('#id_amount').val()  
     
       let url= $(this).attr('data-url');  // save notary
       
@@ -66,7 +95,7 @@ $(document).ready(function() {
         // fd.append('bookno', bookno )
         // fd.append('pageno', pageno )
         // fd.append('recordno', recordno )
-        // fd.append('amount_paid', amount_paid )      
+        // fd.append('amount', amount )      
         
         // fd.append('myfile', $('#id_myfile')[0].files[0] )
         // fd.append('myimage', $('#id_myimage')[0].files[0] )
@@ -99,7 +128,7 @@ $(document).ready(function() {
       }    
     });
 
-    $('kalimutan #tbody').on('click','#btn-notary-sample1-delete', function(e){
+  $('kalimutan #tbody').on('click','#btn-notary-sample1-delete', function(e){
       e.preventDefault();
       console.log('btn delete')
       
@@ -131,6 +160,16 @@ $(document).ready(function() {
       })  
   
     });
+
+    // posting records
+  $('.displaySelectedRows').click(function(e){
+      e.preventDefault();
+      console.log('display selected row button')
+    });
+
+
+
+
   
 
   });

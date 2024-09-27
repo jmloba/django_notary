@@ -1,0 +1,109 @@
+
+/*  div  for table*/
+
+.table-container{  
+  margin : 2% 2%;
+
+}
+.wrapper{
+  width : min(900px, 100%-2em);
+  /* margin-inline :auto; */
+
+}
+th,td{
+  background-color: rgba(75, 236, 254, 0.599);
+
+}
+
+
+
+/* min table  */
+#main-table{
+  border-collapse : separate;
+   
+  padding : 2em 2em;
+  background-color: rgba(221, 228, 233, 0.689); 
+}
+
+#main-table td {
+background-color: rgba(224, 231, 231, 0.824);
+color : rgb(57, 56, 56);
+font-size : 16px;
+font-weight :400;
+align-items: center;
+}
+#main-table th,
+#main-table td,
+caption {
+  padding : 1rem 1rem;
+  text-align: left;
+  color : blue;
+  font-weight: 500;
+}
+#main-table th {
+  /* background-color: teal; */
+  background: hsl(25 0% 0% / .5);
+  font-size: 16px;
+  color : rgb(242, 233, 233);
+  
+}
+
+caption{
+  background: hsl(0, 0%, 0%);
+  color: rgb(248, 241, 241);
+  font-size : 14px;
+  text-transform: uppercase;
+}
+
+
+.orig-table {
+  background-color: rgb(130, 132, 184) !important;
+  margin: 1rem 1rem;
+  color : black;
+}
+/* to make zebra */
+tr:nth-of-type(2n){
+  background: hsl(0 0% 0% / .3); 
+}
+
+#main-table td span.beg-bal{
+  color : rgb(21, 28, 82);
+ 
+  text-align: right;
+}
+
+@media (max-width: 650px){
+  #main-table  th{
+    display:none;
+  }
+  #main-table td{
+    display : grid;
+    gap : .5 rem;
+    grid-template-columns: 15ch auto ;
+    padding : 1rem 2rem;
+  }
+  #main-table td:first-child{
+  padding-top : 1.5rem;
+  }
+  #main-table td:last-child{
+    padding-bottom : 1.5rem;
+  }  
+  #main-table td::before{
+    content : attr(data-cell) ": ";
+    text-transform: capitalize;
+    color : red;
+    color : var( --table-td-desc-background  );
+  }
+  #main-table .td-action{
+    display :flex;
+    padding: auto 2em;
+  }
+  #main-table .btn{
+    width: 2rem;
+    
+  }
+  
+
+  
+
+}
