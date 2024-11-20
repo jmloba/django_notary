@@ -1,0 +1,41 @@
+#section-createview-notary{
+  
+  margin :3rem;
+}
+.body-area{
+  background-color: rgba(215, 237, 237, 0.487);
+  display : inline-block;
+
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+form{
+  padding: 2rem;
+  margin: 2rem;
+  max-width : 95%;
+
+} 
+#display_myfile,
+#display_myimage{
+  max-height: 10rem;
+  max-width: 10rem;
+  margin : 10px;
+  background-color: aquamarine;
+  padding : .5rem;
+
+}
+
+@media only screen  and (max-width:700px){
+  #section-createview-notary{
+    margin : 1rem;
+    margin-top: 3rem;
+  }
+  .body-area{
+    margin : 1rem;
+    
+  }
+
+
+}

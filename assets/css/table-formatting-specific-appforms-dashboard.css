@@ -1,0 +1,42 @@
+/*
+appforms : dashboard
+*/
+
+
+.table-body  tr .td-text-category{
+  color : rgb(0, 47, 255);
+  font-weight: 500;
+}
+
+
+
+.table-container-wrapper{
+
+  /* height of table wrapper */
+  height :42rem;
+ 
+}
+.table-container{
+  max-height: 47rem;
+}
+
+
+
+
+
+@media (max-width:700px) {
+  .table-container-wrapper{
+
+ 
+    /* height of table wrapper */
+    height : 37rem;
+  }
+}
+
+@media (min-width:1024px) {
+  td:not(:first-of-type){
+    min-width:9.5rem
+
+  }
+
+}

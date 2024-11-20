@@ -21,7 +21,7 @@
 
 .side-bar .menu{
   width : 100%;
-  margin-top : 80px;
+  margin-top : 3.5rem;
   
 
 }
@@ -90,7 +90,7 @@
 
 } 
 .menu-btn{
-  /* position : absolute; */
+  position : absolute;
   color : white;
   font-size: 20px;;
   margin : 25px;

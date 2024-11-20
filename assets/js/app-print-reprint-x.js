@@ -17,6 +17,7 @@ $(document).ready(function(){
       url:url,
       data : mydata,
       method :'POST',
+      
       success:function(response){
         if (response.status=='Success'){
           swal(response.status,response.Message,'success')

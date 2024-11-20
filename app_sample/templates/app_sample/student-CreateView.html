@@ -1,0 +1,30 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+Create Acc Rec
+{% endblock%}
+
+{% block content %}
+<section id="section-student-createView">
+  <div class="body-area">
+    <h2>Student  Create View</h2>
+
+  </div>
+  <form action="" method="POST" >
+    {%csrf_token%}
+    <div class="row">
+      {% include 'app_sample/form-fields-student.html' %}
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary" >Submit</button>        
+  </form>
+
+</section>
+
+
+<link rel="stylesheet" href="{% static 'css/app-sample-student-view.css' %}">
+
+{% endblock %}

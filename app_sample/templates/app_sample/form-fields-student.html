@@ -1,0 +1,37 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<div class="row">
+  <div class="  col-md-6 col-sm-12 mb-0">
+    {{form.studno|as_crispy_field}}
+
+  </div>
+</div>
+<div class="row">
+  <div class="  col-md-6 col-sm-12 mb-0">
+    {{form.firstname|as_crispy_field}}
+
+  </div>
+  <div class="  col-md-6 col-sm-12 mb-0">
+    {{form.lastname|as_crispy_field}}
+
+  </div>
+
+</div>
+<div class="row">
+  <div class="  col-md-6 col-sm-12 mb-0">
+    {{form.birthdate|as_crispy_field}}
+
+  </div>
+  <div class="  col-md-6 col-sm-12 mb-0">
+    {{form.mobile|as_crispy_field}}
+
+  </div>
+</div>    
+
+<div class="row">
+  <div class="  col-md-12 col-sm-12 mb-0">
+    {{form.notes|as_crispy_field}}
+
+  </div>
+  
+</div>    

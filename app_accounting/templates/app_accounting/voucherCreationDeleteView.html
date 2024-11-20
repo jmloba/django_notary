@@ -1,0 +1,30 @@
+
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id='deleteview-vouchergroup'>
+  <div class="body-area">
+    <h2>Delete View ---Vouchergroup </h2>
+      <div class="button-area">
+
+      </div>
+      <form  method="POST">
+        {%csrf_token%}
+    
+        <p>Are you sure you want to delete "<strong>{{voucher_creation.accno}}</strong>?"
+        </p>
+
+      
+          <button type="button" class=" btn btn-mybtn" onclick="history.back()" >Cancel</button>
+          <input type="submit" value="Confirm"> 
+      </form>
+    </div>
+
+</section>
+
+
+
+{% endblock %}
+

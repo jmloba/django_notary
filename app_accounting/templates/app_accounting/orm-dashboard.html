@@ -1,0 +1,208 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<!-- <section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section> -->
+<section id="section-orm-dashboard">
+  <div class="body-area">
+
+    <div class="body-table">
+      <div class="my-other-buttons">
+        <div class="my-button"  >
+          <button class="btn-mybtn"><a href="{% url 'app_accounting:update-queryset'%} ">Updating Queryset</a></button>
+          <button class="btn-mybtn"><a href="{% url 'app_accounting:queryset-filter-startwith'%} ">queryset-startwidth</a></button>   
+         
+        </div>
+
+      </div>      
+      <div class="table-main-container">
+        <div class="table-container"  >   
+          <div class="table-container-wrapper">
+            <h2>CreateVoucherGroup - orm dashboard</h2>
+            <div class="table-wrapper">
+              <table id="tbl">
+                <thead class="table-header">
+                  <tr>
+                    <th>Account Number</th>
+                    <th>A/C desc</th>
+                    <th>Description</th>
+                    <th>created</th>
+                    
+                    <th colspan="2" >Action</th>
+                  </tr>
+                </thead>
+                <tbody class="table-body">
+                  {% if data %}
+                      {% for item in data %}
+                      <tr id="chrtmast-id-{{item.id}}">
+                        
+                        <td data-cell="accno">{{item.accno}}</td>
+    
+                        <td data-cell="accno">{{item.acct_name}}</td>
+    
+                        <td data-cell="desc" class = "col-black">
+                          {{item.desc}}</td>
+                        
+                          <td data-cell="desc" class = "col-black">
+                            {{item.created}}</td>
+      
+                        <td  data-cell="update">
+                          <button class="btn btn-info btn-sm ">
+                            <a href="">
+                            <i class="bi bi-pencil"></i>
+                            </a>
+                          </button>
+                        </td>
+                        <td data-cell="delete">
+                          <button class="btn btn-danger btn-sm">
+                            <a href="{% url 'app_accounting:vouchergroup-test-deleterecord' item.id %}">
+                              <i class="bi bi-trash3"></i>
+                            </a>
+                          </button>
+                        </td>   
+                      </tr>        
+                      {% endfor %}
+                  {% endif %}
+    
+                </tbody>
+              </table>
+            </div>
+          </div>
+    
+        </div>  
+        {% include 'include/error-messeges.html'%}      
+       
+
+      </div>
+   
+    </div>
+      
+    <div class="other-buttons"  >
+      <div class="other-buttons-item add-record-orig-button">
+        <button class="btn-mybtn"><a href="{% url 'app_accounting:vouchergroup-test-createrecord'%} "> Add Record</a></button>
+
+      </div>
+      <div class=" other-buttons-item popup-sample1">
+        <p>Pop up sample1</p>
+        <div class="center">
+          <button id="open-popup" class = "btn-mybtn">
+           Open popup sample 1
+          </button>
+        </div>
+  
+        <div class='popup' id='popup'>
+          <div class="overlay"></div>
+          <div class="popup-content">
+            <h2>This is title of POPUP</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem distinctio similique adipisci dicta provident repudiandae mollitia magni amet ipsa quisquam nobis, veniam delectus minima aspernatur illum quaerat aliquid. Sit, praesentium!</p>
+            <div  id='button-controls' class="controls">
+              
+  
+              <button class="buttons close-btn">close button</button>
+  
+              <button class="buttons submit-btn">submit button</button>
+  
+            </div>     
+          </div>
+  
+        </div>
+      </div>
+      <div class=" other-buttons-item popup-sample2">
+        <p>Pop up sample2</p>
+        <button class='open-popup-2'type="submit" onclick='open_Popup_2()' 
+        class="btn btn-mybtn" >popup sample 2</button>
+  
+        <div class="popup_2" id="popup_2">
+          <img src="{% static 'image-default/Django-Logo.png' %}" alt="pic" class="popup-2-img" >
+          <h2>Thank you</h2>
+          <p>your detail has been successfully submitted</p> 
+          <button onclick='close_Popup_2()'  class='btn-mybtn' type="button" >ok</button>
+  
+  
+        </div>
+  
+      </div>
+  
+
+      <!-- modal dialog kevin powell -->
+      <div class="popup-sample-3">
+        <button class="btn-mybtn open-btn-modal" >open modal dialogue</button>
+
+        <dialog  class="modal-bykevin" id="modal-bykevin">
+          <h2>modal sample</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <button class="btn-mybtn close-btn-modal">close button modal</button>
+          <form  class="form" action="" method="dialog">
+            <label >Name<input type="text"></label>
+            <button class="button btn-mybtn" type="submit">Submit</button>
+
+          </form>
+
+        </dialog>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+<section id="section-orm">
+  <div class="orm-container1">
+    <div class="orm-area orm-area1">
+      <div class="orm-area1-grp1">
+        <p>data :<span>{{data}}</span></p>
+      </div>
+      <div class="orm-area1-grp1">      
+        <p>data query <span class="orm-area-span">{{data_query}}</span></p>
+      </div>        
+      <div class="orm-area1-grp1">      
+        <h5 class="h5-header">Data Filter :</h5>
+        <p>data filter starts with : <span>{{data_filter}}</span></p>
+      </div>        
+      <div class="orm-area1-grp1">      
+        <h5 class="h5-header">Data Union :</h5>
+        <p>data_union : <span>{{data_union}}</span></p>
+        <p>data_union_query : <span>{{data_union_query}}
+        <p>union_con_queries : <span>{{union_con_queries}}</span></p>
+        
+      </div>        
+    </div>
+    <div class="orm-area orm-area2">
+      {% for item in data%}
+      <div class="orm-area2-data">
+        <p>Accno : {{item.accno}}</p>
+        <p>Desc : {{item.desc}}</p>
+        <p>date created: {{item.created}}</p>
+  
+      </div>
+
+      
+      {% endfor %}
+    </div>  
+    <!-- #data filter -->
+    <div class="orm-area orm-area3">
+      <p>data_filter : {{data_filter}}</p>
+
+      
+    </div>      
+  </div>
+
+
+</section>
+<section id="section-queryset-update">
+  <div class="queryset-update">
+    <p></p>
+
+  </div>
+
+</section>
+<link rel="stylesheet" href="{% static 'css/orm-dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/popup.css' %}">
+
+<script src="{% static 'js/vouchergroup-test-popup.js' %}" ></script> 
+<script src="{% static 'js/modal-kevin.js' %}" ></script> 
+{% endblock %}

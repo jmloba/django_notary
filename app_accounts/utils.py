@@ -6,6 +6,28 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.conf import settings
 
+from django.core.validators import RegexValidator
+
+#validators
+def regex_validators_alpha():
+  alpha_only = RegexValidator(r"^[a-zA-Z\- ]*$", message='Alpha only ^^^')
+  return alpha_only
+def regex_validators_numberonly():
+  numeric_char = RegexValidator(r"^[0-9]+$", message='only numbers are allowed')
+  return numeric_char
+
+def regex_validators_alphanumeric():
+  numeric_char = RegexValidator(r"^[a-zA-Z0-9 ]+$",message='only AlphaNumeric are allowed')
+  return numeric_char
+
+def regex_validators_philmobile():
+  philmobile = RegexValidator(r'09\d\d-\d\d\d-\d\d\d\d$',message= 'follow pattern 09xx-xxx-xxxx')
+  return philmobile
+
+def regex_validators_xx():
+  x = RegexValidator(r'09\d\d-\d\d\d-\d\d\d\d$',message= 'follow pattern 09xx-xxx-xxxx')
+  return x
+
 
 def detectUser(user):
   if user.role == 1:
@@ -26,6 +48,14 @@ def reformat_date(val):
   val = val.strftime("%Y/%m/%d, %I:%M %p")
   return val
 
+def formatdate_YYYYMMDD(val):
+  print(f'reformatting val: {val}')
+  #  abbreviated month %b
+  #  abbreviated full month %B
+  # val = val.strftime("%B %d, %Y, %H:%M ")
+  # val = val.strftime("%B %d, %Y, %I:%M %p")
+  val = val.strftime("%Y/%m/%d, %I:%M %p")
+  return val
 
 
 
@@ -82,6 +112,7 @@ def date_format2(val):
   # val = val.strftime("%B %d, %Y, %I:%M %p")
   val = val.strftime("%Y/%m/%d" )
   return val
+
 
 
 

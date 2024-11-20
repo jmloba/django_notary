@@ -1,0 +1,47 @@
+
+#section-notary-entry{
+  background-color: rgba(242, 102, 102, 0);
+  margin-top  : 2rem;
+  padding : .5rem .3rem;
+  
+  
+}
+
+.body-area{
+  background-color: #fffffd5f;
+  padding:.5rem;
+  
+    margin : 2rem;
+  
+}
+
+
+@media only screen and   (max-width:390px){
+  .body-area{
+    margin : .5rem;
+  }
+  
+
+}
+
+@media only screen  and (max-width:700px){
+    .body-area{
+      margin : 1rem;
+    }
+
+}
+  
+
+@media only screen and (min-width:701px){
+  .body-area{
+    margin : 1.5rem;
+  }
+
+}
+
+  
+  
+
+
+
+

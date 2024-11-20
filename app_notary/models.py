@@ -21,9 +21,15 @@ class Notary_Category(models.Model):
   doc_category = models.CharField(max_length=200)
   updated = models.DateTimeField(auto_now=True)
   created = models.DateField(auto_now_add=True)
-
+  class Meta:
+    verbose_name_plural= 'Notary Categories'     
   def __str__(self):
     return str(self.doc_category)
+  
+  @property
+  def my_username(self):
+    return self.user.username
+
   
 
   
@@ -67,7 +73,8 @@ class Notarized_Documents(models.Model):
   or_number =   models.CharField(max_length=30, blank=True, null=True)
 
   
-
+  class Meta:
+    verbose_name_plural= 'Notarized Documents'     
 
   def __str__(self):
     return str(self.firstname)  

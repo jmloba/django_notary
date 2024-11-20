@@ -1,123 +1,226 @@
+<!-- notes -->
+
 {% extends 'main/base.html'%}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
-<section id="notary-entry" >
+<section id="user-section">
   <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section>
+<section id="section-notary-entry" >
+   
+  <div class="body-area">  
+    <div class="add-button"  >
+      <button class="btn btn-primary"><a href="{% url 'app_forms:create-record'%} "> Add Record (function view ok)</a></button>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-notary-form">new entry</button>      
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalform2">modalform2</button>      
+      <button class="btn btn-primary"><a href="{% url 'app_forms:notary-create-record'%} "> Add Record - CreateView</a></button>
+    </div>   
 
-  <div class="body-area">
-
-    <div class="row ">
-      <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"  >
-        <button class="btn btn-primary"><a href="{% url 'app_forms:create-record'%} "> Add Record</a></button>
-       
-      </div>
-
-      <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12"  >   
-        <div class="table-outer-wrapper">
-
-          <section class="table__header" >Notary Transactions
-
-          </section>          <div class="table-wrapper notary-table">
-
-            <section class="table__body">
-              <table id ="myordersTable" class=" table product-table content-table" >
-                <thead class="thead-light">
-                  <tr>
-                    <th >Image</th>                  
-                    <th >First Name</th>
-                    <th >Last Name</th>
-                    <th >Category</th>
-                    <th >Book</th>
-                    <th >Page</th>
-                    <th >Record</th>
-                    <th >Amount</th>
-                    <th >Tax</th>
-                    <th >Total</th>
-                    <th >Created</th>
-
-                    <th >Myfile</th>                                      
-                                    
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                
-                <tbody id="tbody" class="table-body">
-                  {% if data %}
-                    {% for item in data %}
+    <div class="table-container"  >
         
-                    <tr id="categ-id-{{item.id}}">
-                      {% if item.myimage%}
-                        <td>
-                          <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
-                        
-                        </td>
-                      {% else %}
-                        <td>
-                          <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
-                        
-                        </td>     
-                      {% endif %}               
+      <div class="table-container-wrapper">
+        <h3>Notary Transactions </h3>    
+        <div class="table-wrapper">
+          <table class="tbl"  >
+            <thead class="table-header">  
+              <!-- id ="myordersTable"  -->
+              <tr>
+                <th >Image</th> 
+                <th colspan="3">Action</th>
+                
+                <th >First Name</th>
+                <th >Last Name</th>
+                <th >Category</th>
+                <!-- <th >Book</th>
+                <th >Page</th>
+                <th >Record</th> -->
+                <th >Amount</th>
+                <th >Tax</th>
+                <th >Total</th>
+                <!-- <th >Created</th> -->
+                <th >Posted</th>
+                <th >Myfile</th>                                      
+              </tr>
+            </thead>
+            
+            <tbody class="table-body data">
+              {% if data %}
+                {% for item in data %}
     
-                      <td class="td-text td-text-name">{{item.firstname}}</td>
-                      <td class="td-text  td-text-name">{{item.lastname}}</td>
-                      <td class="td-text-category">{{item.category}}</td>
-                      <td class="td-text-ref">{{item.bookno}}</td>
-                      <td class="td-text-ref">{{item.pageno}}</td>
-                      <td class="td-text-ref">{{item.recordno}}</td>
-                      <td class="td-amount">{{item.amount}}</td>
-                      <td class="td-amount">{{item.total_tax_amount}}</td>
-                      <td class="td-amount">{{item.total_amount}}</td>
-                      <td class="td-created">{{item.created}}</td>
+                  <tr id="categ-id-{{item.id}} tbody-record">
+                    {% if item.myimage%}
+                      <td data-cell="attached image">
+                        <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+                      
+                      </td>
+                    {% else %}
+                      <td  data-cell="attached image">
+                        <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                      </td>     
+                    {% endif %}               
+                    <td data-cell="View record" 
+                    >
+                      <button class="btn btn-success btn-sm btn-view-profile" data-bs-toggle='modal' data-bs-target="#readData">
+                        
+                        <i class="bi bi-eye"></i>
+                        
+                      </button>
+                    </td>                      
+
+                    <td data-cell="Update record" >
+                      <button class="btn btn-info btn-sm">
+                        <a href="{% url 'app_forms:update-record' item.id %}">
+                        <i class="bi bi-pencil"></i>
+                        </a>
+                      </button>
+                    </td>  
+  
+                    <td data-cell="Delete record" >
+                      <button class="btn btn-danger btn-sm">
+                        <a href="{% url 'app_forms:delete-record' item.id %}">Delete (function view)
+                        <i class="bi bi-trash3"></i>
+                        </a>
+                      </button>
+  
+                    </td>  
+                    <td data-cell="name">{{item.firstname}}</td>
+                    <td data-cell="lastname">{{item.lastname}}</td>
+                    <td data-cell="category" >{{item.category}}</td>
+
+                    <td data-cell="amount" class= "col-amount">
+                      <strong>{{item.amount}}</strong>
+                    </td>
+
+                    <td  data-cell="tax amount" class= "col-amount col-amount-tax" >
+                      <strong>{{item.total_tax_amount}}</strong>
+                      
+                    </td>
+
+                    <td data-cell="total amount" class ="col-amount col-amount-total" >
+                      <strong>{{item.total_amount}}</strong>
+                    </td>
 
 
-                      {% if item.myfile%}
-                      <td>
 
+                    {%if item.is_posted%}
+                    <td data-cell="posted"><p 
+                      class="status posted" >{{item.is_posted}}</p></td>
+                    {%else%}  
+                    <td data-cell="posted"><p 
+                      class="status notposted" >{{item.is_posted}}</p></td>
+                    {%endif%}
+  
+                    {% if item.myfile%}
+                      <td data-cell="attached file">
                         <img src="{{item.myfile.url}}" alt="my file" class="item-image-size-inlist" >
                       
                       </td>
                     {% else %}
-                      <td>
+                      <td data-cell="attached file">
                         <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
                       
                       </td>     
-                    {% endif %}                            
-                      <td class="td-text td-action">
-                        <button class="btn btn-info btn-sm "><a href="{% url 'app_forms:update-record' item.id %}">
-                          <i class="bi bi-pencil"></i>
-                        </a>
-                        </button>
-                       &nbsp;&nbsp;
-                       <button class="btn btn-danger btn-sm ">
-                        <a href="{% url 'app_forms:delete-record' item.id %}">
-                          <i class="bi bi-trash3"></i>
-                        </a>
-                       </button>
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  {% endif %}
-                </tbody>
-                 
-              </table>
-            </section>
-            {% include 'include/error-messeges.html'%}
-        
+                    {% endif %}   
+
+      
+                    
+                  </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+              
+          </table>
+  
+        </div>  
 
 
-          </div>
-        </div>
-      </div>     
-    </div>
+      </div>
+
+    </div>  
+    {% include 'include/error-messeges.html'%}
   </div>
 </section>
 
+<!-- modal form  1 -->
+<div class="modal fade" id="add-notary-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Fill the Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- {% include 'app_forms/form-modalform1.html' %}         -->
+        <form action="{% url 'app_forms:create-record-modal' %}"    enctype="multipart/form-data"  method="POST" novalidate >
+            
+          {% csrf_token %}
+          <div class="form-row">
+            {% include 'app_forms/form-fields-notary.html' %}
+          </div> 
+
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+
+        
+        </form>         
+
+      </div>
+
+    </div>
+
+  </div>  
 
 
-<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
-<link rel="stylesheet" href="{% static 'css/table-other-css.css' %}">
+</div>
+<!-- modal form2 -->
+<div class="modal fade" id="modalform2" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">REcord Entry</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'app_forms:create-record-modal' %}"    enctype="multipart/form-data"  method="POST" novalidate >
+            
+          {% csrf_token %}
+          <div class="form-row">
+            {% include 'app_forms/form-fields-notary.html' %}
+          </div> 
+
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+
+        
+        </form>         
+      </div>
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-appforms-dashboard.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/app-appforms-modal.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+<!-- to be used in specific fields of table -->
+
+<link rel="stylesheet" href="{% static 'css/table-formatting-specific-appforms-dashboard.css' %}">
+
+
+<!-- to be used test-->
+
+
 
 <script src="{% static 'js/app-forms-entry.js' %}" ></script> 
 

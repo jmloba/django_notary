@@ -181,9 +181,6 @@ def notary_delete(request):
           
     invoice_total_qty=0
     invoice_amount=0
-
-
-
     return JsonResponse({"status": 1, "data":data,'message':'data deleted'
                          })
   else:
@@ -205,6 +202,7 @@ def notary_entry_modal(request):
   return render(request,'app_notary/notary-entry-modal.html', context)
 
 def save_notary_form(request, form ,template_name):
+  print('---> save notary form ')
   # initialize data as dictionary
   data= dict()
   if request.method == 'POST':

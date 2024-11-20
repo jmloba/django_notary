@@ -3,70 +3,123 @@
 {% load static %}
 
 {% block content %}
+<!-- <section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section> -->
+<section id="section-accounting-dashboard">
+  <div class="body-area">
+    <div class="table-container"  >   
+      <div class="table-container-wrapper">
+        <h2>Chart of Accounts</h2>
+        <div class="table-wrapper">
+          <table id="tbl">
+            <thead class="table-header">
+              <tr>
+                <th>Account Number</th>
+                <th>Description</th>
+                <th>Header/Detail</th>
+                <th>Beginning Balance</th>
+                <th colspan="2" >Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              {% if chrtmast %}
+                  {% for item in chrtmast %}
+                  <tr id="chrtmast-id-{{item.id}}">
+                    
+                    <td data-cell="accno">{{item.chrt_accno}}</td>
+                    <td data-cell="desc" class = "col-black">
+                      {{item.chrt_desc}}</td>
+                    <td data-cell="Header/Detail" class = "col-black">{{item.chrt_H_D}}</td>
 
-<main id="accounting-dashboard">
-  <div class="main-div">
+                    <td data-cell="begbal" class= "col-number">
+                      <span class='beg-bal' >{{item.beg_bal}}</span>
+                    </td>
 
-    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"  >
-      <button class="btn btn-primary btn-mybtn"><a href="{% url 'app_accounting:create-master'%} "> Add Record</a></button>
-      
-    </div>
+                    <td  data-cell="update">
+                      <button class="btn btn-info btn-sm ">
+                        <a href="{% url 'app_accounting:update-record' item.id %}">
+                        <i class="bi bi-pencil"></i>
+                        </a>
+                      </button>
+                    </td>
+                    <td data-cell="delete">
+                      <button class="btn btn-danger btn-sm">
+                        <a href="{% url 'app_accounting:delete-record' item.id %}">
+                          <i class="bi bi-trash3"></i>
+                        </a>
+                      </button>
+                    </td>   
+                  </tr>        
+                  {% endfor %}
+              {% endif %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>  
+    {% include 'include/error-messeges.html'%}      
+    {{info}}
+    <div class="button-area"  >
+      <button class="btn-mybtn"><a href="{% url 'app_accounting:create-master'%} "> Add Record</a></button>
+
+      <!-- for modal button -->
+
+      <button class="btn-mybtn" data-bs-toggle="modal"  data-bs-target="#addAcctModalForm">Add Modal record
+      </button>   
+
+
+
   
-    <div class="table-container col-lg-10 col-md-10 col-sm-12 col-xs-12">
-          <section class="table__header">
-            <h1>Chart of Accounts</h1>
 
-          </section>
-          <section class="table__body">
-
-            <table id="main-table">
-              <thead>
-                <tr>
-                  <th>Account Number</th>
-                  <th>Description</th>
-                  <th>Header/Detail</th>
-                  <th>Beginning Balance</th>
-                  <th >Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in chrtmast %}
-                <tr id="chrtmast-id-{{item.id}}">
-                  
-                  <td data-cell="accno">{{item.chrt_accno}}</td>
-                  <td data-cell="desc">{{item.chrt_desc}}</td>
-                  <td data-cell="HD">{{item.chrt_H_D}}</td>
-                  <td class='begin-bal' data-cell="begbal"><span class='beg-bal' >{{item.beg_bal}}</span></td>
-                  <td class="td-action" data-cell="action">
-                    <button class="btn btn-info btn-sm ">
-                      <a href="{% url 'app_accounting:update-record' item.id %}">
-                      <i class="bi bi-pencil"></i>
-                      </a>
-                    </button>
-                    &nbsp;&nbsp;
-                    <button class="btn btn-danger btn-sm ">
-                      <a href="{% url 'app_accounting:delete-record' item.id %}">
-                        <i class="bi bi-trash3"></i>
-                      </a>
-                    </button>                       </td>   
-                </tr>        
-                {% endfor %}
-    
-              </tbody>
-            </table>
-          </section>
+      <!-- ---------     -->
     </div>
-
   </div> 
     <!-- end wrapper -->
     
 
-</main>
+</section>
+
+<!-- modal form2 -->
+<div class="modal fade" id="addAcctModalForm" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">REcord Entry</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form action="{% url 'app_accounting:create-master-modal' %}"    enctype="multipart/form-data"  method="POST" novalidate >
+            
+          {% csrf_token %}
+          <div class="form-row">
+            {% include 'app_accounting/form-fields-master.html' %}
+          </div> 
+
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit modal</button>
+
+        
+        </form>         
+      </div>
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-<link rel="stylesheet" href="{% static 'css/custom-var.css' %}">
 
 <link rel="stylesheet" href="{% static 'css/app-accounting-dashboard.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-formatting-specific-accounting-dashboard.css' %}">
+
 {% endblock %}

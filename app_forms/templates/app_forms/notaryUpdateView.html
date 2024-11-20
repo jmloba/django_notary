@@ -1,0 +1,92 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="section-notaryupdateview">
+  <div class="body-area">
+    <h2>Notary Sales update View </h2>
+  </div>
+  <div class="div-button">
+    
+    <button id="button1" type="submit" class="btn btn-primary"> another button</button> </button>  
+
+  </div>
+  <form action="" method="POST" novalidate  enctype="multipart/form-data">
+    {%csrf_token%}
+
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        {{form.firstname|as_crispy_field}}
+
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        {{form.lastname|as_crispy_field}}
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        {{form.category|as_crispy_field}}    
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        {{form.address|as_crispy_field}}    
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-4">
+        {{form.bookno|as_crispy_field}}
+      </div>
+      <div class="col-4">
+        {{form.pageno|as_crispy_field}}
+      </div>
+      <div class="col-4">
+        {{form.recordno|as_crispy_field}}
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{form.amount|as_crispy_field}}
+      </div>
+
+      <div class="col-6">
+        {{form.or_number|as_crispy_field}}
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-6" id="myimage">
+        {{form.myimage|as_crispy_field}}
+      </div>
+
+      <div id="image-view"></div>
+       
+
+    </div>
+    <div class="row">
+      
+      <div class="col-6" id="myfile" >
+        {{form.myfile|as_crispy_field}}
+
+      </div>
+      <div id="myfile-view"></div>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" >Submit</button>   
+  </form>
+
+
+</section>  
+<link rel="stylesheet" href="{% static 'css/app-appforms-notarysales-createview.css' %}">
+
+<script src="{% static 'js/app-forms-notary-updateview.js' %}" ></script> 
+<script>
+
+</script>
+
+{% endblock %}

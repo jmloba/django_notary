@@ -1,0 +1,99 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title%}
+Template View
+{% endblock%}
+
+{% block content %}
+
+<section id="section-accounting-dashboard">
+  <div class="body-area">
+    <h2>main templateview --  xxx</h2>
+    <div class="button-area">
+      <a href="{% url 'app_sample:chrtrec-create'%} "> 
+      <button class="btn btn-mybtn">chart of account create record</button>
+      </a>
+
+      <!-- <button  class="btn btn-mybtn" onclick="history.back()">Go Back</button> -->
+  
+    </div>
+    <div class="table-container"  >  
+      <div class="table-container-wrapper">
+        <h2>chart of account - xxxx</h2>
+        <div class="table-wrapper">
+          <table id="tbl">
+          <thead class="table-header">
+            <tr>
+              <th>Account number</th>
+              <th>Description</th>
+              <th>Header</th>
+              <th colspan="4">Action</th>
+            </tr>
+
+          </thead>
+          <tbody class="table-body">
+            {% for item in objects_list %}
+            <tr id="category-id{{item.id}}">
+              <td data-cell="Account Number"> {{item.chrt_accno }}</td>  
+              <td data-cell="Description">{{item.chrt_desc}}</td>
+              <td data-cell="Header">{{item.chrt_H_D}}</td>
+
+              <td  data-cell="update">
+           
+                  <a href="{% url 'app_sample:chrtrec-update' item.id %}">
+                    <button class="btn btn-info btn-sm ">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                  </a>
+                
+              </td>
+              <td data-cell="delete">
+                  <a href="{% url 'app_sample:delete-record' item.id %}">
+                    <button class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash3"></i>
+                    delete record
+                    </button>
+                  </a>
+
+              </td>   
+              <td data-cell="delete">
+                <a href="{% url 'app_sample:chrtrec-delete' item.id %}">
+                  <button class="btn btn-danger btn-sm">
+                  <i class="bi bi-trash3"></i>
+                  deleteview
+                  </button>
+                </a>
+
+            </td>  
+            <td data-cell="delete">
+              <a href="{% url 'app_sample:chrtmast-details' item.id %}">
+                <button class="btn btn-danger btn-sm">
+                <i class="bi bi-trash3"></i>
+                Detail
+                </button>
+              </a>
+
+          </td>              
+
+            </tr>
+            
+            {% endfor %}
+          </tbody>
+
+          </table>
+        </div>  
+
+      </div>
+
+    </div>
+
+  </div>
+</section>    
+
+
+<link rel="stylesheet" href="{% static 'css/app-sample-dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+<link rel="stylesheet" href="{% static 'css/table-formatting-specific-accounting-dashboard.css' %}">
+
+{% endblock %}

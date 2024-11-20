@@ -1,0 +1,127 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section>
+<section id="section-notary-entry" >
+   
+  <div class="body-area">  
+    <div class="table-outer-wrapper"  >   
+      <h3>Notary Transactions</h3>
+
+
+        <table >
+          <caption>this is the caption</caption>
+          <thead class="table-header">  
+            <!-- id ="myordersTable"  -->
+            <tr>
+              <th >Image</th>                  
+              <th >First Name</th>
+              <th >Last Name</th>
+              <th >Category</th>
+              <th >Book</th>
+              <th >Page</th>
+              <th >Record</th>
+              <th >Amount</th>
+              <th >Tax</th>
+              <th >Total</th>
+              <th >Created</th>
+              <th >Myfile</th>                                      
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          
+          <tbody class="table-body">
+            {% if data %}
+              {% for item in data %}
+  
+                <tr id="categ-id-{{item.id}} tbody-record">
+                  {% if item.myimage%}
+                    <td data-cell="attached image">
+                      <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+                    
+                    </td>
+                  {% else %}
+                    <td  data-cell="attached image">
+                      <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                    </td>     
+                  {% endif %}               
+
+                  <td data-cell="name">{{item.firstname}}</td>
+                  <td data-cell="lastname">{{item.lastname}}</td>
+                  <td data-cell="category" >{{item.category}}</td>
+                  <td data-cell="book no.">{{item.bookno}}</td>
+                  <td data-cell="page no.">{{item.pageno}}</td>
+                  <td data-cell="record no">{{item.recordno}}</td>
+                  <td data-cell="amount">{{item.amount}}</td>
+                  <td data-cell="tax amount">{{item.total_tax_amount}}</td>
+                  <td data-cell="total amount">{{item.total_amount}}</td>
+                  <td data-cell="date created">{{item.created}}</td>
+
+                  {% if item.myfile%}
+                    <td data-cell="attached file">
+                      <img src="{{item.myfile.url}}" alt="my file" class="item-image-size-inlist" >
+                    
+                    </td>
+                  {% else %}
+                    <td data-cell="attached file">
+                      <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                    
+                    </td>     
+                  {% endif %}                            
+                  <td class="td-text td-action">
+                    <button class="btn btn-info btn-sm "><a href="{% url 'app_forms:update-record' item.id %}">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-danger btn-sm ">
+                    <a href="{% url 'app_forms:delete-record' item.id %}">
+                      <i class="bi bi-trash3"></i>
+                    </a>
+                    </button>
+                  </td>
+                </tr>
+              {% endfor %}
+            {% endif %}
+          </tbody>
+            
+        </table>
+
+    
+    </div>  
+    {% include 'include/error-messeges.html'%}
+
+
+    <div class="add-button"  >
+      <button class="btn btn-primary"><a href="{% url 'app_forms:create-record'%} "> Add Record</a></button>
+      
+    </div>   
+
+  </div>
+
+</section>
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-appforms-dashboard.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+
+
+<!-- to be used in specific fields of table -->
+
+<link rel="stylesheet" href="{% static 'css/table-formatting-specific-appforms-dashboard.css' %}">
+
+<!-- to be used test-->
+<link rel="stylesheet" href="{% static 'css/table-ab.css' %}">
+
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+{% endblock %}
+

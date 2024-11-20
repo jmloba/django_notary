@@ -29,6 +29,8 @@
         <div class="sub-menu">
           <div class="item ">
             <a href="{% url 'app_forms:dashboard'%}" class="sub-item">Notary entry</a>  
+            <a href="{% url 'app_forms:notarysales-dashboard'%}" class="sub-item">Notary ListView</a>  
+            
             
             <a href="{% url 'app_expenses:expense-dashboard'%}" class="sub-item">Expenses</a>    
             <div class="item ">
@@ -71,11 +73,30 @@
         </a>
         <div class="sub-menu">
           <a href="{% url 'app_accounting:acct-dashboard' %}"  class="sub-item">Accounting Dashboard</a>
-    
+
+          <a href="{% url 'app_accounting:acct-dashboard-voucher-creation' %}"  class="sub-item">Voucher Creation  Dashboard</a>
+
+          <a href="{% url 'app_accounting:voucher-creation-listview' %}"  class="sub-item">Voucher Creation  Listview</a>
+
+          <a href="{% url 'app_accounting:acct-dashboard-myvalidator' %}"  class="sub-item">Validation Sample</a>
+        </div>
+      </div>
+      <!--orm sample  queries-->
+
+      <div class="item ">
+        <a class="sub-btn">
+          <span class="material-symbols-outlined icon1-submenu">
+            folder_special
+            </span>&nbsp;
+          ORM
+          <i class="fas fa-angle-right dropdown"></i>
+        </a>
+        <div class="sub-menu">
+          <a href="{% url 'app_accounting:orm-dashboard' %}"  class="sub-item">ORM Dashboard</a>
+          <a href="{% url 'app_accounting:sample-popup-return-value' %}"  class="sub-item">sample popup return</a>          
 
         </div>
       </div>
-
 
 
       <!-- Invoice entries -->
@@ -95,7 +116,7 @@
       </div>       
 
       <!-- General Files(sales)-->
-       <div class="item ">
+      <div class="item ">
         <a class="sub-btn">
           <span class="material-symbols-outlined icon1-submenu">
             folder_special
@@ -113,9 +134,19 @@
 
       </div>      
 
-
+     <!-- General Sample-->
+     <div class="item ">
+      <a class="sub-btn">
+       General Sample
+        <i class="fas fa-angle-right dropdown"></i>
+      </a>
+      <div class="sub-menu">
+        <a href="{% url 'app_sample:appSample-Dashboard' %}"  class="sub-item">Sample Dashboard(Accounts)</a>
+        <a href="{% url 'app_sample:voucher-create-view' %}"  class="sub-item">Voucher Create Form</a>
+        <a href="{% url 'app_sample:Studentlist-View' %}"  class="sub-item">Student </a>
+      </div>
+      </div>      
       <!-- htmx -->
-      
       <div class="item ">
         <a class="sub-btn">
           <!-- <i class="fas fa-cogs"></i> -->
@@ -147,19 +178,19 @@
           
         </div>
       </div>    
-      <!-- sample -->
+<!-- sample -->
       <div class="item ">
-        <a class="sub-btn">sample 2 <i class="fas fa-angle-right dropdown"></i></a>
+        <a class="sub-btn">sample xx1 <i class="fas fa-angle-right dropdown"></i></a>
         <div class="sub-menu">
           <a href="" class="sub-item">sample 2 1</a>     
           <a href="" class="sub-item">sample 2 2</a>
           
         </div>
       </div> 
-
+<!-- sample -->
       <div class="item ">
         <a class="sub-btn">
-          <i class="fas fa-cogs"></i>sample xxx 
+          <i class="fas fa-cogs"></i>sample xx2 
           <i class="fas fa-angle-right dropdown"></i>
         </a>
         <div class="sub-menu">
@@ -190,7 +221,7 @@
         </div>
       </div>    
       
-      <!-- sample 2 -->
+<!-- sample 2 -->
       <div class="item ">
         <a class="sub-btn">
           <i class="fas fa-cogs"></i>Nitty Gritty

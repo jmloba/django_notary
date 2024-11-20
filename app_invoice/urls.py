@@ -9,6 +9,7 @@ urlpatterns = [
   path('create_invoice/',views.invoice_create , name ='invoice-create'),
   path('create-an-invoice/',views.create_an_invoice, name ='create-an-invoice'),
   path('save_invoice/',views.save_invoice , name ='save-invoice'),
+  
   path('save_invoice2/',views.save_invoice2 , name ='save-invoice2'),
   path('invoice-edit/',views.invoice_edit , name ='invoice-edit'),
   path('invoice-edit2/',views.invoice_edit2 , name ='invoice-edit2'),

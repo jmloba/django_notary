@@ -1,0 +1,65 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+Create Acc Rec
+{% endblock%}
+
+{% block content %}
+<section id="section-chart-detail">
+
+  <div class="body-area">
+    <h1>chart detail</h1>
+    <button  class="btn btn-mybtn" onclick="history.back()">Go Back</button>
+    <div class="rec-details">
+      <div class="field-x"> 
+        <span>Account Number :</span>
+        <div class="field-content">
+          {{chart_acct.chrt_accno}}
+        </div>
+      </div>
+      <div class="field-x"> 
+        <span>Description  :</span>
+        <div class="field-content">
+          {{chart_acct.chrt_desc}}
+        </div>
+      </div>      
+      <div class="field-x"> 
+        <span>Header/Detail  :</span>
+        <div class="field-content">
+          {{chart_acct.chrt_H_D}}
+        </div>
+      </div>      
+      <div class="field-x"> 
+        <span>Beginning BAlance:</span>
+        <div class="field-content">
+          {{chart_acct.beg_bal}}
+        </div>
+      </div>      
+      
+    </div>
+    <div class="button-area">
+      <a href="{% url 'app_sample:chrtrec-update' chart_acct.id %}">
+        <button class="btn btn-info btn-sm ">
+          <i class="bi bi-pencil"></i>
+          UPdate
+        </button>
+      </a>
+      <a href="{% url 'app_sample:chrtrec-delete' chart_acct.id %}">
+        <button class="btn btn-danger btn-sm">
+        <i class="bi bi-trash3"></i>
+        deleteview
+        </button>
+      </a>
+
+    </div>
+
+  </div>
+
+  
+
+  
+</section>
+<link rel="stylesheet" href="{% static 'css/app-sample-dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/app-sample-chart-details.css' %}">
+{% endblock %}

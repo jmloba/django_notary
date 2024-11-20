@@ -1,0 +1,114 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<!-- <section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section> -->
+<section id="chartlistview-dashboard">
+  <div class="body-area">
+    <div class="button-area"  >
+
+         <button class="btn btn-mybtn"><a href="{% url 'app_sample:student-create'%} ">Add Student REcord</a></button>
+    </div>
+
+    <div class="table-container"  >   
+      <div class="table-container-wrapper">
+        <h2>Student List Dashboard</h2>
+        <div class="table-wrapper">
+          <table id="tbl">
+            <thead class="table-header">
+              <tr>
+                <th>Student Number</th>
+                <th>firstname</th>
+                <th>lastname</th>
+                <th>birthdate</th>
+                <th colspan="2" >Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              {% if objects_list %}
+                {% for item in objects_list %}
+                <tr id="studrec-id-{{item.id}}">
+                  
+                  <td data-cell="Student No.">{{item.studno}}</td>
+
+                  <td data-cell="First Name" class = "col-black">
+                    {{item.firstname}}</td>
+
+                  <td data-cell="Last Name" class = "col-black">{{item.lastname}}</td>
+
+                  <td data-cell="Birth Date" class= "col-number">
+                    <span class='beg-bal' >{{item.birthdate}}</span>
+                  </td>
+                  <td data-cell="Mobile No." class= "col-number">
+                    <span class='beg-bal' >{{item.mobile}}</span>
+                  </td>                  
+
+                  <td  data-cell="update">
+                    <button class="btn btn-info btn-sm ">
+                      <a href="{% url 'app_sample:student-update' item.id%}">
+                      <i class="bi bi-pencil"></i>
+                      </a>
+                    </button>
+                  </td>
+                  <td data-cell="delete">
+                    <button class="btn btn-danger btn-sm">
+                      <a href="{% url 'app_sample:student-delete' item.id%}">
+                        <i class="bi bi-trash3"></i>
+                      </a>
+                    </button>
+                  </td>   
+                </tr>        
+                {% endfor %}
+  
+                <!-- pagination -->
+
+                <div class="pagination">
+                  <span class="step-links">
+                      {% if page_obj.has_previous %}
+                          <a href="?page=1">&laquo; first</a>
+                          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                      {% endif %}
+              
+                      <span class="current">
+                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                      </span>
+              
+                      {% if page_obj.has_next %}
+                          <a href="?page={{ page_obj.next_page_number }}">next</a>
+                          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                      {% endif %}
+                  </span>
+                </div>        
+
+              {% endif %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>  
+    {% include 'include/error-messeges.html'%}      
+    {{info}}
+
+  </div> 
+    <!-- end wrapper -->
+    
+
+</section>
+
+
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-sample-student-dashboard.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+
+
+
+{% endblock %}

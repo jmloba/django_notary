@@ -1,0 +1,79 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+<section id="acct-create-master" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  
+  <div class="body-area" >
+
+    <div class="row ">
+
+      <div class="">
+        <div class="form-entry-header"  >
+          <h3 id = "header-form">create Record (my validator)</h3>
+        </div> 
+
+        <form action="{% url 'app_accounting:myvalidator-create-record'%}" method="POST" novalidate  >
+          {%csrf_token%}
+ 
+            
+          <div class="row">
+            <div class="form-group"> 
+
+              <div class="form-group-item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                
+                {{form.mobile_no|as_crispy_field}}
+                
+              </div>
+            
+            </div> 
+
+            <div class="form-group"> 
+
+              <div class="form-group-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                
+                {{form.name|as_crispy_field}}
+                
+              </div>
+            
+            </div> 
+            <div class="form-group"> 
+
+              <div class="form-group-item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                
+                {{form.birth_date|as_crispy_field}}
+                
+              </div>
+              <div class="form-group-item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                
+                {{form.place_birth|as_crispy_field}}
+                
+              </div>
+              
+            
+            </div>             
+            
+          </div>
+
+
+          <button type="submit" class="btn btn-primary" >Submit</button>        
+     
+        </form>
+      </div>
+  
+
+  
+    </div>
+
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/app-account-master-create-form.css' %}">
+
+
+{% endblock %}

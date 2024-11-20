@@ -65,6 +65,7 @@ def invoice_create(request):
   
   
   return render(request,'app_invoice/create_invoice.html', context)
+
 def save_invoice(request):  
   if request.method == 'POST':
     form = InvoiceForm(request.POST or None)
@@ -233,6 +234,7 @@ def invoice_edit2(request):
   else:
     categ_data = {'status':'Failed'}
     return JsonResponse(categ_data)  
+  
 def invoice_delete(request):
   if request.method == "POST":  
     id = request.POST.get("sid")
@@ -253,6 +255,7 @@ def invoice_delete(request):
                          })
   else:
     return JsonResponse({"status": 0})  
+
 def invoice2_delete (request) :
     if request.method == "POST":  
       id = request.POST.get("sid")

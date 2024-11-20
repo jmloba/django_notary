@@ -1,0 +1,41 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+<section id="acct-create-vouchergroup" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  
+  <div class="body-area" >
+
+    <div class="row ">
+
+      <div class="">
+        <div class="form-entry-header"  >
+          <h3 id = "header-form">Create A REcordd (vouchergroup)</h3>
+        </div> 
+        <form action="{% url 'app_accounting:create-voucher-group'%}" method="POST" novalidate  >
+          {%csrf_token%}
+            
+          <div class="row">
+            {% include 'app_accounting/form-fields-voucher-group.html' %}
+          </div>
+
+          <button type="submit" class="btn btn-primary" >Submit</button>        
+ 
+        </form>
+        
+
+      
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="{% static 'css/app-account-master-create-form.css' %}">
+
+
+{% endblock %}

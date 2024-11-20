@@ -1,0 +1,105 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notarylistview">
+  <div class="body-area" >
+
+    <div class="table-container">
+      <div class="table-container-wrapper">
+        <h3>Notary Transactions  notary dashboard list view</h3>    
+        <div class="button-area"  >
+          <a href="{% url 'app_forms:notarysales-createview' %}">
+            <button class="btn btn-mybtn">add record notary(CreateView)</button>
+          </a>
+        </div>        
+        <div class="table-wrapper">
+          <table class="tbl"  >
+            <thead>
+              <th >Image</th>                  
+              <th >First Name</th>
+              
+              <th >Category</th>
+              <th >Amount</th>
+              <th >Myfile</th>
+              <th colspan="4">Action</th>
+
+            </thead>
+            <tbody class="table-body data">
+              {% if notarylist %}
+                {% for item in notarylist %}
+                <tr id="notary-id-{{item.id}} ">
+                  {% if item.myimage%}
+                  <td data-cell="attached image">
+                    <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+                  
+                  </td>
+                  {% else %}
+                  <td  data-cell="attached image">
+                    <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                  </td>   
+                  {% endif %}
+                  <td data-cell="First Name">{{item.firstname}}</td>  
+                  <td data-cell="Category">{{item.category}}</td>  
+                  <td data-cell="amount" class= "col-amount">
+                    <strong>{{item.amount}}</strong>
+                  </td>
+                  {% if item.myfile%}
+                  <td data-cell="attached file">
+                    <img src="{{item.myfile.url}}" alt="my file" class="item-image-size-inlist" >
+                  
+                  </td>
+                {% else %}
+                  <td data-cell="attached file">
+                    <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                  
+                  </td>     
+                {% endif %}  
+                <td data-cell="View record" >
+                  <a href="">
+                  <button class="btn btn-success btn-sm btn-view-profile" >
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  </a>
+                </td>   
+                <td  data-cell="update">
+                  <a href="{% url 'app_forms:notarysales-updateview' item.id %}">
+                    <button class="btn btn-info btn-sm ">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                  </a>
+                </td>                  
+                 <td data-cell="delete">
+                  <a href="{% url 'app_forms:delete-record' item.id %}">Delete(function)
+                  <button class="btn btn-danger btn-sm">
+                      <i class="bi bi-trash3"></i>
+                  </button>
+                </a>
+                </td>         
+                <td data-cell="delete">
+                  <a href="{% url 'app_forms:notarysales-deleteview' item.id %}">Delete(deleteview)
+                  <button class="btn btn-danger btn-sm">
+                      <i class="bi bi-trash3"></i>
+                  </button>
+                </a>
+                </td>                            
+
+                </tr>
+                {% endfor %}
+              {% endif %}  
+
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>  
+
+    </div>
+
+  </div>
+
+</section>
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+{% endblock %}

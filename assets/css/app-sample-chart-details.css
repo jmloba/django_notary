@@ -1,0 +1,28 @@
+.body-area{
+  background-color: antiquewhite;
+  color : black;
+  height : max-content;
+
+}
+.rec-details{
+  background-color: rgb(235, 245, 245);
+  margin :2rem;
+}
+.field-x > span{
+  font-size : 18px;
+  font-weight: 500;
+  display: inline-flex;
+}
+.field-content {
+  font-size : 16px;
+  font-weight: 500;
+  color: blue;
+  margin-right : 20px;
+  margin-bottom : 1rem;
+}
+.rec-details{
+  padding : 3em;
+  justify-content : center;
+  align-items : center;
+  background-color: rgb(218, 153, 153);
+}

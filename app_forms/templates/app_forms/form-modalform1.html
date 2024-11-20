@@ -1,0 +1,23 @@
+{% load static %}
+<form action="#" id="myform-modal">
+  <div class="card imageholder">
+    <label for="imgInput" class="upload">
+      <input type="file" name="" id="imgInput">
+      <i class="bi bi-plus-circle-dotted"></i>
+    </label>
+    <img class='form-image' src="{% static 'images/default-image.png' %}" alt="pic" >
+
+  </div>
+  <div class="inputField">
+    <div class="input-elements">
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" id="firstname"  placeholder="First Name" >
+    </div>
+    <div class="input-elements">
+      <label for="lastname">Last Name :</label>
+      <input type="text" name="lastname" id="lastname"  >
+    </div>
+
+  </div>
+
+</form>

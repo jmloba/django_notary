@@ -1,0 +1,79 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="vouchercreation-listview">
+  <div class="body-area" >
+
+    <div class="table-container">
+      <div class="table-container-wrapper">
+        <h3>Voucher Creation list view</h3>    
+        <div class="button-area"  >
+          <a href="{% url 'app_accounting:vouchercreation-createview' %}">
+            <button class="btn btn-mybtn">add record voucher creation(CreateView)</button>
+          </a>
+        </div>        
+        <div class="table-wrapper">
+          <table class="tbl"  >
+            <thead>
+              <th >Voucher Group</th>                  
+              <th >
+                Account number</th>
+              
+              <th >Header</th>
+              <th colspan="2">Action</th>
+
+            </thead>
+            <tbody class="table-body data">
+              {% if vouchergrouplist %}
+                {% for item in vouchergrouplist %}
+                <tr id="vgroup-id-{{item.id}}">
+                  <td data-cell="Voucher Group">
+                    {{item.voucher_group }}
+
+                  </td>
+                  <td data-cell="Account NUmber">
+                    {{item.accno}}
+
+                  </td>
+                  <td data-cell="Header" >
+                    {{item.dc}}
+
+                  </td>
+                  <td data-cell="delete">
+                    <a href="{% url 'app_accounting:vouchercreation-deleteview' item.id %}">deleteview
+                    <button class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                  </a>
+                  </td>   
+                  <td data-cell="Update">
+                    <a href="{% url 'app_accounting:vouchercreations-updateview' item.id %}">UpdateView
+                    <button class="btn btn-info btn-sm">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                  </a>
+                  </td>   
+
+                </tr>
+                {% endfor %}
+              {% endif %}  
+               
+                  
+                 
+               
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>  
+
+    </div>
+
+  </div>
+
+</section>
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+{% endblock %}

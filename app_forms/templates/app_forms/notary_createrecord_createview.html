@@ -1,0 +1,75 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="notary-createrecord-createview" >
+  
+  <div class="body-area" >
+    <h3>create view</h3>
+    <form action="" method = 'POST'>
+      {% csrf_token %}
+      <div class="form-row">
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.firstname|as_crispy_field}}
+      
+        </div>
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.lastname|as_crispy_field}}
+      
+        </div>        
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.category|as_crispy_field}}
+      
+        </div>
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.address|as_crispy_field}}
+      
+        </div>        
+      </div>    
+      <div class="form-row">
+        <div class="form-group col-md-4 col-sm-12 mb-0">
+          {{form.bookno|as_crispy_field}}
+      
+        </div>
+        <div class="form-group col-md-4 col-sm-12 mb-0">
+          {{form.pageno|as_crispy_field}}
+      
+        </div>       
+        <div class="form-group col-md-4 col-sm-12 mb-0">
+          {{form.recordno|as_crispy_field}}
+      
+        </div>    
+        
+        
+      </div>            
+      <div class="form-row">
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.amount|as_crispy_field}}
+      
+        </div>
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.or_number|as_crispy_field}}
+      
+        </div>        
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.myimage|as_crispy_field}}
+      
+        </div>
+        <div class="form-group col-md-6 col-sm-12 mb-0">
+          {{form.myfile|as_crispy_field}}
+      
+        </div>        
+      </div>      
+      <button type="submit" class="btn btn-primary" >Submit</button>        
+
+    </form>
+
+  </div>  
+</section>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+/* responsive table */
+
+#accounting-dashboard{
+  background-color: rgba(250, 235, 215, 0.705);
+  margin : 5rem;
+
+}
+.main-div{
+  display: flex;
+  justify-content: space-evenly;
+  padding : 1rem 1rem;
+}  
+.add-button {
+  margin-right: 1rem;
+}
+
+
+@media only screen and (max-width:1024px){
+  #accounting-dashboard{
+    margin : 3rem;
+  }
+
+}
+@media only screen and (max-width:700px){
+  #accounting-dashboard{
+    margin : 1rem;
+  }
+
+}
+
+  
+  
+@media only screen and (max-width:390px){
+  #accounting-dashboard{
+    margin : 1rem;
+  }
+}
+
+
+/* 
+
+https://www.youtube.com/watch?v=VbW36Fmn2us&t=822s 
+
+*/

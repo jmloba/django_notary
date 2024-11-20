@@ -1,0 +1,50 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+Create Acc Rec
+{% endblock%}
+
+{% block content %}
+<section id="vouchercreateView-section">
+  <div class="body-area">
+    <h2>Voucher Create View</h2>
+
+  </div>
+  <form action="" method="POST" >
+    {%csrf_token%}
+    <div class="form-row">
+      <div class="form-group col-md-6 col-sm-12 mb-0">
+        {{form.accno|as_crispy_field}}
+    
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 col-sm-12 mb-0">
+        {{form.voucher_group|as_crispy_field}}
+    
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 col-sm-12 mb-0">
+        {{form.author|as_crispy_field}}
+    
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 col-sm-12 mb-0">
+        {{form.dc|as_crispy_field}}
+    
+      </div>
+    </div>    
+
+    <button type="submit" class="btn btn-primary" >Submit</button>        
+
+  </form>
+
+
+
+</section>
+<link rel="stylesheet" href="{% static 'css/app-sample-createvoucher-view.css' %}">
+
+{% endblock %}

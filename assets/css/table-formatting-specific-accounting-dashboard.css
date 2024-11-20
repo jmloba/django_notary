@@ -1,0 +1,24 @@
+
+.table-container-wrapper{
+
+  /* height of table wrapper */
+  
+  max-height : 47rem;
+ 
+}
+.table-wrapper{
+  max-height : 40rem;
+}
+
+.table-container{
+  /* background-color: rgba(127, 232, 202, 0.635); */
+  padding : 1rem;
+  max-height: 47rem;
+}
+.col-black{
+  color : black;
+}
+ table th:nth-child(4) {
+  text-align:right;
+  color : blue;
+}

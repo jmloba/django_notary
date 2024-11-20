@@ -1,0 +1,58 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+<section id="vouchergroup-test-add" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  
+  <div class="body-area" >
+
+    <div class="row ">
+
+      <div class="form-area">
+        <div class="form-entry-header"  >
+          <h3 id = "header-form">orm test add - file : CreateVoucherGroup</h3>
+        </div> 
+
+        <form action="{% url 'app_accounting:vouchergroup-test-createrecord'%}" method="POST" novalidate  >
+          {%csrf_token%}
+ 
+            
+          <div class="row">
+            <div class="form-group"> 
+              <div class="form-group-item col-lg-6 col-md-6 col-sm-12 col-xs-12" id="id-accno" data-url="{% url 'app_accounting:get-accname' %}" 
+            >
+                {{form.accno|as_crispy_field}}
+              </div>
+
+              <div id="account-name" class="account-name" style="visibility: visible;" >Account Name 
+                <span class="ac-name"></span>
+              </div>
+            </div> 
+            <div class="form-group"> 
+              <div class="form-group-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                {{form.desc|as_crispy_field}}
+              </div>
+            </div> 
+          </div>
+          <button type="submit" class="btn btn-primary" >Submit</button>        
+     
+        </form>
+      </div>
+  
+
+  
+    </div>
+
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/app-account-master-create-form.css' %}">
+
+<script src="{% static 'js/app-test-add-vouchergroup.js' %}" ></script> 
+
+{% endblock %}

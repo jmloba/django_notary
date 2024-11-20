@@ -1,0 +1,138 @@
+/*
+used in :
+    accounting-dashboard.html 
+*/
+
+.container{
+  padding : 1rem 2rem;
+  background-color: rgb(157, 205, 214);
+  box-shadow: 0px 0px 2em rgb(168, 80, 80);
+  
+}
+.container h2{
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items:  center;
+}
+.table-container{
+  color : black;
+  width : 100%; 
+  background-color: rgba(222, 224, 198, 0.686);
+  padding : 1rem 1rem;
+  overflow: hidden;
+}
+#main-table{
+  width: 100%;
+  
+    border-collapse: collapse;
+
+}
+
+#main-table thead{
+  background-color: teal;
+  color : rgb(189, 187, 101);
+  
+  
+}
+#main-table thead tr th{
+  font-size: .9rem;
+  font-weight: 400;
+  
+  padding : .8rem;
+  letter-spacing: .1rem;
+  vertical-align: top;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+
+tbody{
+  background-color: rgba(242, 241, 237, 0.423);
+  
+}
+th, td{
+  text-align: left;
+}
+#main-table tbody tr td{
+  font-size : 1rem;
+  font-weight : normal;
+  text-align: left;
+  border : 1px solid rgb(7, 148, 11);
+  padding : 1rem;
+  
+}
+
+#main-table tbody tr td.begin-bal{
+  text-align: right;
+}
+/* zebra color : */
+#main-table tbody tr:nth-child(even) {
+  background-color: rgb(195, 237, 223);
+  
+  
+}
+/* selected record  - hover*/
+#main-table tbody tr:hover td{
+  background-color: rgb(247, 246, 245);
+  color : rgb(24, 74, 240);
+  transition: all .3s ease-in;
+  cursor: pointer;
+}
+
+/* for buttons */
+  tbody button{
+  display : inline-block;
+  border : none;
+  margin : 0 auto;
+  padding : .4rem;
+  border-radius: .2rem;
+  outline: none;
+  cursor: pointer;
+  
+}
+tbody button.btn-edit{
+  background-color: aqua;
+  color: white;
+}
+
+tbody button.btn-delete{
+  background-color: var(--color-bloody-red  );
+  color : #fff;
+  
+}
+
+@media only screen and (max-width:700px){
+  #main-table thead{
+    display :none;
+  }  
+  .main-div{
+    display : block;
+  }
+  .add-button{
+    margin-bottom : 1rem;
+  }
+  #main-table tbody tr,
+  #main-table tbody td{
+    display : block;
+    width: 100%;
+    
+  }
+  #main-table  tr{
+    margin-bottom: 2rem;
+  }
+  
+  #main-table tbody tr td{
+  text-align: right;
+  position : relative;
+
+  }
+
+  #accounting-dashboard tbody td:before {
+    content: attr(data-cell-label);
+    position : absolute;
+    left:1rem;
+    color :black;
+    
+  }
+  
+  }

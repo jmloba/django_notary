@@ -1,0 +1,28 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="section-vouchercreation-createview">
+  <div class="body-area">
+    <h2>Voucher Creation Create View</h2>
+  
+    <form action="" method="POST" novalidate  >
+    {%csrf_token%}
+      
+    <div class="row">
+      {% include 'app_accounting/form-fields-voucher-group.html' %}
+    </div>
+
+ 
+    <button type="submit" class="btn btn-primary" >Submit</button>   
+    
+  </form>
+</div>
+
+</section>  
+
+<link rel="stylesheet" href="{% static 'css/app-appforms-notarysales-createview.css' %}">
+
+
+{% endblock %}

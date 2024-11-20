@@ -1,0 +1,31 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="section-createview-notary">
+  <div class="body-area">
+    <h2>Notary Sales Create View xxxyy</h2>
+  
+    <form action="" method="POST" novalidate  enctype="multipart/form-data">
+    {%csrf_token%}
+      
+    <div class="row">
+      {% include 'app_forms/form-fields-notary.html' %}
+    </div>
+
+ 
+    <button type="submit" class="btn btn-primary" >Submit</button>   
+    
+  </form>
+</div>
+
+</section>  
+
+<link rel="stylesheet" href="{% static 'css/app-appforms-notarysales-createview.css' %}">
+
+
+<script src="{% static 'js/app-forms-notary-createview.js' %}" ></script> 
+
+
+{% endblock %}

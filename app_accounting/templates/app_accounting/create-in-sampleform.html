@@ -1,0 +1,36 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+<section id="sample-sampleform-ajax" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+  
+  <div class="body-area" >
+
+    <div class="row ">
+
+      <div class="">
+        <div class="form-entry-header"  >
+          <h3 id = "header-form">Accounts Master File</h3>
+        </div> 
+
+        <form class='new_sampleform'   action="#" method="POST">
+          {%csrf_token%}
+          <div class="row">
+            {{form.as_p}}
+          </div>
+          <div class="errordiv"></div>
+          <button type="submit"  class="btn btn-primary save-newrecord-ajax" >Submit</button>        
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}

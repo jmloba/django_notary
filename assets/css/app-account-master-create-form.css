@@ -1,0 +1,42 @@
+.body-area{
+  background-color: #a5ce8a43;
+  margin-top: .5rem;
+
+  height : 50rem;
+  
+}
+#header-form{
+  background-color: rgb(236, 245, 245);
+}
+.row{
+  background-color: rgba(255, 228, 196, 0.133);
+  display : flex;
+  width :90%;
+  margin:auto; 
+
+}
+.account-name{
+ 
+  color : black;
+  font-size: 16px;
+}
+.ac-name{
+  color : blue;
+}
+
+@media only screen and   (max-width:390px){
+  .body-area{
+    margin : .5rem;
+  }
+}
+
+@media  only screen and   (max-width:700px){
+    .body-area{
+      margin : 1rem;
+    }
+    form .form-group{
+      width: 100%;
+    }
+
+}
+  

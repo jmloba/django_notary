@@ -1,0 +1,59 @@
+{% extends 'main/base.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<section id="update-vouchergroup-record" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+    <div class="col-lg-4 col md-4 col-sm-12 ">
+      <div class="data-info">
+
+        <div class="data-item">
+          <p>Id : <span>{{datarec.id}}</span></p>
+        </div>
+        <div class="data-item ">
+          <p>account no: <span>{{datarec.accno}}</span></p>
+          <p>voucher group  : <span>{{datarec.voucher_group}}</span></p>
+          
+        </div>        
+      </div>
+    </div>
+    <div class="col-lg-8 col md-8 col-sm-12"  >
+      <form action=""   method="POST" >
+        {% csrf_token %}
+        <div class="form-group  "> 
+          <div class="form-group-item col-lg-5 col-md-6 col-sm-12 col-xs-12 mr-1">
+          {{form.accno|as_crispy_field}}
+          </div>
+          <div class="form-group-item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            {{form.voucher_group |as_crispy_field}}
+          </div>
+        </div> 
+        <div class="form-group  "> 
+          <div class="form-group-item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            {{form.dc |as_crispy_field}}
+          </div>
+          <div class="form-group-item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            {{form.author |as_crispy_field}}
+          </div>
+
+        </div> 
+
+
+        <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Update Submit</button>
+
+        
+      </form>  
+
+    </div>  
+
+
+  </div>
+  
+</section>
+<link rel="stylesheet" href="{% static 'css/app-accounting-chartmast-form.css' %}">
+
+{% endblock %}

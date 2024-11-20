@@ -1,0 +1,59 @@
+{% extends 'main/base.html'%}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section id="myvalidator-delete" >
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+
+  <div class="body-area">
+    <div class="data-info">
+      <div class="show-record-data ">
+        <div class="data-information">
+          <div class="data-item data-item1">
+            <p>Id : <span>{{datarec.id}}</span></p>
+          </div>
+
+          <div class="data-item data-item2">
+            <p>User : <span>{{datarec.val_user}}</span></p>
+            <p>mobile_no : <span>{{datarec.mobile_no}}</span></p>
+  
+          </div>
+
+
+        </div>
+      </div>
+      <div class="data-to-delete"  >
+        <h3>Delete Record (my validator)  </h3>
+
+        <form class="myform" action=""    enctype="multipart/form-data" 
+        method="POST" >
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group "> 
+            <div class="form-group-item">
+            {{form.val_user|as_crispy_field}}
+            </div>
+          </div> 
+          <div class="form-group "> 
+            <div class="form-group-item">
+              {{form.mobile_no|as_crispy_field}}
+            </div>
+          </div> 
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Delete Submit</button>
+
+
+      </form>
+
+      </div>
+    </div>
+
+
+  </div>
+</section>  
+
+
+<link rel="stylesheet" href="{% static 'css/table-css-2.css' %}">
+<link rel="stylesheet" href="{% static 'css/app-accounting-myvalidator.css' %}">
+{% endblock %}

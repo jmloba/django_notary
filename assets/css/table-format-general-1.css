@@ -1,0 +1,99 @@
+table img{
+  height :35px;
+  width: 35px;
+
+  border-radius: 50%;
+  margin-right :.5rem;
+  vertical-align: middle;
+}
+.table-outer-wrapper{
+  background-color: rgb(210, 68, 68);
+  padding : 3rem;
+}
+.table-outer-wrapper{
+  background-color: rgba(194, 197, 16, 0.496);
+  
+
+}
+.table-container{
+  background-color: antiquewhite;
+  padding:2em 2em;
+  overflow-x: auto;
+}
+.table-outer-wrapper h3{
+  background-color: aliceblue;
+}
+table{
+  border-collapse: collapse;
+  margin-right : 3em;
+  width : 100%;
+  box-shadow : 0 0 1rem rgba(7, 41, 7, 0.885);
+  max-height: 25rem;
+  overflow : auto;
+
+}
+table th, table td {
+  font-size: 18px;
+  padding : 1em;
+}
+table thead th{
+  background-color: teal;
+  color : white;
+    
+}
+table td{
+  background-color: rgba(250, 235, 215, 0.367);
+  color : blue;
+} 
+
+
+table tr{
+  padding : .45em;
+
+}
+
+
+tbody tr:nth-last-of-type(2n){
+  background-color: rgba(88, 86, 86, 0.526);
+  background-color: rgba(172, 165, 155, 0.519);
+color : blue;
+
+}
+
+@media (max-width:700px){
+  table {
+    border : 3px solid red;
+  } 
+  /* heading */
+  table thead tr{
+    display : none;
+  }
+  table  tr {
+    display : block;
+  }
+  
+  th,td{
+    padding :.5em;
+
+  }
+  table tbody td{
+    text-align: right;    
+    display:block;
+    font-size : 16px;
+    color : blue;
+    
+
+  }
+  
+  table td::before{
+    content : attr(data-cell) " : ";
+    color : black;
+    text-transform: capitalize;
+    float : left;
+  }
+  tbody tr:nth-child(even) {
+  background-color: rgba(250, 235, 215, 0.367);
+  color : blue;
+  }
+
+}

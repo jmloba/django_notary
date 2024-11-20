@@ -1,0 +1,88 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<!-- <section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section> -->
+<section id="section-accounting-validation-dashboard">
+  <div class="body-area">
+    <div class="table-container"  >   
+      <div class="table-container-wrapper">
+        <h2>Sample VAlidation </h2>
+        <div class="table-wrapper">
+          <table id="tbl">
+            <thead class="table-header">
+              <tr>
+                <!-- <th>user</th> -->
+                <th>Mobile No</th>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Birth Place</th>
+                <th colspan="2">action</th>
+                
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              {% if data %}
+                  {% for item in data %}
+                  <tr id="chrtmast-id-{{item.id}}">
+                    
+                    <!-- <td data-cell="user">{{item.val_user}}</td> -->
+                    <td data-cell="mobile" class = "col-black">
+                      {{item.mobile_no}}</td>
+                    <td data-cell="Name" class = "col-black">
+                        {{item.name}}</td>
+                    <td data-cell="Birthdate" class = "col-black">
+                          {{item.birth_date|date:"d/m/Y"}}</td>
+
+                    <td data-cell="Birthdate" class = "col-black">
+                            {{item.place_birth}}</td>
+                        
+                    <td  data-cell="update">
+                      <button class="btn btn-info btn-sm ">
+                        <a href="{% url 'app_accounting:myvalidator-update-record' item.id %}">
+                        <i class="bi bi-pencil"></i>
+                        </a>
+                      </button>
+                    </td>
+
+                    <td data-cell="delete">
+                      <button class="btn btn-danger btn-sm">
+                        <a href="{% url 'app_accounting:myvalidator-delete-record' item.id %}">
+                          <i class="bi bi-trash3"></i>
+                        </a>
+                      </button>
+                    </td>   
+                  </tr>        
+                  {% endfor %}
+              {% endif %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>  
+    {% include 'include/error-messeges.html'%}      
+    <div class="add-button"  >
+      <button class="btn btn-primary btn-mybtn"><a href="{% url 'app_accounting:myvalidator-create-record'%} "> Add Record</a></button>
+      
+    </div>
+  </div> 
+    <!-- end wrapper -->
+    
+
+</section>
+
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-accounting-dashboard-voucher-create.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+
+<!-- <link rel="stylesheet" href="{% static 'css/table-formatting-specific-accounting-dashboard.css' %}"> -->
+
+{% endblock %}

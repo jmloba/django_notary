@@ -1,25 +1,26 @@
 {% load crispy_forms_tags %}
 {% load static %}
-<div class="form-group"> 
-
-  <div class="form-group-item col-lg-5 col-md-6 col-sm-12 col-xs-12">
+<div class="form-row">
+  <div class="form-group col-md-6 col-sm-12 mb-0">
     {{form.chrt_accno|as_crispy_field}}
+
   </div>
-
-</div> 
-
-<div class="form-group"> 
-  <div class="form-group-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+</div>
+<div class="form-row">
+  <div class="form-group col-lg-12 col-md-12 col-sm-12 mb-0">
     {{form.chrt_desc|as_crispy_field}}
   </div>
-</div> 
-<div class="form-group"> 
-  <div class="form-group-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+ 
+</div>
+<div class="form-row">
+  <div class="form-group form-item col-md-6 col-sm-12 col-xs-12 mb-0">
     {{form.chrt_H_D|as_crispy_field}}
   </div>
-</div> 
-<div class="form-group"> 
-  <div class="form-group-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="form-group form-item col-md-6 col-sm-12 col-xs-12 mb-0">
     {{form.beg_bal|as_crispy_field}}
   </div>
-</div>   
+
+</div>
+
+
+

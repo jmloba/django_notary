@@ -1,0 +1,81 @@
+#section-accounting-dashboard{
+  background-color: rgba(242, 102, 102, 0);
+  
+  padding : .5rem .3rem;
+  
+  
+}
+
+.body-area{
+  background-color: #fbfef943;
+  margin-top: .5rem;
+
+  height : 50rem;
+  
+}
+
+.modal-header{
+  justify-content: space-between;
+  background-color: bisque !important;
+  color : blue;
+}
+.modal-header button{
+  height: 2rem;
+  width :2rem;
+  border-radius: 7px;
+  border-color: red;
+  border : 2px solid rgb(17, 3, 54);
+}
+.modal-header button >span{
+  color :blue;
+  font-size : 2rem;
+}
+
+form #id_chrt_H_D{
+  width: 90%;
+  
+}
+
+#id_beg_bal{
+  color : blue;
+  
+  width: 100%;
+}
+.button-area{
+  background-color: bisque;
+  margin : 5px;
+  padding: 5px;
+}
+
+.btn-mybtn {
+  background-color: var(--color-fb-blue  );
+}
+.btn-mybtn a{
+  color: white;
+}
+.btn-mybtn a:hover{
+  color: yellow;
+}
+
+
+@media only screen and   (max-width:390px){
+  .body-area{
+    margin : .5rem;
+    
+  }
+
+}
+
+@media  only screen and  (max-width:770px){
+  .body-area{
+      margin : 1rem;
+    }
+    .form-group{
+      width : 100%;
+    }
+    form #id_chrt_H_D{
+      width: 100%;
+      
+    }
+}
+  

@@ -1,0 +1,241 @@
+
+/* .btn {
+  padding:10px 60px;
+  background-color: #fff;
+  border :0;
+  outline : none;
+  cursor : pointer;
+  font-size : 22px;
+  font-weight: 500;
+  border-radius:  30px;
+} */
+/* -----------  for popup  ----------- */
+.close-btn, .submit-btn{
+  all: none;
+}
+.popup-sample{
+  background-color: rgb(62, 180, 115);
+  padding : 1rem 1rem;
+
+}
+.center{
+  position : absolute;
+  top: 5%;
+  right : 0%;
+  transform:translate(-50%,-25%);
+}
+
+.popup{
+  /* color : rgb(217, 223, 230); */
+  /* background-color: #f9f503; */
+
+  position :fixed;
+  top : 100vh;
+  left:0;
+  width :100%;
+  height :100%;
+  /* opacity: .9; */
+
+  transition:  top 0ms ease-in-out 300ms;
+
+}
+
+
+.popup .overlay{
+  position :absolute;
+  top : 0;
+  left:0;
+  width :100%;
+  height : 100%;
+  /* background-color: aquamarine; */
+  background: rgba(0, 0, 0, 0.5);
+  opacity : 0;
+
+  transition : opacity 100ms ease-in-out 200ms;
+
+}
+
+.popup .popup-content{
+  position :absolute ;
+  /* display : block; */
+  top: 50%;
+  left : 50%;
+  transform:translate(-50%,-50%) scale(1.30);
+  opacity :0;
+
+  width : 95%;
+  background-color: white;
+  max-width: 40rem;
+  border-radius : 25px;
+  
+  padding : 5px;
+
+
+  /* opacity : 1; */
+
+  box-shadow : 0px 2px 2px 5px rgba(53, 47, 47, 0.335);
+  transition: all 300ms ease-in-out;
+}
+
+.popup .popup-content h2{
+  color : blue;
+  margin  : 10px 0px;
+  font-size: 25px; 
+  text-align: center;
+}
+.popup .popup-content p{
+  color :#222;
+  text-align: justify;
+  margin  : 15px 15px;
+  font-size: 18px; 
+}
+.popup .popup-content .controls{
+  background-color: rgb(224, 207, 185);
+  display : flex;
+  justify-content: space-between;
+  margin : 20px 0px 0px;
+  padding : 10px 10px;
+}
+
+
+.popup .popup-content .controls button{
+  height : 3rem;
+  
+  
+  padding : 10px 20px;
+  border : none;
+  outline :none;
+
+  border-radius:25px;
+  color : blue;
+  font-size : 20px;
+  cursor : pointer;
+
+  
+}
+
+.popup .popup-content .controls .close-btn{
+  background: transparent;
+  
+  font-weight: 700;
+  font-size : 18px;
+  color :rgb(96, 16, 92);
+
+}
+
+.popup .popup-content .controls .submit-btn{
+  background: transparent;
+  
+  font-weight: 700;
+  font-size : 18px;
+  color :rgb(15, 117, 52);
+
+
+}
+
+.popup.active{
+  top : 0px;
+  transition : top 0ms ease-in-out 0ms;
+
+}
+.popup.active .overlay{
+  opacity : 1;
+  transition : all 300ms ease-in-out 300ms;
+}
+
+.popup.active .popup-content{
+  transform: translate(-50%,-50%) scale(1);
+  opacity : 1;
+} 
+  
+
+/* popup sample 2 */
+
+.popup_2{
+  background-color: rgb(245, 243, 143);
+  width: 400px;
+  border-radius: 30px;;
+  position : absolute;
+  top : 0;
+  left : 30%;
+  /* to center in web page */
+  transform: translate(-50% ,-50%) scale(0.1);
+  text-align: center;
+  padding : 0 30px 30px;
+  visibility :hidden;
+  transition: transform 1s, top 1s;
+
+}
+/* to open the popup - visibility */
+.open-popup-2{
+  visibility: visible;
+  top : 50%;
+  transform: translate(-50% ,-50%) scale(1);
+}
+.popup_2 img{
+  width : 60%;
+  margin-top:0%;
+}
+.popup_2 h2{
+  color : blue;
+  font-size : 20px;
+  font-weight: 700;
+}
+.popup_2 p{
+  color : black;
+  font-size : 18px;
+  font-weight: 5;
+}
+.popup_2 button{
+ width : 100%; 
+ margin-top : 3rem; 
+ margin-bottom : 1rem;
+ font-size : 18px;
+ outline : none;
+ border : 0;
+ background:  #6fd649;
+ color: fff;
+ cursor : pointer;
+ border-radius: 15px;
+
+box-shadow : 0px 2px 2px 5px rgba(32, 96, 51, 0.335);
+}
+
+
+/* modal sample by kevin
+ https://www.youtube.com/watch?v=TAB_v6yBXIE */
+
+.modal-bykevin{
+  padding : 1em;
+  max-width : 50ch;
+
+   /* & > * {
+    margin : 0 0 0.5rem 0;
+   } */
+    border: 0;
+    box-shadow: 0 0 2em  rgba(236, 111, 61, 0.75);
+    
+    padding : 2rem;
+    width: 40rem;
+    margin : auto auto;
+  
+}
+.modal-bykevin::backdrop{
+  background-color: #6319b2fe;
+  
+background: linear-gradient(32deg, 
+red, blue
+);
+  opacity: .2;
+}
+.popup-sample-3 .form .button{
+  margin-top : 1rem;
+}
+
+/*
+
+https://www.youtube.com/watch?v=AF6vGYIyV8M&t=182s
+
+
+7:24
+*/

@@ -1,0 +1,15 @@
+#section-student-createView{
+  background-color: rgba(242, 102, 102, 0);
+  
+  padding : .5rem .3rem;
+  margin : 3rem;
+  
+  
+}
+
+.body-area{
+  background-color: antiquewhite;
+  color : black;
+  height : max-content;
+
+}

@@ -1,0 +1,150 @@
+
+.body-area{
+  /* max-height:fit-content; */
+  
+  display : block;
+  background-color: rgb(232, 226, 162);
+  margin : 2rem .5rem;
+  
+}
+.body-table{
+  display : block;
+  background-color: rgb(232, 162, 162);
+  margin: 1rem 1rem;
+  padding: 3em;
+}
+.h5-header{
+  color : red;
+
+}
+.other-buttons{
+  background-color: antiquewhite;
+  display : flex;
+
+  
+}
+.other-buttons-item{
+  margin-right: 5rem;
+}
+/*----  used for popups  ---- */
+.popup-sample2{
+  background:rgb(208, 208, 105) ;
+  padding : 1rem ;
+  justify-content: center;
+
+}
+
+
+/* -----------  other section  ----------- */
+
+
+
+.orm-area{
+  color : black;
+  background-color: rgba(240, 248, 255, 0.138);
+}
+.orm-area1-grp1{
+  margin-bottom:.5rem;
+  background-color :antiquewhite
+
+}
+.orm-area2-data{
+  background-color: rgba(230, 233, 235, 0.907);
+}
+.orm-area3{
+  background-color: rgba(205, 73, 22, 0.687);
+  color : white;
+}
+.orm-area1 span{
+  font-size : 16px;
+  font-weight: 500;
+  color : rgb(231, 184, 184);
+  background-color: rgb(203, 233, 223);
+  padding : 0 2rem;
+}
+
+.popup-sample3{
+  background-color: rgb(186, 120, 33);
+  color : #000;
+}
+
+
+
+
+
+
+
+#section-orm-dashboard{
+  max-height :fit-content;
+  background-color : rgba(241, 224, 213, 0.574);
+  margin : 1rem 3rem;
+  padding : 1rem 1rem;
+  margin-bottom : 1rem;
+  margin-top : 2rem;
+ 
+
+}
+#section-orm{
+  background-color: aliceblue;
+}
+  
+.orm-container1{
+  background-color: rgba(8, 110, 76, 0.671);
+  padding : .5rem .5rem;
+}
+
+#section-orm,
+#section-queryset-update{
+  display : none;
+}
+
+
+@media only screen and (max-width:700px){
+  .body-area{
+    margin : .5rem 0;
+    margin-top : 4rem;
+    background-color: antiquewhite;
+  }
+  .table-cotainer{
+    margin : 0;
+  }
+  #section-orm-dashboard{
+    margin : .5rem .5rem;
+      
+  }
+  .orm-area3{
+    margin : 0 0;
+    padding : 0;
+  }
+
+
+  .body-table{
+    display: block;
+    
+   }
+
+   #section-orm-dashboard,
+   .table-container-wrapper,
+   .table-container,
+   .table-main-container,
+   .body-table{
+    margin : 0;
+    padding :0;
+   }
+   .center{
+    top : 1.5rem;
+   }
+
+
+
+
+  .table-container{
+    margin: auto;
+  }
+
+  .table-container-wrapper{
+      overflow : auto;
+  }
+
+}
+

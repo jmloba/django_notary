@@ -1,0 +1,338 @@
+<!-- notes -->
+
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section>
+<section id="section-notary-entry" >
+   
+  <div class="body-area">  
+    <div class="table-container"  >   
+      <div class="table-container-wrapper">
+        <h3>Notary Transactions</h3>    
+        <div class="table-wrapper">
+          <table class="tbl"  >
+            <thead class="table-header">  
+              <!-- id ="myordersTable"  -->
+              <tr>
+                <th >Image</th>                  
+                <th >First Name</th>
+                <th >Last Name</th>
+                <th >Category</th>
+                <!-- <th >Book</th>
+                <th >Page</th>
+                <th >Record</th> -->
+                <th >Amount</th>
+                <th >Tax</th>
+                <th >Total</th>
+                <!-- <th >Created</th> -->
+                <th >Posted</th>
+                <th >Myfile</th>                                      
+                <th colspan="3">Action</th>
+              </tr>
+            </thead>
+            
+            <tbody class="table-body data">
+              {% if data %}
+                {% for item in data %}
+    
+                  <tr id="categ-id-{{item.id}} tbody-record">
+                    {% if item.myimage%}
+                      <td data-cell="attached image">
+                        <img src="{{item.myimage.url}}" alt="pic" class="item-image-size-inlist" >
+                      
+                      </td>
+                    {% else %}
+                      <td  data-cell="attached image">
+                        <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                      </td>     
+                    {% endif %}               
+  
+                    <td data-cell="name">{{item.firstname}}</td>
+                    <td data-cell="lastname">{{item.lastname}}</td>
+                    <td data-cell="category" >{{item.category}}</td>
+
+                    <td data-cell="amount" class= "col-amount">
+                      <strong>{{item.amount}}</strong>
+                    </td>
+
+                    <td  data-cell="tax amount" class= "col-amount col-amount-tax" >
+                      <strong>{{item.total_tax_amount}}</strong>
+                      
+                    </td>
+
+                    <td data-cell="total amount" class ="col-amount col-amount-total" >
+                      <strong>{{item.total_amount}}</strong>
+                    </td>
+
+
+
+                    {%if item.is_posted%}
+                    <td data-cell="posted"><p 
+                      class="status posted" >{{item.is_posted}}</p></td>
+                    {%else%}  
+                    <td data-cell="posted"><p 
+                      class="status notposted" >{{item.is_posted}}</p></td>
+                    {%endif%}
+  
+                    {% if item.myfile%}
+                      <td data-cell="attached file">
+                        <img src="{{item.myfile.url}}" alt="my file" class="item-image-size-inlist" >
+                      
+                      </td>
+                    {% else %}
+                      <td data-cell="attached file">
+                        <img src="{% static 'image-default/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+                      
+                      </td>     
+                    {% endif %}   
+
+                    <td data-cell="View record" 
+                    >
+                      <button class="btn btn-success btn-sm btn-view-profile" data-bs-toggle='modal' data-bs-target="#readData">
+                        
+                        <i class="bi bi-eye"></i>
+                        
+                      </button>
+                    </td>                      
+
+                    <td data-cell="Update record" >
+                      <button class="btn btn-info btn-sm">
+                        <a href="{% url 'app_forms:update-record' item.id %}">
+                        <i class="bi bi-pencil"></i>
+                        </a>
+                      </button>
+                    </td>  
+  
+                    <td data-cell="Delete record" >
+                      <button class="btn btn-danger btn-sm">
+                        <a href="{% url 'app_forms:delete-record' item.id %}">
+                        <i class="bi bi-trash3"></i>
+                        </a>
+                      </button>
+  
+                    </td>  
+                    
+                  </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+              
+          </table>
+  
+        </div>  
+
+
+      </div>
+
+    </div>  
+    {% include 'include/error-messeges.html'%}
+    <div class="add-button"  >
+      <button class="btn btn-primary"><a href="{% url 'app_forms:create-record'%} "> Add Record</a></button>
+
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-notary-form">new entry</button>      
+
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-notary-form3">new entry- modal sample 3</button>      
+      
+    </div>   
+  </div>
+</section>
+
+<!-- modal form  -->
+<div class="modal fade" id="add-notary-form">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Fill the Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- {% include 'app_forms/form-modalform1.html' %}         -->
+        <form action="{% url 'app_forms:create-record-modal' %}"    enctype="multipart/form-data"  method="POST" novalidate >
+            
+          {% csrf_token %}
+          <div class="form-row">
+            {% include 'app_forms/form-fields-notary.html' %}
+          </div> 
+          <button type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>
+
+        
+        </form>         
+
+      </div>
+
+    </div>
+
+  </div>  
+
+
+</div>
+
+<!-- modal form3  -->
+<div class="modal fade" id="add-notary-form3">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Fill the form</h4>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- {% include 'app_forms/form-modalform1.html' %}         -->
+        <form action="#"  id="modalform3" autocomplete="">
+
+          <div class="card imageholder">
+            <label for="imgInput" class="upload">
+              <input type="file" name="" id="imgInput"  accept="jpg, png " >
+              
+              <i class="bi bi-plus-circle-dotted"></i>
+
+            </label>
+            <img src="{% static 'images/default-image.png' %}" alt="pic" class="img-entry" id="profile-Pic" >
+          </div> 
+
+          <div class="inputField">
+            <div class="form-entry">
+
+              <div class="form-group">
+                <div class="form-group-item">
+                  <label for="firstname">Firstname</label>
+                  <input type="text" name="" id='firstname' placeholder="First Name" >
+                </div>
+                <div class="form-group-item">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" name="" id ='lastname' placeholder="Last Name" >
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-group-item">
+                  <label for="book">Book</label>
+                  <input type="number" name="" id="book" placeholder="Book" >
+                </div>
+                <div class="form-group-item">
+                  <label for="page">Page</label>
+                  <input type="number" name="" id='page' placeholder="Page" >
+                </div>
+                <div class="form-group-item">
+                  <label for="record">Record</label>
+                  <input type="number" name="" id='record' placeholder="Record" >
+                </div>
+                
+
+              </div> 
+              <div class="form-group">
+                <div class="form-group-item">
+                  <label for="amount">Amount</label>
+                  <input type="number" name="" id ='amount' placeholder="Amount" step="0.01"  >
+                </div>
+              </div>   
+            </div>
+
+
+          </div>
+
+        </form>         
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" form="modalform3" class="btn btn-primary submit">Submit</button>
+      </div>
+
+    </div>
+
+  </div>  
+
+
+</div>
+
+ <!-- read data add-notary-form3 -->
+ <div class="modal fade" id="readData">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Profile</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- {% include 'app_forms/form-modalform1.html' %}         -->
+        <form action="#"  id="modalform3_readonly" >
+
+          <div class="card imageholder">
+ 
+            <img src="{% static 'images/default-image.png' %}" alt="pic" class="item-image-size-inlist" >
+          </div> 
+
+          <div class="inputField">
+            <div class="form-entry">
+
+              <div class="form-group">
+                <div class="form-group-item">
+                  <label for="firstname">Firstname</label>
+                  <input type="text" name="firstname" placeholder="First Name" disabled>
+                </div>
+                <div class="form-group-item">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" name="lastname" placeholder="Last Name" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-group-item">
+                  <label for="book">Book</label>
+                  <input type="number" name="book" placeholder="Book" disabled>
+                </div>
+                <div class="form-group-item">
+                  <label for="page">Page</label>
+                  <input type="number" name="page" placeholder="Page" disabled>
+                </div>
+                <div class="form-group-item">
+                  <label for="record">Record</label>
+                  <input type="number" name="record" placeholder="Record" disabled>
+                </div>
+                
+
+              </div> 
+              <div class="form-group">
+                <div class="form-group-item">
+                  <label for="amount">Amount</label>
+                  <input type="number" name="amount" placeholder="Amount" step="0.01"  disabled>
+                </div>
+              </div>   
+            </div>
+
+
+          </div>
+        </form>         
+      </div>
+
+
+    </div>
+  </div>  
+ </div>
+
+
+<link rel="stylesheet" href="{% static 'css/app-appforms-dashboard.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/app-appforms-modal.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+<!-- to be used in specific fields of table -->
+
+<link rel="stylesheet" href="{% static 'css/table-formatting-specific-appforms-dashboard.css' %}">
+
+
+<!-- to be used test-->
+<link rel="stylesheet" href="{% static 'css/table-ab.css' %}">
+
+
+<script src="{% static 'js/app-forms-entry.js' %}" ></script> 
+
+{% endblock %}
+

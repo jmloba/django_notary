@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <select name="ddlNames" id="ddlNames">
+    <option value = 'line 1'>line 1</option>
+    <option value = 'line 2'>line 2</option>
+    <option value = 'line 3'>line 3</option>
+    <br>
+    <br>
+    
+
+  </select>
+  <input type="button" value="select"  onclick="setName()"/>
+  
+</body>
+<link rel="stylesheet" href="{% static 'css/popup.css' %}">
+
+<script type="text/javascript">
+  function setName(){
+    if(window.opener !=null && !window.opener.closed )
+    var txtName = window.opener.document.getElementbyId('textName').value = document.getElementById('ddlNameas').value
+
+  
+  }
+  window.close();
+
+</script>
+
+</html>

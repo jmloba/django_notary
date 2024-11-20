@@ -32,6 +32,10 @@ class Sampleform(forms.Form):
   
 
 class CreateRecordNotaryForm(forms.ModelForm):
+  myfile =forms.ImageField(
+    label='myfile photo',
+    widget=forms.ClearableFileInput(attrs={'class':'form-control'})                       
+    )
   class Meta :
     model= Notarized_Documents
     fields=('category','firstname','lastname','myfile','myimage','address','bookno','pageno', 'recordno','amount', 'or_number')
@@ -49,8 +53,13 @@ class CreateRecordNotaryForm(forms.ModelForm):
       'recordno':'Record No.',
       'amount': 'Amount',
       'or_number':'Official Receipt Number',
-
     }
+  def  clean_firstname(self):
+    firstname= self.cleaned_data.get('firstname')
+    if (len( firstname ) < 4):
+      raise forms.ValidationError('firstname must be more than 3 chars')
+    return firstname
+  
   def __init__(self,*args,**kwargs):
     super(CreateRecordNotaryForm,self).__init__(*args,**kwargs)
     self.fields['firstname'].required=True
@@ -62,7 +71,17 @@ class CreateRecordNotaryForm(forms.ModelForm):
     self.fields['amount'].required=True
     self.fields['or_number'].required=True
 
+  # def save(self, *args, **kwargs):
+  #       kwargs['commit'] = False
+  #       my_model = super().save(*args, **kwargs)
+  #       Notarized_Documents.objects.update_or_create(
+  #           total_tax_amount=self.cleaned_data['amount'] * 2,
+            
+          
+  #       )
+    
 
+  
 class UpdateRecordNotaryForm(forms.ModelForm):
   class Meta :
     model= Notarized_Documents

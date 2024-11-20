@@ -24,19 +24,15 @@ html {
   list-style: None;
   text-decoration: none;
   box-sizing: border-box;
-
-  min-height : 100vh;
-
 }
 ul li{
   list-style: None;
-
 }
+
 img{
   /* display : block; */
   max-width : 100%;
   height : auto;
-
 }
 
 
@@ -132,26 +128,24 @@ img{
   background-color:var(--color-fb-blue );
   text-decoration: None;
   display:inline-block;
- 
+  padding : 5px 20px;
+  color : white; 
+  border-radius: 30px;
 }
 
 .btn-mybtn,
 .btn-mybtn a{
-  
-  color : white;
   text-decoration: None;
-
+  color : white;
   
 }
+
 .btn-mybtn:hover {
   background-color: #13b990;
-}
-.btn-mybtn:hover,
-.btn-mybtn a:hover{
   color : yellow;
   font-weight :600;
-
 }
+
 .home-btn{
   color:var(--color-fb-blue );
   font-size: 20px;
@@ -191,8 +185,8 @@ img{
 
 .body-area{
   background-color: #7cb8d6a0;
-  margin: 1em 2em;
-  padding : 1em 1em;
+  margin: 1rem .5rem;
+  
   border-radius : 5px;
   
 }
@@ -203,6 +197,7 @@ img{
   max-width         :  100%;
 
 }
+
 .modal-dialog .modal-header{
   background-color  : #9e9991;
   display           : flex;
@@ -216,10 +211,12 @@ img{
 /* form */
 
 form{
-  background-color: #c7c5b2;
+  background-color: #d4d3cd;
   border-radius: 10px;;
   padding : 1em 1em;
-  margin : 2em .5em;
+  margin : 2em .1em;
+  width: 100%;
+  
 }
 form field,
 form label {
@@ -229,8 +226,18 @@ form label {
 
 }
 .username{
-  background-color: #e4e2df61;
+  background-color: #f4f1f12d;
 }
+#user-section .username strong.imuser{
+  color : blue;
+}
+#user-section .username{
+  color : red;
+  padding-left: 1rem;
+}
+
+
+
 
 
 /* for messages */

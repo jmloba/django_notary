@@ -1,0 +1,85 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<!-- <section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section> -->
+<section id="section-accounting-dashboard">
+  <div class="body-area">
+    <div class="table-container"  >   
+      <div class="table-container-wrapper">
+        <h2>Voucher (Group ) Creation</h2>
+        <div class="table-wrapper">
+          <table id="tbl">
+            <thead class="table-header">
+              <tr>
+                <th>Voucher Group Number</th>
+                <th>Account No</th>
+                <th>Account Desc</th>
+                <th>D/c</th>
+                <th colspan="2">action</th>
+                
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              {% if data %}
+                  {% for item in data %}
+                  <tr id="chrtmast-id-{{item.id}}">
+                    
+                    <td data-cell="accno">{{item.voucher_group}}</td>
+                    <td data-cell="accno" class = "col-black">
+                      {{item.accno}}</td>
+                    <td data-cell="accno" class = "col-black">
+                        {{item.acct_name}}</td>
+
+                    <td data-cell="Debit / Credit" class = "col-black">{{item.dc}}</td>
+
+        
+
+                    <td  data-cell="update">
+                      <button class="btn btn-info btn-sm ">
+                        <a href="{% url 'app_accounting:update-vouchergroup-record' item.id %}">
+                        <i class="bi bi-pencil"></i>
+                        </a>
+                      </button>
+                    </td>
+                    <td data-cell="delete">
+                      <button class="btn btn-danger btn-sm">
+                        <a href="{% url 'app_accounting:delete-vouchergroup-record' item.id %}">
+                          <i class="bi bi-trash3"></i>
+                        </a>
+                      </button>
+                    </td>   
+                  </tr>        
+                  {% endfor %}
+              {% endif %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>  
+    {% include 'include/error-messeges.html'%}      
+    <div class="add-button"  >
+      <button class="btn btn-primary btn-mybtn"><a href="{% url 'app_accounting:create-voucher-group'%} "> Add Record</a></button>
+      
+    </div>
+  </div> 
+    <!-- end wrapper -->
+    
+
+</section>
+
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-accounting-dashboard-voucher-create.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-formatting-specific-accounting-dashboard.css' %}">
+
+{% endblock %}

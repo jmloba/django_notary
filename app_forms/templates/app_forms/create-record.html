@@ -22,8 +22,8 @@
         <div class="form-entry"  >
           <h3 id = "header-form">Create Notary Record  </h3>
 
-          <form action="{% url 'app_forms:create-record' %}"    enctype="multipart/form-data" 
-          method="POST" >
+          <form action="{% url 'app_forms:create-record' %}"    enctype="multipart/form-data"  method="POST" novalidate >
+            
             {% csrf_token %}
             <div class="form-row">
               {% include 'app_forms/form-fields-notary.html' %}
@@ -32,7 +32,7 @@
 
           
           </form>
-          <button id="btn-sample1" type="submit" class="btn btn-primary" ><i class="fa-solid fa-floppy-disk"></i>Submit</button>
+         
 
           <button id="btn-change-theme" type="submit" class="btn btn-primary" ></i>Change color of title</button>
           
@@ -62,6 +62,8 @@
 
 
 <script src="{% static 'js/app-forms-create-record-taxcomputation.js' %}" ></script> 
+
+
 <script>
   function one(){
     console.log('function 1')

@@ -2,19 +2,21 @@ from django.shortcuts import get_object_or_404, render,redirect
 from app_notary.models import Notarized_Documents, Notary_Category, File_Serials, Notary_Posting
 from app_import.models import Phil_City,Phil_Province_Towns
 from app_invoice.models import Tax
+from decimal import Decimal
 
 from app_forms.forms import CreateRecordNotaryForm,UpdateRecordNotaryForm, CreateRecordCategoryForm, UpdateRecordCategoryForm,Date_filter, Sampleform
 
 
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import simplejson as json
 from app_notary.utils import generate_posting_refno
 from datetime import datetime
 import subprocess
-
-
-from django.contrib import messages
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
+from django.urls import reverse_lazy, reverse
 
 
 from reportlab.pdfgen import canvas
@@ -27,6 +29,9 @@ from reportlab.platypus.tables import Table, TableStyle, colors
 from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import inch
 from .report1_template import print_template
+from formtools.preview import FormPreview
+
+
 # Create your views here.
 
 
@@ -121,33 +126,38 @@ def delete_category_record(request, pk=None):
 
 @login_required(login_url='app_accounts:login-view')
 def dashboard(request):
-  data=Notarized_Documents.objects.filter( user = request.user, is_posted = False).order_by('created')
-
-
+  # data=Notarized_Documents.objects.filter( user = request.user, is_posted = False).order_by('created')
+  data=Notarized_Documents.objects.order_by('created')
   form = CreateRecordNotaryForm()
-
-  context={'data':data, }
+  context={'data':data, 'form':form}
   return render(request,'app_forms/dashboard.html',context)
 
 def get_tax_values(request,form):
-  amount = int(form['amount'].value())
+  amount1 = form['amount'].value()
+  print (f'get_tax_values : \n amount : {amount1} -> type : {type(amount1)}')
+  amount =Decimal(form['amount'].value())
   get_tax = Tax.objects.filter(is_active= True)
   mtotal_tax_amount =0
   tax_dict = {}
   for i in get_tax:
     tax_type = i.tax_type
     tax_percentage = i.tax_percentage
-    tax_amount = round((tax_percentage * amount)/100,2)
+    tax_amount = round(( tax_percentage * amount)/100,2)
     mtotal_tax_amount+=tax_amount
     print (f'\ntax type :{tax_type},\ntax percentage :{tax_percentage}, \ntax amount:{tax_amount},\nmtotal_tax_amount:{mtotal_tax_amount}')
     tax_dict.update({tax_type:{str(tax_percentage):tax_amount}})
-  tax =0
+    tax =0
+
   # for key in  tax_dict.values():
   #   for x in key.values():
   #     tax = tax +x
+
+
   tax=sum(x for  key in tax_dict.values() for x in key.values())   
   gtotal = amount+ tax
+
   print(f'saving 2 : tax : {tax},  mtotal_tax_amount:{mtotal_tax_amount}, amount+tax :{gtotal}')
+
   return mtotal_tax_amount, gtotal, tax_dict
 
 def save_1(request,form):
@@ -200,13 +210,11 @@ def save_2(request,form):
   newrec.total_tax_amount =mtotal_tax_amount
   newrec.tax_data = json.dumps(tax_dict)
   newrec.total_amount = gtotal
-  newrec.save()
+  newrec.save()  
+  # save to accounting
 
 @login_required(login_url='app_accounts:login-view')
 def create_record(request):
-  form = CreateRecordNotaryForm()
-  print('create record entry')
-
   if request.method=='POST':
     form = CreateRecordNotaryForm(request.POST or None, request.FILES or None)
     
@@ -217,14 +225,29 @@ def create_record(request):
       context={'data':data, }
 
       return redirect('app_forms:dashboard', )
-    else:
-      print(f'Creating Record  error: {form.errors}' )
-
-      return redirect('app_forms:dashboard' )
-      
-
-  context={'form':form, }
+ 
+  else :     
+    form = CreateRecordNotaryForm()
+  context={'form':form,}  
+ 
   return render(request,'app_forms/create-record.html',context)
+
+def create_record_modal_test(request):
+  if request.method== 'POST':
+    print('request is post')
+
+def create_record_modal(request):
+  if request.method== 'POST':
+    form = CreateRecordNotaryForm(request.POST or None, request.FILES or None)
+        
+    if form.is_valid():
+      print('form is valid')
+      # save_1(request, form)
+      save_2(request, form)
+      data=Notarized_Documents.objects.all()
+      context={'data':data, }
+
+      return redirect('app_forms:dashboard', )
 
 @login_required(login_url='app_accounts:login-view')
 def update_record(request, pk=None):
@@ -532,7 +555,6 @@ def print_body_data(c,row_data, y_axis, page_amount,  page_total,tax_page_total)
   c.drawRightString(6.5*inch, y_axis * inch, total_amount)
   return tax_page_total,page_total,page_amount, y_axis
 
-
 def sales_report_posted(request):
   if request.method=='POST':
     
@@ -584,3 +606,84 @@ def print_posted_filter(request):
     response = {'status':'not POST', 'Message': 'request is not post !!!'}
     return JsonResponse(response)   
 
+class notary_create_record(CreateView): 
+  template_name='app_forms/notary_createrecord_createview.html'
+  form_class = CreateRecordNotaryForm
+  success_url='dashboard'
+
+class NotaryDashboardListview(ListView):
+  template_name =('app_forms/notarylistview.html')
+  model =Notarized_Documents
+  context_object_name='notarylist'
+
+def get_tax_valuesxx(form):
+  amount1 = form['amount'].value()
+  print (f'get_tax_values : \n amount : {amount1} -> type : {type(amount1)}')
+  amount =Decimal(form['amount'].value())
+  get_tax = Tax.objects.filter(is_active= True)
+  mtotal_tax_amount =0
+  tax_dict = {}
+  for i in get_tax:
+    tax_type = i.tax_type
+    tax_percentage = i.tax_percentage
+    tax_amount = round(( tax_percentage * amount)/100,2)
+    mtotal_tax_amount+=tax_amount
+    print (f'\ntax type :{tax_type},\ntax percentage :{tax_percentage}, \ntax amount:{tax_amount},\nmtotal_tax_amount:{mtotal_tax_amount}')
+    tax_dict.update({tax_type:{str(tax_percentage):tax_amount}})
+    tax =0
+
+
+  tax=sum(x for  key in tax_dict.values() for x in key.values())   
+  gtotal = amount+ tax
+
+  print(f'saving 2 : tax : {tax},  mtotal_tax_amount:{mtotal_tax_amount}, amount+tax :{gtotal}')
+
+  return mtotal_tax_amount, gtotal, tax_dict  
+
+class NotaryCreateView(CreateView, FormPreview):
+  template_name='app_forms/notaryCreateView.html'
+  form_class = CreateRecordNotaryForm
+
+  def form_valid(self,form):
+    print(f' on Notary creaview -as form valid : {form.cleaned_data}')
+    mamount = form.cleaned_data['amount']
+    print(f'amount : {mamount}')
+    form.instance.user=self.request.user
+    form.instance.total_tax_amount = float(float(mamount) *1.5)
+    mtotal_tax_amount, gtotal , tax_dict =get_tax_valuesxx(form)
+
+    form.instance.total_tax_amount =mtotal_tax_amount
+    form.instance.tax_data = json.dumps(tax_dict)
+    form.instance.total_amount = gtotal
+  
+    return super().form_valid(form)
+  
+  def get_success_url(self):
+    return reverse_lazy('app_forms:notarysales-dashboard')
+
+class NotaryUpdateView(UpdateView):
+  template_name='app_forms/notaryUpdateView.html'
+  form_class = CreateRecordNotaryForm
+  model = Notarized_Documents
+  def get_success_url(self):
+    return reverse_lazy('app_forms:notarysales-dashboard')  
+  
+  def form_valid(self,form):
+    print(f' on Notary creaview -as form valid : {form.cleaned_data}')
+    mamount = form.cleaned_data['amount']
+    print(f'amount : {mamount}')
+    form.instance.user=self.request.user
+    form.instance.total_tax_amount = float(float(mamount) *1.5)
+    mtotal_tax_amount, gtotal , tax_dict =get_tax_valuesxx(form)
+
+    form.instance.total_tax_amount =mtotal_tax_amount
+    form.instance.tax_data = json.dumps(tax_dict)
+    form.instance.total_amount = gtotal
+  
+    return super(NotaryUpdateView,self).form_valid(form)
+
+class NotaryDeleteView(DeleteView):
+  template_name='app_forms/notaryDeleteView.html'
+  model = Notarized_Documents
+  def get_success_url(self):
+    return reverse_lazy('app_forms:notarysales-dashboard')  

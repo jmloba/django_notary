@@ -1,0 +1,109 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<!-- <section id="user-section">
+  <p class="username" > User: <strong class="imuser" >{{user}}</strong></p>
+</section> -->
+<section id="chartlistview-dashboard">
+  <div class="body-area">
+    <div class="button-area"  >
+
+         <button class="btn btn-mybtn"><a href="{% url 'app_sample:chrt_detailview'%} ">chart list view</a></button>
+    </div>
+
+    <div class="table-container"  >   
+      <div class="table-container-wrapper">
+        <h2>Chart of Accounts</h2>
+        <div class="table-wrapper">
+          <table id="tbl">
+            <thead class="table-header">
+              <tr>
+                <th>Account Number</th>
+                <th>Description</th>
+                <th>Header/Detail</th>
+                <th>Beginning Balance</th>
+                <th colspan="2" >Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              {% if chart_acct_list %}
+                {% for item in chart_acct_list %}
+                <tr id="chrtmast-id-{{item.id}}">
+                  
+                  <td data-cell="accno">{{item.chrt_accno}}</td>
+                  <td data-cell="desc" class = "col-black">
+                    {{item.chrt_desc}}</td>
+                  <td data-cell="Header/Detail" class = "col-black">{{item.chrt_H_D}}</td>
+
+                  <td data-cell="begbal" class= "col-number">
+                    <span class='beg-bal' >{{item.beg_bal}}</span>
+                  </td>
+
+                  <td  data-cell="update">
+                    <button class="btn btn-info btn-sm ">
+                      <a href="{% url 'app_sample:update-chrtmast' item.id %}">
+                      <i class="bi bi-pencil"></i>
+                      </a>
+                    </button>
+                  </td>
+                  <td data-cell="delete">
+                    <button class="btn btn-danger btn-sm">
+                      <a href="{% url 'app_sample:delete-record' item.id %}">
+                        <i class="bi bi-trash3"></i>
+                      </a>
+                    </button>
+                  </td>   
+                </tr>        
+                {% endfor %}
+  
+                <!-- pagination -->
+
+                <div class="pagination">
+                  <span class="step-links">
+                      {% if page_obj.has_previous %}
+                          <a href="?page=1">&laquo; first</a>
+                          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                      {% endif %}
+              
+                      <span class="current">
+                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                      </span>
+              
+                      {% if page_obj.has_next %}
+                          <a href="?page={{ page_obj.next_page_number }}">next</a>
+                          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                      {% endif %}
+                  </span>
+              </div>        
+
+              {% endif %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>  
+    {% include 'include/error-messeges.html'%}      
+    {{info}}
+
+  </div> 
+    <!-- end wrapper -->
+    
+
+</section>
+
+
+
+
+
+<link rel="stylesheet" href="{% static 'css/app-sample-dashboard.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/table-format-general.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/table-formatting-specific-accounting-dashboard.css' %}">
+
+{% endblock %}
